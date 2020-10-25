@@ -1,0 +1,100 @@
+ubuntu@ubuntu-VirtualBox:~$ ls -R
+.:
+ A.txt       Downloads          Nilesh     rishi       Videos
+ Desktop     examples.desktop   Pictures   Templates
+ Documents   Music              Public    'url?sa=i'
+
+./Desktop:
+
+./Documents:
+
+./Downloads:
+ 1254627.jpg
+ 19Oct20
+ 5137.pdf
+'Assignment 2.docx'
+ AssignmentUnix.odt
+ CN-Lab-Manual.pdf
+'Complete Lab manual Computer Networks1.pdf'
+ data_communication_computer_network_tutorial.pdf
+ fwunixref.pdf
+ ITS332Y11S2H01-Lab-Manual.pdf
+ keyboard-shortcuts-linux.pdf
+ OneDrive-2020-10-21
+ OSI.png
+ unix-architecture.png
+'Unix(CommandsCheatSheet).pdf'
+ unix-useful-commands.pdf
+
+./Downloads/19Oct20:
+P1.mp4  P2.mp4  P3.mp4  P4.mp4
+
+./Downloads/OneDrive-2020-10-21:
+'Assignment 2.docx'   AssignmentUnix.odt
+
+./Music:
+
+./Nilesh:
+f1.txt  f2.txt  f3.txt  f4.doc  f5.doc
+
+./Pictures:
+Wallpapers
+
+./Pictures/Wallpapers:
+1254627.jpg  anonymoussuit-1602572754522-9269.jpg
+
+./Public:
+
+./Templates:
+
+./Videos:
+rishi
+ubuntu@ubuntu-VirtualBox:~$ cd Desktop/
+ubuntu@ubuntu-VirtualBox:~/Desktop$ mkdir Hinden
+ubuntu@ubuntu-VirtualBox:~/Desktop$ cd Hinden/
+ubuntu@ubuntu-VirtualBox:~/Desktop/Hinden$ touch .hiden1.txt .hiden2.txt
+ubuntu@ubuntu-VirtualBox:~/Desktop/Hinden$ cat > .hiden1
+This is a hiden file
+ubuntu@ubuntu-VirtualBox:~/Desktop/Hinden$ cat > .hiden2
+This is another hiden file 
+ubuntu@ubuntu-VirtualBox:~/Desktop/Hinden$ cd ~
+ubuntu@ubuntu-VirtualBox:~$ mkdir Nilesh
+mkdir: cannot create directory ‘Nilesh’: File exists
+ubuntu@ubuntu-VirtualBox:~$ mkdir Nilesh_Test 
+ubuntu@ubuntu-VirtualBox:~$ rm Nilesh_Test/
+rm: cannot remove 'Nilesh_Test/': Is a directory
+ubuntu@ubuntu-VirtualBox:~$ rm -r Nilesh_Test/
+ubuntu@ubuntu-VirtualBox:~$ mkdir -p Nilesh_test/Test
+ubuntu@ubuntu-VirtualBox:~$ ls -l Nilesh_test/
+total 4
+drwxr-xr-x 2 ubuntu ubuntu 4096 Oct 23 17:43 Test
+ubuntu@ubuntu-VirtualBox:~$ mkdir rm -r Nilesh_test/
+mkdir: invalid option -- 'r'
+Try 'mkdir --help' for more information.
+ubuntu@ubuntu-VirtualBox:~$ rm -r Nilesh_test/
+ubuntu@ubuntu-VirtualBox:~$ ls -l 
+total 60
+-rw-r--r-- 1 ubuntu ubuntu   39 Oct 20 16:05  A.txt
+drwxr-xr-x 3 ubuntu ubuntu 4096 Oct 23 17:40  Desktop
+drwxr-xr-x 2 ubuntu ubuntu 4096 Oct  5 16:33  Documents
+drwxr-xr-x 4 ubuntu ubuntu 4096 Oct 23 17:24  Downloads
+-rw-r--r-- 1 ubuntu ubuntu 8980 Oct  5 16:09  examples.desktop
+drwxr-xr-x 2 ubuntu ubuntu 4096 Oct  5 16:33  Music
+drwxr-xr-x 2 ubuntu ubuntu 4096 Oct 19 17:44  Nilesh
+drwxr-xr-x 3 ubuntu ubuntu 4096 Oct 13 12:36  Pictures
+drwxr-xr-x 2 ubuntu ubuntu 4096 Oct  5 16:33  Public
+--w-r--r-- 1 ubuntu ubuntu   63 Oct 22 20:20  rishi
+drwxr-xr-x 2 ubuntu ubuntu 4096 Oct  5 16:33  Templates
+-rw-r--r-- 1 ubuntu ubuntu 1414 Oct 14 15:56 'url?sa=i'
+drwxr-xr-x 2 ubuntu ubuntu 4096 Oct 22 20:10  Videos
+ubuntu@ubuntu-VirtualBox:~$ cd Desktop/
+ubuntu@ubuntu-VirtualBox:~/Desktop$ touch 1.txt 2.txt 3.doc 4.doc 5.doc 6.doc
+ubuntu@ubuntu-VirtualBox:~/Desktop$ rm *.txt
+ubuntu@ubuntu-VirtualBox:~/Desktop$ ls 
+3.doc  4.doc  5.doc  6.doc  Hinden
+ubuntu@ubuntu-VirtualBox:~/Desktop$ cat > Test.txt 
+Hello 
+ubuntu@ubuntu-VirtualBox:~/Desktop$ cat Test.txt 
+Hello 
+ubuntu@ubuntu-VirtualBox:~/Desktop$ 
+
