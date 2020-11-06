@@ -1,0 +1,47 @@
+1)  C Programming History
+Ans:  History of C language is interesting to know. 
+-> C programming language was developed in 1972 by Dennis Ritchie at bell laboratories of AT&T
+  (American Telephone & Telegraph), located in the U.S.A.
+-> Dennis Ritchie is known as the founder of the c language.
+-> It was developed to overcome the problems of previous languages such as B, BCPL, etc.
+-> Initially, C language was developed to be used in UNIX operating system. It inherits many features of
+   previous languages such as B and BCPL.
+===================================================================================================================================
+2) Write a c program to find as follows :
+     a) a=30 ,b =20 find a/b,   where a and b are float
+     b) Program to find the area of circle and rectangle.
+     c) Program to print your name with your age.
+ Ans: #include<stdio.h> 
+        int main()  
+      {      
+
+       float a=30;
+       float b =20;
+       float pir=3.14;
+        printf("Area of circle  a = %f and b = %f \n pir^2 = %f \n",a,b,pir*a*b);
+        printf("Area of rectangle  a = %f and b = %f \n Area of rectangle = %f \n",a,b,a*b );
+        printf("Hi I am Nilesh Pillay age 19");
+	   
+	    return 0;
+     }
+ 3) Write a program to calculate the following :
+      a= 3.5
+      b=2.5
+    1)  a2+b2+2ab   
+    3)  a2 /b2 
+ Ans: #include<stdio.h> 
+       int  main() 
+    {
+	     float a=3.5;
+	     float b=2.5;
+	  // Q1
+	     printf("a^2 + b^2 + 2ab =%f\n",(a*a)+(b*b)+(2*a*b));
+	 //Q2
+	     printf("a^2 - 2ab + b^2 =%f\n",(a*a)-(2*a*b)+(b*b));
+	 //Q3
+	     printf("a^2/b^2=%f\n",(a*a)/(b*b));
+	  return 0;	
+   }
+
+4) Write a program to define an integer ,character ,float and double values and print all values along with its size.
+Ans: 
