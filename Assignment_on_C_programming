@@ -44,4 +44,63 @@ Ans:  History of C language is interesting to know.
    }
 
 4) Write a program to define an integer ,character ,float and double values and print all values along with its size.
-Ans: 
+Ans: #include<stdio.h> 
+
+int  main() 
+{
+	int i=30;
+	short x=20;
+	char c='a';
+	float f=1.2;
+	double d=1.3;
+	
+	printf("size of integer : %d\n",sizeof(i));
+	printf("size of short : %d\n",sizeof(x));
+    printf("size of character : %d\n",sizeof(c));
+    printf("size of float : %d\n",sizeof(f));
+    printf("size of double : %d\n",sizeof(d));
+    
+	return 0;	
+}
+5) Create a program to take 2 values from user and print addition, multiplication ,subtraction and division.
+Ans: #include<stdio.h> 
+
+void main() 
+{ 
+   printf("Enter number : \n")
+   scanf("%d",&num1)
+   printf("Enter number : \n")
+   scanf("%d",&num2)
+   printf("addition:%d\n",(num1+num2))
+   printf("multiplication:%d\n",(num1*num2))
+   printf("subtraction:%d\n",(num1-num2))
+   printf(" division:%d\n",(num1/num2))
+}
+6) Take two numbers from user and compare values and print results as false or true.
+Ans:
+
+   
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
