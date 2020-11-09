@@ -389,7 +389,7 @@ Ans: #include<stdio.h>
       Output : 23467811
  Ans: #include<stdio.h>
 
-main()
+void main()
 {    
     int a;
 	for(a=0;a<=30;a++)
