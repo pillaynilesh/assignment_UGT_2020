@@ -245,7 +245,50 @@ int main()
 		        break;
 	}
 }
-15)
+15) Write a program to do the following using switch...case
+
+    Read percentage of a student inside a function and check if the percentage lies in the following range and print the Grade accodingle :
+    Percentage            Grade
+    80<per<=100           A+
+    60<per<=80            A
+    per<60                Fail
+    
+    Output :
+           Enter your Percentage : 67 
+           Percenge : 67 % , Your Grade is : A 
+Ans :#include<stdio.h>
+     void percentage(int per)
+
+ 
+{
+	switch(per)
+	{
+		case 80 ... 100:
+		printf("80<=per<=100");
+		break;
+		case 21 ... 40:
+		printf("60<=per<=80");
+		break;
+		case 41 ... 60:
+		printf("per<60");
+		break;
+		
+		default:
+			printf("your grade is :A");
+	}
+}
+ int main()
+ {
+ 	int per;
+ 	printf("Enter your percentage :");
+ 	scanf("%d",&per);
+ 	
+ 	percentage(per);
+ 	printf("\n");
+ 	percentage(67);
+ 
+}
+
 16) Display the following Pattern :
      *
      **
@@ -307,6 +350,11 @@ Ans: #include<stdio.h>
 	 getch();          
 				                
 }
+ 19) Write a program to print the values between 1 and 30.
+      Skip valus as 1 5 9 10 15
+      
+      Output : 23467811
+ Ans: 
 
    
 
