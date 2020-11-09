@@ -483,6 +483,36 @@ void main()
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 25) Program to find Largest of n numbers
 Ans:
+--------------
+30) Write a program to define a float array of marks of 5 subjects of a studdent and calculate the average of marks and display.
+
+#include<stdio.h>
+#define SIZE 5 
+
+int main()
+{
+	float marks[SIZE];
+	
+	int i;
+	
+	for(i-0;i<SIZE;i++)
+	{
+		printf("enter marks %d : ",(i+1));
+		scanf("%f" ,&marks[i]);
+	}
+	
+	float sum=0.0;
+	for(i=0;i<SIZE;i++)
+	{
+		sum=sum+marks[i];
+	}
+	float avg;
+	
+	avg=sum/SIZE;
+	
+	printf("average : %f" ,avg);
+	
+}
  
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 31) Create an array of 5 integer values and print the double of every value of an array using pointer concept:
