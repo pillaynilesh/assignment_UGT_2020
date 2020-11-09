@@ -482,8 +482,23 @@ void main()
 }
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 25) Program to find Largest of n numbers
-Ans:
---------------
+Ans:#include<stdio.h>
+void main()
+{
+  int n1,n2,n3,n4;
+     printf("Enter number 1;\n");
+     scanf("%u", &n1);
+     printf("Enter number 2;\n");
+     scanf("%u", &n2);
+     printf("Enter number 3;\n");
+     scanf("%u", &n3);
+     printf("Enter number 4;\n");
+     scanf("%u", &n4);
+     if(
+        
+ 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 30) Write a program to define a float array of marks of 5 subjects of a studdent and calculate the average of marks and display.
 
 #include<stdio.h>
