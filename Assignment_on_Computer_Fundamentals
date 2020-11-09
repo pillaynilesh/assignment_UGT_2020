@@ -1,0 +1,23 @@
+1) Character Generation / Image generation
+Ans:                                     THE CHARACTER GENERATOR ROM
+     Character generator adds character or animated text to video in video editing. It is based on hardware and software.
+     Most computers today use a special device called a character generator ROM to convert the ASCII bytes to a tiny dot matrix pattern for displaying on the tv screen.
+     This dot matrix can have a density ranging from 5×7 (the most coarse and not allowing lowercase) to 10×12 (the most dense and allowing all symbols of the alphabet).
+     As the resolution of the dot matrix of the character increases so does the cost of the ROM chip; so, the 5×7 and 7×9 matrixes have become popular, the 7×9 . 
+     2-4B having uppercase, lowercase, and Greek math symbols.
+     Besides cost, another factor that limits the character matrix density is maximum dot frequency permitted by the tv.
+     This simply means that the internal circuits of the television set will not allow a dot pattern to be resolved if there are frequency components in it which exceed 
+     about 6 MH.
+     The purpose of the character generator ROM is to accept the ASCII bytes from memory and convert them to a row of dots for the character that these bytes represent.
+     The secret to understanding how the video circuits work is to realize that the ROM puts out all the dots for one row of all the characters on a single line of text
+     on the screen (which might be 25 to 80 characters long.
+     This is shown in above fig. In this figure the top row of dots of all characters on the first line are being displayed. Each row here takes 63 μs. Characters in a
+     line are presented to the ROM eight times, once for each row.
+     Thus, each character on a line of text is accessed from screen memory several times until all the rows are laid down.
+     If the characters are on a 5×7 matrix then each character is accessed seven times, one time for each of the seven rows.
+     The more rows in the character matrix, the better and faster the video circuits must be.
+                           Data from: https://www.atariarchives.org/cgp/Ch02_Sec04.php
+4) Difference between Hard disk, RAM and Cache
+Ans:                                  Differences between RAM, Cache and Hard Disk
+    
+     
