@@ -448,8 +448,10 @@ int main()
 {
 	int start, end, sum = 0;
 	
-	printf("enter star and end value\n");
-	scanf("%d%d", &start, &end);
+	printf("enter star value\n");
+	scanf("%d", &start);
+	printf("enter end value\n");
+	scanf("%d", &end);
 	
 	printf("\nsum of odd numbers from %d to %d is", start, end);
 	
@@ -485,17 +487,48 @@ void main()
 Ans:#include<stdio.h>
 void main()
 {
-  int n1,n2,n3,n4;
-     printf("Enter number 1;\n");
+  int n1,n2;
+     printf("Enter number 1\n");
      scanf("%u", &n1);
-     printf("Enter number 2;\n");
+     printf("Enter number 2\n");
      scanf("%u", &n2);
-     printf("Enter number 3;\n");
+    
+     if(n1<n2)
+     {
+     printf(" You 2th number %d is Largest",n2);
+     }
+     else 
+     {
+     	printf(" You 1th number %d is Largest",n1);
+	 }
+	 
+	 
+ }
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 27) Program to find Average of n numbers entered by user
+ Ans:#include<stdio.h>
+void main()
+{
+  int n1,n2,n3,n4,tot,avg;
+     printf("Enter number 1\n");
+     scanf("%u", &n1);
+     printf("Enter number 2\n");
+     scanf("%u", &n2);
+     printf("Enter number 3\n");
      scanf("%u", &n3);
-     printf("Enter number 4;\n");
+     printf("Enter number 4\n");
      scanf("%u", &n4);
-     if(
-        
+     tot=n1+n2+n3+n4;
+     avg=tot/4;
+     printf("your Number total will be %u than Average will be %u",tot,avg);     	 
+ }
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 28) Program to display fibonnacci series 0 1 1 2 3 5 8....
+ Ans:
+     
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+29) Program to swap 2 numbers
+Ans:
  
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -550,8 +583,28 @@ int main()
    printf("\n end of the code");
 }
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
+31) Create an array of 5 integer values and print the double of every value of an array using pointer concept:
+      Input : num[]={1,2,3,4,5}
+      Output: num[]={2,4,6,8,10}
+Ans:#include<stdio.h>
+ 
+int main()
+{
+   int numbers[5]={10,20,30,40,50};
+   int *p;
+   p=numbers;
+   int i;
+   for(i=0;i<5;i++)
+   {
+   	printf("%d \t",i);
+   	//printf("Double value is : %d\n",(numbers[i]*2));
+    printf("%d\t",*(p+i)*2);
+   }
+   printf("\n end of the code");
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+32) Accept first name and lastname from user and print fullname.
+Ans:
 
 
 
