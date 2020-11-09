@@ -389,6 +389,18 @@ Ans: #include<stdio.h>
       Output : 23467811
  Ans: #include<stdio.h>
 
+main()
+{    
+    int a;
+	for(a=0;a<=30;a++)
+	{
+		if(a==1 || a==5 || a==9 || a==10 || a==15)
+		continue;
+		printf("%d\n",a);
+		
+	}
+}
+
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 20) Write a program to define marks of 5 subjects and print the average of marks.
