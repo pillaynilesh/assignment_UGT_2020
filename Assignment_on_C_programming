@@ -123,6 +123,191 @@ Ans:
    }
 9) Write a program to define a function which takes a number from user and print the number.
 Ans:
+
+11) Write a function which takes a character in small case and returns the same character in capital case.
+
+Ans:#include<stdio.h>
+
+
+int main()
+{
+    char character , capitalcase;
+    printf("\nenter a small character: \n");
+    scanf("%c" ,&character);
+   
+	 if(character>=97&&character<=122)
+     {
+	     capitalcase = character - 32;
+         printf("\nthe given character in capitalcase = %c\n",capitalcase);
+     }
+ else {
+ 	    printf("enter a smallcase character");
+ }
+ return 0;    
+}
+12) Write a program to display the result acoording to following using only if:
+     
+       marks < 40        Fail
+       40 <= marks <65   Second Division
+       65 <= marks < 75  First Division
+       75 <= marks       Distinction
+       
+Ans:#include<stdio.h>
+
+int main()
+{
+	float  s1, s2, s3, s4, s5, marks;
+	
+	printf("enter marks of 5 subjects\n");
+	scanf("%f %f %f %f %f", &s1, &s2 , &s3 , &s4 , &s5);
+	
+	marks = (s1 + s2 + s3 + s4 + s5);
+	
+	if(marks < 40)
+	{
+		printf("fail\n");
+	}
+	if(40 <=marks <65)
+	{
+	
+	printf("second division\n");
+}
+    if(65 <=marks <75)
+    {
+    	printf("first division\n");
+	}
+	if(75 <=marks)
+	{
+		printf("distinction\n");
+	}
+    return 0;
+}
+13) Write a program to find the largest of two numbers given by user.
+
+Ans:#include<stdio.h>
+
+int main()
+{
+	int  a, b;
+	
+	printf("enter 2 integer numbers\n");
+	scanf("%d%d",&a , &b);
+	
+	printf("largest of %d %d is %d\n", a, b, largest(a, b));
+	
+	return 0;
+}
+
+int largest(int x, int y)
+{
+	return (x>y?x:y);
+}
+14) Write a program using switch....case , create a function which takes two values as parameters 
+    +   ======>  Do Addition of two nos.
+    -   ======>  Subtraction
+    /   ======>  Division
+    *   ======>  Multiplication
+    
+    Output :
+             Enter two nos : 2 3
+             Press + to ADD, - to Subtract, / to divide, * to Multiply : +
+             Sum of 2 and 3 is : 5
+	     
+Ans: #include<stdio.h>
+
+int main()
+{
+	int a, b, choice;
+	
+	printf("enter your choice\n");
+	printf("1. addition\n2. subtraction\n3. multiplication\n4. division\n");
+	scanf("%d",&choice);
+	
+	if( choice >4 )
+	{
+		printf("slect in range!\n");
+	}
+	else
+	{
+		printf("enter 2 integer numbers\n");
+		scanf("%d %d", &a, &b);
+	}
+	
+	switch(choice)
+	{
+		case 1: printf("%d + %d = %d\n", a, b, (a+b));
+		        break;
+		case 2: printf("%d - %d = %d\n", a, b, (a-b));
+		        break;
+		case 3: printf("%d * %d = %d\n", a, b, (a*b));
+		        break;
+	    case 4: printf("%d / %d = %d\n", a, b, (a/b));
+		        break;
+	}
+}
+15)
+16) Display the following Pattern :
+     *
+     **
+     ***
+     ****
+     *****
+ Ans: #include<stdio.h>
+
+int main()
+{
+	
+	int row, col;
+	for(row=1;row<=5;row++)
+	{
+		for(col=1;col<=row;col++)
+		{
+			printf("*");
+		}  
+		printf("\n");
+	}
+}
+17) Print the table of the entered number.
+
+Ans:#include<stdio.h>
+
+void main()
+{
+	int n,t,i;
+	printf("enter the number");
+	scanf("%d",&n);
+	t=1;
+	for(i=1;i<=10;i++)
+	{
+		t=i*n;
+		printf("\n %d",t);
+	}
+	getch();
+}  
+18) Print the square of number between 1 and 10.
+  
+     Output:
+     
+       Square of 1 is 1
+       Square of 2 is 4
+       Square of 3 is 9
+Ans: #include<stdio.h>
+    void main()
+{
+	int a=1;
+	
+	while(a<=10)
+	           {
+			   
+	
+	            printf("\n square of  %d is %d",a,a*a);
+	            a++;
+	           }
+	           
+	 getch();          
+				                
+}
+
    
 
 
