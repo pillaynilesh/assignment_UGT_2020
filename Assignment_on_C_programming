@@ -387,9 +387,101 @@ Ans: #include<stdio.h>
       Skip valus as 1 5 9 10 15
       
       Output : 23467811
- Ans: 
+ Ans: #include<stdio.h>
 
-   
+main()
+{    
+    int i;
+	for(i=0;i<=30;i++)
+	{
+		if(i==1 || i==5 || i==9 || i==10 || i==15)
+		continue;
+		printf("%d\n",i);
+		
+	}
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+20) Write a program to define marks of 5 subjects and print the average of marks.
+Ans:#include<stdio.h>
+
+void main()
+{
+        float tot,average,s1,s2,s3,s4,s5;
+	printf("enter marks of 1 subjects\n");
+	scanf("%f", &s1);
+        printf("enter marks of 2 subjects\n");
+	scanf("%f", &s2);
+	printf("enter marks of 3 subjects\n");
+	scanf("%f", &s3);
+	printf("enter marks of 4 subjects\n");
+	scanf("%f", &s4);
+	printf("enter marks of 5 subjects\n");
+	scanf("%f", &s5);		
+	
+	tot=s1+s2+s3+s4+s5;
+	
+	average=tot/5;
+	printf("average is %f", average);
+	getch();
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+21) Print the sum of numbers between 10 and 20.
+Ans:#include<stdio.h>
+
+int main()
+{
+	int sum=10, i;
+	for(i=10;i<20;i++)
+	{
+		sum=sum+i;
+	}
+	
+	printf("%d",sum);
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+22) Print the sum of only odd numbers between 1 and 10.
+Ans:#include<stdio.h>
+
+int main()
+{
+	int start, end, sum = 0;
+	
+	printf("enter star and end value\n");
+	scanf("%d%d", &start, &end);
+	
+	printf("\nsum of odd numbers from %d to %d is", start, end);
+	
+	while(start <= end)
+	{
+		if(start%2 !=0)
+		{
+			sum = sum + start;
+		}
+		start++;
+	}
+	printf("%d\n", sum);
+	return 0;
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 24) Program to find Sum of digits
+ Ans:#include<stdio.h>
+
+void main()
+{
+        int tot,average,s1,s2;
+	printf("enter marks of 1 subjects\n");
+	scanf("%u", &s1);
+        printf("enter marks of 2 subjects\n");
+	scanf("%u", &s2);
+			
+	
+	tot=s1+s2;
+	printf("total is %u", tot);
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+25) Program to find Largest of n numbers
+Ans:
+ 
 
 
 
