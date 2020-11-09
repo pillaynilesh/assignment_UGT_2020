@@ -6,7 +6,7 @@ Ans:  History of C language is interesting to know.
 -> It was developed to overcome the problems of previous languages such as B, BCPL, etc.
 -> Initially, C language was developed to be used in UNIX operating system. It inherits many features of
    previous languages such as B and BCPL.
-===================================================================================================================================
+--------------------------------------------------------------------------------------------------------------------------------------------
 2) Write a c program to find as follows :
      a) a=30 ,b =20 find a/b,   where a and b are float
      b) Program to find the area of circle and rectangle.
@@ -24,6 +24,7 @@ Ans:  History of C language is interesting to know.
 	   
 	    return 0;
      }
+--------------------------------------------------------------------------------------------------------------------------------------------
  3) Write a program to calculate the following :
       a= 3.5
       b=2.5
@@ -42,7 +43,7 @@ Ans:  History of C language is interesting to know.
 	     printf("a^2/b^2=%f\n",(a*a)/(b*b));
 	  return 0;	
    }
-
+--------------------------------------------------------------------------------------------------------------------------------------------
 4) Write a program to define an integer ,character ,float and double values and print all values along with its size.
 Ans: #include<stdio.h> 
 
@@ -62,6 +63,7 @@ int  main()
     
 	return 0;	
 }
+----------------------------------------------------------------------------------------------------------------------------------------
 5) Create a program to take 2 values from user and print addition, multiplication ,subtraction and division.
 Ans: #include<stdio.h> 
 
@@ -76,6 +78,7 @@ void main()
    printf("subtraction:%d\n",(num1-num2))
    printf(" division:%d\n",(num1/num2))
 }
+-------------------------------------------------------------------------------------------------------------------------------------------
 6) Take two numbers from user and compare values and print results as false or true.
 Ans:#include<stdio.h>
    void main()
@@ -89,6 +92,7 @@ Ans:#include<stdio.h>
 	if(a>b)
 	printf("0");
   }
+----------------------------------------------------------------------------------------------------------------------------------------------------  
 7) Create two variables , one is integer and other is double and do the operations like multiplication and subtraction on these variable.
 Ans:#include<stdio.h>
      main()
@@ -103,6 +107,7 @@ Ans:#include<stdio.h>
 	printf("sub of a and b=%d\n");
 	
    }
+----------------------------------------------------------------------------------------------------------------------------------------------------------   
 8) Write a program to define a function Calculator() which accepts two integer values and print sum,subtraction,division and multiplication.
 Ans:
     #include<stdio.h> 
@@ -121,9 +126,21 @@ Ans:
       scanf("%d",&num2);
       my_fun();
    }
+---------------------------------------------------------------------------------------------------------------------------------------------------------------   
 9) Write a program to define a function which takes a number from user and print the number.
-Ans:
-
+Ans:#include<stdio.h>
+void fun()
+{ int num;
+  printf("Enter you number: ");
+  scanf("%d",&num);
+ printf("Your number %d is luckly number for you ",num);
+}
+int main()
+{
+    fun();
+    return 0;
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 11) Write a function which takes a character in small case and returns the same character in capital case.
 
 Ans:#include<stdio.h>
@@ -145,6 +162,7 @@ int main()
  }
  return 0;    
 }
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 12) Write a program to display the result acoording to following using only if:
      
        marks < 40        Fail
@@ -156,32 +174,42 @@ Ans:#include<stdio.h>
 
 int main()
 {
-	float  s1, s2, s3, s4, s5, marks;
+	float  s1, s2, s3, s4, s5, marks,avg;
 	
+	printf("enter marks of 1 subjects\n");
+	scanf("%f", &s1);
+    printf("enter marks of 2 subjects\n");
+	scanf("%f", &s2);
+	printf("enter marks of 3 subjects\n");
+	scanf("%f", &s3);
+	printf("enter marks of 4 subjects\n");
+	scanf("%f", &s4);
 	printf("enter marks of 5 subjects\n");
-	scanf("%f %f %f %f %f", &s1, &s2 , &s3 , &s4 , &s5);
-	
+	scanf("%f", &s5);		
 	marks = (s1 + s2 + s3 + s4 + s5);
-	
+	avg=marks/5;
+	printf("Total marks : %f \n",marks);
+	printf("Average marks : %f \n",avg);
 	if(marks < 40)
 	{
 		printf("fail\n");
 	}
-	if(40 <=marks <65)
-	{
-	
+    if((40 <=marks)&&( marks<65));
+   {
 	printf("second division\n");
-}
-    if(65 <=marks <75)
-    {
+   }
+    if((65 <=marks)&&
+	(marks <75));
+   {  
     	printf("first division\n");
-	}
-	if(75 <=marks)
+   }
+	if(75 <=marks);
 	{
 		printf("distinction\n");
-	}
+    }
     return 0;
 }
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 13) Write a program to find the largest of two numbers given by user.
 
 Ans:#include<stdio.h>
@@ -202,6 +230,7 @@ int largest(int x, int y)
 {
 	return (x>y?x:y);
 }
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 14) Write a program using switch....case , create a function which takes two values as parameters 
     +   ======>  Do Addition of two nos.
     -   ======>  Subtraction
@@ -245,6 +274,7 @@ int main()
 		        break;
 	}
 }
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 15) Write a program to do the following using switch...case
 
     Read percentage of a student inside a function and check if the percentage lies in the following range and print the Grade accodingle :
@@ -288,7 +318,7 @@ Ans :#include<stdio.h>
  	percentage(67);
  
 }
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 16) Display the following Pattern :
      *
      **
@@ -310,6 +340,7 @@ int main()
 		printf("\n");
 	}
 }
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 17) Print the table of the entered number.
 
 Ans:#include<stdio.h>
@@ -326,7 +357,8 @@ void main()
 		printf("\n %d",t);
 	}
 	getch();
-}  
+} 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 18) Print the square of number between 1 and 10.
   
      Output:
@@ -350,6 +382,7 @@ Ans: #include<stdio.h>
 	 getch();          
 				                
 }
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
  19) Write a program to print the values between 1 and 30.
       Skip valus as 1 5 9 10 15
       
