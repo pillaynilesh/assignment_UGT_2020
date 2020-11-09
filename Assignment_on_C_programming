@@ -484,7 +484,27 @@ void main()
 25) Program to find Largest of n numbers
 Ans:
  
-
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+31) Create an array of 5 integer values and print the double of every value of an array using pointer concept:
+      Input : num[]={1,2,3,4,5}
+      Output: num[]={2,4,6,8,10}
+Ans : #include<stdio.h>
+ 
+int main()
+{
+   int numbers[5]={10,20,30,40,50};
+   int *p;
+   p=numbers;
+   int i;
+   for(i=0;i<5;i++)
+   {
+   	printf("%d \t",i);
+   	//printf("Double value is : %d\n",(numbers[i]*2));
+    printf("%d\t",*(p+i)*2);
+   }
+   printf("\n end of the code");
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
