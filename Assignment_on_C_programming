@@ -505,6 +505,9 @@ void main()
 	 
  }
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 26) Program to find Factorial of a number
+ Ans:
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  27) Program to find Average of n numbers entered by user
  Ans:#include<stdio.h>
 void main()
@@ -582,30 +585,22 @@ int main()
    }
    printf("\n end of the code");
 }
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-31) Create an array of 5 integer values and print the double of every value of an array using pointer concept:
-      Input : num[]={1,2,3,4,5}
-      Output: num[]={2,4,6,8,10}
-Ans:#include<stdio.h>
- 
-int main()
-{
-   int numbers[5]={10,20,30,40,50};
-   int *p;
-   p=numbers;
-   int i;
-   for(i=0;i<5;i++)
-   {
-   	printf("%d \t",i);
-   	//printf("Double value is : %d\n",(numbers[i]*2));
-    printf("%d\t",*(p+i)*2);
-   }
-   printf("\n end of the code");
-}
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 32) Accept first name and lastname from user and print fullname.
-Ans:
-
+Ans: #include<stdio.h>
+   int main()
+    {
+	char full_name[25];
+	
+	printf("Enter Your Full name : ");
+	scanf("%c ",&full_name);
+	gets(full_name);
+	puts(full_name);
+	
+    }
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 33) Write a program to take a city name from user and print the city name in reverse order using character pointer.
+ Ans:
 
 
 
