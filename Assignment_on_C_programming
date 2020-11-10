@@ -674,6 +674,32 @@ int main()
 	show(p1,p2);
 }
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+36) Create a function addition() which accepts addresses of two variables. This function does the addition of two numbers.
+Ans:#include<stdio.h>
+
+void show(int s,int t)
+{
+/*	int a;
+	z=(s+t);*/
+}
+void display(int *s,int *t)
+{
+    int z;
+	z=(*s)+(*t);
+	printf("%d + %d = %d",*s,*t,z);
+}
+int main()
+{
+	int z;
+	int x=20;
+	int y=30;
+	
+	show(x,y);
+	printf("%d %d\n",x,y);
+	display(&x,&y);
+
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
