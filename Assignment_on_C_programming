@@ -506,7 +506,22 @@ void main()
  }
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  26) Program to find Factorial of a number
- Ans:
+ Ans:#include <stdio.h>
+int main()
+{
+    int n,i,f;
+    f=i=1;
+    printf("Enter a Number to Find Factorial: ");
+    scanf("%d",&n);
+    while(i<=n)
+    {
+        f*=i;
+        printf("The %d Factorial 0f %d : %d\n",i,n,f);
+        i++;
+    }
+    printf("\n This is end of the code ");
+    return 0;
+}
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  27) Program to find Average of n numbers entered by user
  Ans:#include<stdio.h>
@@ -531,7 +546,25 @@ void main()
      
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 29) Program to swap 2 numbers
-Ans:
+Ans:#include<stdio.h>
+int main() {
+      int first, second, temp;
+      printf("Enter first number: ");
+      scanf("%d", &first);
+      
+      printf("Enter second number: ");
+      scanf("%d", &second);
+      
+      temp = first;
+
+      first = second;
+
+      second = temp;
+
+      printf("\nAfter swapping, firstNumber = %d\n", first);
+      printf("After swapping, secondNumber = %d", second);
+      return 0;
+}
  
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -601,6 +634,29 @@ Ans: #include<stdio.h>
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  33) Write a program to take a city name from user and print the city name in reverse order using character pointer.
  Ans:
+ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  34) Input a string from user and print only vowels of the string.
+      Input : Pune
+      Output : ue
+ Ans:     
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 35) Make two pointer variables p1 and p2 which are pointing to x and y variables, x=10, y=20. Create a function which accepts two pointers as a parameter and 
+      perform addition operation on x and y. 
+ Ans:#include<stdio.h>
+void show(int *x,int *y)
+{
+	printf("Add :%d+%d=%d\n",*x,*y,(*x+*y));
+}
+int main()
+{
+	int a=10, b=20;
+	int *p1,*p2;
+	p1=&a;
+	p2=&b;
+	printf("value of a = %d\n b=%d\n",a,b);
+	show(p1,p2);
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
