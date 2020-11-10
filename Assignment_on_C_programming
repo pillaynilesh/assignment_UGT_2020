@@ -732,6 +732,28 @@ int main()
 
 }
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 37) Create a program to find average of array elements where array is passed to the function.
+ Ans:#include<stdio.h>
+void get_Avg(int *p)
+{
+	int i;
+	float avg,sum=0.0;
+	for(i=0;i<5;i++)
+	{
+		printf("%d ",*(p+i));
+		sum=sum+p[i];
+	}
+	avg=sum/5;
+	printf("\n Average of array elements : %f",avg);
+}
+
+int main()
+{
+	int numbers[]={10,20,30,40,50};
+	get_Avg(numbers);
+	
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
