@@ -682,12 +682,38 @@ Ans: #include<stdio.h>
     }
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  33) Write a program to take a city name from user and print the city name in reverse order using character pointer.
- Ans:
+ Ans:#include<stdio.h>
+
+void reverse(char *p)
+{
+	int i,c=0;
+	for(i=0;*(p+i)!='\0';i++)
+	{
+		c++;
+	}
+	printf("\n Your City Name in reverse form = ");
+	for(i=c-1;i>=0;i--)
+	{
+		printf("%c",*(p+i));
+	}
+}
+
+int main()
+{
+	char str[10];
+	printf("Enter Your City Name = ");
+	gets(str);
+	printf("And see the Magic!! :-) ");
+	
+	reverse(str);
+	return 0;
+}
+
  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   34) Input a string from user and print only vowels of the string.
       Input : Pune
       Output : ue
- Ans:     
+ Ans: 
  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  35) Make two pointer variables p1 and p2 which are pointing to x and y variables, x=10, y=20. Create a function which accepts two pointers as a parameter and 
       perform addition operation on x and y. 
