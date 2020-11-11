@@ -913,7 +913,7 @@ Ans:
  
  void main()
  {
- 	char name[30];
+ 	char name[10];
 	printf("Enter Your Name : ");
 	gets(name);
  	fflush(stdin);
@@ -931,8 +931,8 @@ Ans:
 
 int main()
 {
-	char first_name[30]="Nilesh";
-	char last_name[30]="Pillay";
+	char first_name[10]="Nilesh";
+	char last_name[10]=" Pillay";
 
 	strcat(first_name, last_name); 
 	puts(first_name);
@@ -1019,6 +1019,8 @@ void main()
 	printf("The Principal amount is %f , Rate of interest is %f and Number of years is %f\n",p,r,t);
 	si= p*r*t / 100;
 	printf("\tAnswer:\n");
+	printf("Simple interest = Principal * Rate of interest * Number of years / 100\n");
+	printf("Simple interest = %f * %f * %f / 100 = %f\n",p,r,t,si);
 	printf("Therfore the Simple interest  will be %f",si);
 }
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
