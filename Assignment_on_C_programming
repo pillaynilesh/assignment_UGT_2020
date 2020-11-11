@@ -906,21 +906,85 @@ int main()
 	
 }
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+39)Create a program to enter your name and age from keyboard and print name and age.
+
+Ans: 
+     #include<stdio.h>
+ 
+ void main()
+ {
+ 	char name[30];
+	printf("Enter Your Name : ");
+	gets(name);
+ 	fflush(stdin);
+	int age;
+ 	printf("Enter Your Age :");
+ 	scanf("%d",age);
+ }
+ ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 40)write a program to copy a string into another.
+
+Ans:
+    #include<stdio.h> 
+    #include<string.h>
 
 
+int main()
+{
+	char first_name[30]="Nilesh";
+	char last_name[30]="Pillay";
 
+	strcat(first_name, last_name); 
+	puts(first_name);
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+41) Create a program to input a string from user and find its length.
 
+Ans:
+    #include<stdio.h>
+    #include<string.h>
+int main()
+{
+	char name[30];
+	printf("Enter a Your Full Name  :");
+	gets(name);
+	
+	char *p=name;
+	int count=0;
 
+	while(*p!='\0')       
+	{
+		printf("%c",*p);
+		count++;
+		p++;    
+	}
+	
+	printf("\n Length of name by loop :%d ",count);
+	
+	printf("\nLength of name by strlen  : %d",strlen(name));
+	
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+42)Enter username and password and if username is Ajay and password is 1234 then print a message Welcome Ajay.
 
+Ans:
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+43)Input principal amount = 20000, rate of interest = 7.5 and no of years= 2  ,find simple interest using formula as
+   SI = p*r*t / 100
 
+Ans:
+    #include<stdio.h>
 
-
-
-
-
-
-
-
+void main()
+{
+	float p=20000,r=7.5,t=2,si;
+	printf("Finding Simple interest of :\n");
+	printf("The Principal amount is %f , Rate of interest is %f and Number of years is %f\n",p,r,t);
+	si= p*r*t / 100;
+	printf("\tAnswer:\n");
+	printf("Therfore the Simple interest  will be %f",si);
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
