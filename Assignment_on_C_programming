@@ -1,4 +1,5 @@
 1)  C Programming History
+
 Ans:  History of C language is interesting to know. 
 -> C programming language was developed in 1972 by Dennis Ritchie at bell laboratories of AT&T
   (American Telephone & Telegraph), located in the U.S.A.
@@ -11,7 +12,9 @@ Ans:  History of C language is interesting to know.
      a) a=30 ,b =20 find a/b,   where a and b are float
      b) Program to find the area of circle and rectangle.
      c) Program to print your name with your age.
- Ans: #include<stdio.h> 
+
+Ans:
+    #include<stdio.h> 
         int main()  
       {      
 
@@ -30,7 +33,9 @@ Ans:  History of C language is interesting to know.
       b=2.5
     1)  a2+b2+2ab   
     3)  a2 /b2 
- Ans: #include<stdio.h> 
+
+Ans:
+     #include<stdio.h> 
        int  main() 
     {
 	     float a=3.5;
@@ -45,7 +50,9 @@ Ans:  History of C language is interesting to know.
    }
 --------------------------------------------------------------------------------------------------------------------------------------------
 4) Write a program to define an integer ,character ,float and double values and print all values along with its size.
-Ans: #include<stdio.h> 
+
+Ans: 
+     #include<stdio.h> 
 
 int  main() 
 {
@@ -65,7 +72,9 @@ int  main()
 }
 ----------------------------------------------------------------------------------------------------------------------------------------
 5) Create a program to take 2 values from user and print addition, multiplication ,subtraction and division.
-Ans: #include<stdio.h> 
+
+Ans:
+     #include<stdio.h> 
 
 void main() 
 { 
@@ -80,7 +89,9 @@ void main()
 }
 -------------------------------------------------------------------------------------------------------------------------------------------
 6) Take two numbers from user and compare values and print results as false or true.
-Ans:#include<stdio.h>
+
+Ans:
+    #include<stdio.h>
    void main()
   {
 	int a=80;
@@ -94,7 +105,9 @@ Ans:#include<stdio.h>
   }
 ----------------------------------------------------------------------------------------------------------------------------------------------------  
 7) Create two variables , one is integer and other is double and do the operations like multiplication and subtraction on these variable.
-Ans:#include<stdio.h>
+
+Ans:
+     #include<stdio.h>
      main()
    {
 	int a=7;
@@ -128,7 +141,9 @@ Ans:
    }
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------   
 9) Write a program to define a function which takes a number from user and print the number.
-Ans:#include<stdio.h>
+
+Ans:
+    #include<stdio.h>
 void fun()
 { int num;
   printf("Enter you number: ");
@@ -141,9 +156,29 @@ int main()
     return 0;
 }
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+10) Write a program to take a number from user and pass this number to the function named as Square() which returns the square of the number and print square value in main.
+
+Ans:
+     #include<stdio.h>
+
+int  Square(int x)
+{
+	printf("%d^2 = %d",x,(x*x));
+}
+
+int main() 
+{
+    int n;
+    printf("Enter a number which you want to Square : ");
+    scanf("%d", &n);
+    Square(n);
+    printf("this is end of code");
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 11) Write a function which takes a character in small case and returns the same character in capital case.
 
-Ans:#include<stdio.h>
+Ans:
+    #include<stdio.h>
 
 
 int main()
@@ -170,7 +205,8 @@ int main()
        65 <= marks < 75  First Division
        75 <= marks       Distinction
        
-Ans:#include<stdio.h>
+Ans:
+    #include<stdio.h>
 
 int main()
 {
@@ -212,7 +248,8 @@ int main()
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 13) Write a program to find the largest of two numbers given by user.
 
-Ans:#include<stdio.h>
+Ans:
+    #include<stdio.h>
 
 int main()
 {
@@ -242,7 +279,8 @@ int largest(int x, int y)
              Press + to ADD, - to Subtract, / to divide, * to Multiply : +
              Sum of 2 and 3 is : 5
 	     
-Ans: #include<stdio.h>
+Ans:
+     #include<stdio.h>
 
 int main()
 {
@@ -286,7 +324,9 @@ int main()
     Output :
            Enter your Percentage : 67 
            Percenge : 67 % , Your Grade is : A 
-Ans :#include<stdio.h>
+
+Ans:
+    #include<stdio.h>
      void percentage(int per)
 
  
@@ -325,7 +365,9 @@ Ans :#include<stdio.h>
      ***
      ****
      *****
- Ans: #include<stdio.h>
+ 
+ Ans: 
+     #include<stdio.h>
 
 int main()
 {
@@ -343,7 +385,8 @@ int main()
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 17) Print the table of the entered number.
 
-Ans:#include<stdio.h>
+Ans:
+    #include<stdio.h>
 
 void main()
 {
@@ -366,7 +409,9 @@ void main()
        Square of 1 is 1
        Square of 2 is 4
        Square of 3 is 9
-Ans: #include<stdio.h>
+
+Ans: 
+    #include<stdio.h>
     void main()
 {
 	int a=1;
@@ -387,7 +432,9 @@ Ans: #include<stdio.h>
       Skip valus as 1 5 9 10 15
       
       Output : 23467811
- Ans: #include<stdio.h>
+
+Ans:
+    #include<stdio.h>
 
 void main()
 {    
@@ -404,7 +451,9 @@ void main()
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 20) Write a program to define marks of 5 subjects and print the average of marks.
-Ans:#include<stdio.h>
+
+Ans:
+     #include<stdio.h>
 
 void main()
 {
@@ -441,40 +490,10 @@ int main()
 	printf("%d",sum);
 }
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-23) Program to check a number is prime or not
-Ans:#include<stdio.h>
-void main() 
-{
-    int n, i, flag = 0;
-    printf("Enter a positive integer: ");
-    scanf("%d", &n);
-
-    for (i = 2; i <= n / 2; ++i) {
-
-        
-        if (n % i == 0) 
-		{
-            flag = 1;
-            break;
-        }
-    }
-
-    if (n == 1) 
-	{
-        printf("1 is neither prime nor composite.");
-    }
-    else
-    {
-        if (flag == 0)
-            printf("%d is a prime number.", n);
-        else
-            printf("%d is not a prime number.", n);
-    }
-
-}
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 22) Print the sum of only odd numbers between 1 and 10.
-Ans:#include<stdio.h>
+
+Ans:
+    #include<stdio.h>
 
 int main()
 {
@@ -500,7 +519,9 @@ int main()
 }
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  24) Program to find Sum of digits
- Ans:#include<stdio.h>
+
+Ans:
+     #include<stdio.h>
 
 void main()
 {
@@ -515,8 +536,45 @@ void main()
 	printf("total is %u", tot);
 }
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+23) Program to check a number is prime or not
+
+Ans:
+     #include<stdio.h>
+void main() 
+{
+    int n, i, flag = 0;
+    printf("Enter a positive integer: ");
+    scanf("%d", &n);
+
+    for (i = 2; i <= n / 2; ++i) 
+	{
+
+        printf("i= %d \t",i);
+        if (n % i == 0) 
+		{
+            flag = 1;
+            break;
+        }
+    }
+
+    if (n == 1) 
+
+        printf("1 is neither prime nor composite.");
+    }
+    else
+    {
+        if (flag == 0)
+            printf("%d is a prime number.", n);
+        else
+            printf("%d is not a prime number / %d.", n,i);
+    }
+
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 25) Program to find Largest of n numbers
-Ans:#include<stdio.h>
+
+Ans:
+     #include<stdio.h>
 void main()
 {
   int n1,n2;
@@ -538,7 +596,9 @@ void main()
  }
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  26) Program to find Factorial of a number
- Ans:#include <stdio.h>
+
+Ans:
+   #include <stdio.h>
 int main()
 {
     int n,i,f;
@@ -556,7 +616,9 @@ int main()
 }
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  27) Program to find Average of n numbers entered by user
- Ans:#include<stdio.h>
+
+Ans:
+    #include<stdio.h>
 void main()
 {
   int n1,n2,n3,n4,tot,avg;
@@ -574,7 +636,9 @@ void main()
  }
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  28) Program to display fibonnacci series 0 1 1 2 3 5 8....
- Ans:#include<stdio.h>
+ 
+ Ans:
+     #include<stdio.h>
 int main()
 {
 	 int i, n, t1 = 0, t2 = 1, next_Term;
@@ -595,7 +659,9 @@ int main()
 }
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 29) Program to swap 2 numbers
-Ans:#include<stdio.h>
+
+Ans:
+    #include<stdio.h>
 int main() {
       int first, second, temp;
       printf("Enter first number: ");
@@ -619,8 +685,9 @@ int main() {
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 30) Write a program to define a float array of marks of 5 subjects of a studdent and calculate the average of marks and display.
 
-#include<stdio.h>
-#define SIZE 5 
+Ans:
+     #include<stdio.h>
+     #define SIZE 5 
 
 int main()
 {
@@ -651,7 +718,9 @@ int main()
 31) Create an array of 5 integer values and print the double of every value of an array using pointer concept:
       Input : num[]={1,2,3,4,5}
       Output: num[]={2,4,6,8,10}
-Ans : #include<stdio.h>
+
+Ans: 
+     #include<stdio.h>
  
 int main()
 {
@@ -669,7 +738,9 @@ int main()
 }
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 32) Accept first name and lastname from user and print fullname.
-Ans: #include<stdio.h>
+
+Ans:
+    #include<stdio.h>
    int main()
     {
 	char full_name[25];
@@ -682,7 +753,9 @@ Ans: #include<stdio.h>
     }
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  33) Write a program to take a city name from user and print the city name in reverse order using character pointer.
- Ans:#include<stdio.h>
+ 
+ Ans: 
+     #include<stdio.h>
 
 void reverse(char *p)
 {
@@ -713,11 +786,34 @@ int main()
   34) Input a string from user and print only vowels of the string.
       Input : Pune
       Output : ue
- Ans: 
+
+Ans: 
+    #include<stdio.h>
+int main()
+{
+  int c = 0;
+  char city[10];
+
+  printf("Entre Your City Name : ");
+  gets(city);
+  printf("This are the vowels in your city name :");
+   while (city[c] != '\0') 
+   {
+    if (city[c] == 'a' || city[c] == 'A' || city[c] == 'e' || city[c] == 'E' || city[c] == 'i' || city[c] == 'I' 
+	|| city[c] =='o' || city[c]=='O' || city[c] == 'u' || city[c] == 'U')
+    printf("%c ",city[c]);
+	c++;
+  }
+
+  printf("\nThis is end of code !");
+
+}
  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  35) Make two pointer variables p1 and p2 which are pointing to x and y variables, x=10, y=20. Create a function which accepts two pointers as a parameter and 
       perform addition operation on x and y. 
- Ans:#include<stdio.h>
+  
+ Ans:
+     #include<stdio.h>
 void show(int *x,int *y)
 {
 	printf("Add :%d+%d=%d\n",*x,*y,(*x+*y));
@@ -733,7 +829,9 @@ int main()
 }
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 36) Create a function addition() which accepts addresses of two variables. This function does the addition of two numbers.
-Ans:#include<stdio.h>
+
+Ans:
+    #include<stdio.h>
 
 void show(int s,int t)
 {
@@ -759,7 +857,9 @@ int main()
 }
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  37) Create a program to find average of array elements where array is passed to the function.
- Ans:#include<stdio.h>
+ 
+ Ans:
+     #include<stdio.h>
 void get_Avg(int *p)
 {
 	int i;
@@ -781,7 +881,9 @@ int main()
 }
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 38) Create an array of characters dynamically using malloc function.
-Ans:#include<stdio.h>
+
+Ans:
+    #include<stdio.h>
 #include<stdlib.h>
 
 int main()
