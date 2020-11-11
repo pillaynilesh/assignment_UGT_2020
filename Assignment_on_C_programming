@@ -968,6 +968,43 @@ int main()
 42)Enter username and password and if username is Ajay and password is 1234 then print a message Welcome Ajay.
 
 Ans:
+    #include<stdio.h>
+    #include<string.h>
+int main()
+{
+	char user_name[4]="Ajay";
+	char name[10];
+	int pass;
+	
+	printf("Enter User Name :");
+	gets(name);
+	
+	fflush(stdin);
+	
+	printf("Enter Password :");
+	scanf("%d",&pass);
+	
+	int val = strcmp(user_name,name);
+	
+    if(val==0)
+    {
+    	 if(pass==1234)
+    	 {
+             printf("Welcome Ajay");
+         }
+         else
+         {
+  	          printf("invaled Password !!");
+  	     }
+
+	}
+    
+    else
+    {
+    	printf("Your not the user !! ");
+	}
+  	
+}
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 43)Input principal amount = 20000, rate of interest = 7.5 and no of years= 2  ,find simple interest using formula as
    SI = p*r*t / 100
