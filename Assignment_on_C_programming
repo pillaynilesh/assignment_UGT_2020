@@ -327,24 +327,22 @@ int main()
 
 Ans:
     #include<stdio.h>
-     void percentage(int per)
-
- 
+    void percentage(int per)
 {
 	switch(per)
 	{
 		case 80 ... 100:
-		printf("80<=per<=100");
+		printf("80<=%d<=100\n Than your Grade is : A+",per);
 		break;
 		case 21 ... 40:
-		printf("60<=per<=80");
+		printf("60<=%d<=80 Than your Grade is : A",per);
 		break;
 		case 41 ... 60:
-		printf("per<60");
+		printf("%d<60 Than you are just Pass",per);
 		break;
 		
 		default:
-			printf("your grade is :A");
+			printf("you got %d than you are Fall!",per);
 	}
 }
  int main()
@@ -355,7 +353,6 @@ Ans:
  	
  	percentage(per);
  	printf("\n");
- 	percentage(67);
  
 }
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -399,7 +396,6 @@ void main()
 		t=i*n;
 		printf("\n %d",t);
 	}
-	getch();
 } 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 18) Print the square of number between 1 and 10.
@@ -422,10 +418,7 @@ Ans:
 	
 	            printf("\n square of  %d is %d",a,a*a);
 	            a++;
-	           }
-	           
-	 getch();          
-				                
+	           }       	                
 }
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
  19) Write a program to print the values between 1 and 30.
@@ -473,7 +466,6 @@ void main()
 	
 	average=tot/5;
 	printf("average is %f", average);
-	getch();
 }
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 21) Print the sum of numbers between 10 and 20.
@@ -610,8 +602,6 @@ void main()
      {
      	printf(" You 1th number %d is Largest",n1);
 	 }
-	 
-	 
  }
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  26) Program to find Factorial of a number
@@ -674,7 +664,6 @@ int main()
         t1 = t2;
         t2 = next_Term;
     }
-
 }
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 29) Program to swap 2 numbers
@@ -699,8 +688,6 @@ int main() {
       printf("After swapping, secondNumber = %d", second);
       return 0;
 }
- 
-
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 30) Write a program to define a float array of marks of 5 subjects of a studdent and calculate the average of marks and display.
 
@@ -730,9 +717,7 @@ int main()
 	avg=sum/SIZE;
 	
 	printf("average : %f" ,avg);
-	
 }
- 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 31) Create an array of 5 integer values and print the double of every value of an array using pointer concept:
       Input : num[]={1,2,3,4,5}
@@ -800,7 +785,6 @@ int main()
 	reverse(str);
 	return 0;
 }
-
  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   34) Input a string from user and print only vowels of the string.
       Input : Pune
@@ -817,15 +801,14 @@ int main()
   gets(city);
   printf("This are the vowels in your city name :");
    while (city[c] != '\0') 
-   {
+    {
     if (city[c] == 'a' || city[c] == 'A' || city[c] == 'e' || city[c] == 'E' || city[c] == 'i' || city[c] == 'I' 
 	|| city[c] =='o' || city[c]=='O' || city[c] == 'u' || city[c] == 'U')
     printf("%c ",city[c]);
 	c++;
-  }
+   }
 
   printf("\nThis is end of code !");
-
 }
  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  35) Make two pointer variables p1 and p2 which are pointing to x and y variables, x=10, y=20. Create a function which accepts two pointers as a parameter and 
