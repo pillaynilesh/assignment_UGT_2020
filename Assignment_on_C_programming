@@ -1015,7 +1015,42 @@ void main()
 	printf("Therfore the Simple interest  will be %f",si);
 }
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 44) Create a structure Student which includes two fields rollno, name . 
+      Take input from user to assign values to structure members and store details of structure data into a file student.txt
+      Maintain record for 5 students.
+      
+ Ans:
+      #include<stdio.h>
+      #include<string.h>
+typedef struct Students
+{
+	char name[20];
+	int roll_no;
+}students;
+int main()
+{
+	students s[5];
+	FILE *fp; 
+	fp=fopen("D:\\Students_test.txt","a");
+	char nm[20];
+	int i;
+	for(i=0;i<5;i++)
+	{
+		printf("Enter student no %d Name :",i+1);
+		gets(nm);
+		strcpy(s[i].name,nm);
+		fflush(stdin);
+		printf("Enter student no %d Roll Number :",i+1);
+		scanf("%d",&s[i].roll_no);
+		fflush(stdin);	
+		fprintf(fp,"%s\t%d\n",s[i].name,s[i].roll_no);
+	
+	}
+	printf("The give data is save in file D:\\Students_test.txt here !!");
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+ 
 
 
 
