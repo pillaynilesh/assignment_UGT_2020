@@ -1029,13 +1029,17 @@ typedef struct Students
 }students;
 int main()
 {
-	students s[5];
+	                 //int no_s;
+	                 //printf("Number Of students to be Enter : ");
+	                 //scanf("%d",&no_s);
+	students s[5];   //students s[no_s];
 	FILE *fp; 
 	fp=fopen("D:\\Students_test.txt","a");
 	char nm[20];
 	int i;
-	for(i=0;i<5;i++)
+	for(i=0;i<5;i++)  //for(i=0;i<no_s;i++)
 	{
+		          //fflush(stdin);
 		printf("Enter student no %d Name :",i+1);
 		gets(nm);
 		strcpy(s[i].name,nm);
