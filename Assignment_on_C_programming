@@ -510,24 +510,6 @@ int main()
 	return 0;
 }
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- 24) Program to find Sum of digits
-
-Ans:
-     #include<stdio.h>
-
-void main()
-{
-        int tot,average,s1,s2;
-	printf("enter marks of 1 subjects\n");
-	scanf("%u", &s1);
-        printf("enter marks of 2 subjects\n");
-	scanf("%u", &s2);
-			
-	
-	tot=s1+s2;
-	printf("total is %u", tot);
-}
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 23) Program to check a number is prime or not
 
 Ans:
