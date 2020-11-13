@@ -548,20 +548,22 @@ void main()
 24) Program to find Sum of digits.
 
 Ans:
-    #include<stdio.h>
+     #include<stdio.h>
+
 int main()
 {
-	int x,y,sum;
+	int num,rem,sum=0;
 	
-	printf("Enter First number : ");
-	scanf("%d",&x);
+	printf("Enter a Number : ");
+	scanf("%d",&num);
 	
-	printf("Enter second number :");
-	scanf("%d",&y);
-	
-	sum=x+y;
-	printf("Than Sum of this %d , %d numbers will be :\n ",x,y);
-	printf("%d + %d = %d",x,y,sum);
+	while(num!='\0')
+	{
+		rem=num%10;
+		sum=sum+rem;
+		num=num/10;
+	}
+	printf("Sum of the given number will be %d",sum);
 }
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 25) Program to find Largest of n numbers
