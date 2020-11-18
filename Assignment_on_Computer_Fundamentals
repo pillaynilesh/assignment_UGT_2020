@@ -17,7 +17,70 @@ Ans:                                     THE CHARACTER GENERATOR ROM
      If the characters are on a 5×7 matrix then each character is accessed seven times, one time for each of the seven rows.
      The more rows in the character matrix, the better and faster the video circuits must be.
                            Data from: https://www.atariarchives.org/cgp/Ch02_Sec04.php
-4) Difference between Hard disk, RAM and Cache
-Ans:                                  Differences between RAM, Cache and Hard Disk
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2) Explain the working of LCD.
+Ans:                                        LCD Monitors
+    Liquid crystal display technology works by blocking light. Specifically, an LCD is made of two pieces of polarized glass (also called substrate) that contain a liquid
+    crystal material between them.A backlight creates light that passes through the first substrate. At the same time, electrical currents cause the liquid crystal
+    molecules to align to allow varying levels of light to pass through to the second substrate and create the colors and images that you see.
     
+                                           The Basics of LCD Displays
+    While there are several different configurations for LCD displays, most are designed in the same basic manner.While there are several different configurations for LCD
+    displays, most are designed in the same basic manner.When the backlight is activated, it produces light that is somewhat obstructed by the liquid crystals. And this
+    obstruction is essentially what creates the images we see in LCD displays.Of course, a backlight is an essential component of an LCD display. Without a backlight, an
+    LCD display wouldn’t be able to produce the visible images. Some of the most common types of backlights used in LCD displays include the following:
+     a.Cold cathode fluorescent lamps (CCFL)
+     b.EL-WLED array
+     c.WLED array
+     d.RGB-LED array
+                                       Benefits of LCD Displays
+     There are several benefits associated with LCD displays, one of which is the simple fact that they do not suffer from image burn-in. Commonly found in other electronic
+     displays, image burn-in is a phenomenon that occurs when the image remains in the display after it has been changed. If the user pauses or otherwise leaves the image
+     on the screen for a long period of time, it may become “burned into” the display. Thankfully, this isn’t a problem with LCDs, as they don’t use phosphorus compounds.
+     It’s also worth mentioning that LCD displays are significantly thinner and more compact than traditional CRT monitors. This is why you see so computer monitors using 
+     LCD technology instead of the now-dated CRT technology. Furthermore, LCD displays offer a sharp image resolution with no bleeding, assuming they are operated at 
+     native resolution. Finally, LCDs aren’t affected by the Earth’s magnetic field, which is something that cannot be said about other electronic displays. These are just
+     a few reasons why LCD displays are preferred over other display types.
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3) What is Firmware.Discuss
+ Ans:                               Firmware
+     Firmware is a software program or set of instructions programmed on a hardware device. It provides the necessary instructions for how the device communicates with the
+     other computer hardware. But how can software be programmed onto hardware? Good question. Firmware is typically stored in the flash ROM of a hardware device. While
+     ROM is "read-only memory," flash ROM can be erased and rewritten because it is actually a type of flash memory.
+     Firmware can be thought of as "semi-permanent" since it remains the same unless it is updated by a firmware updater. You may need to update the firmware of certain
+     devices, such as hard drives and video cards in order for them to work with a new operating system. CD and DVD drive manufacturers often make firmware updates available
+     that allow the drives to read faster media. Sometimes manufacturers release firmware updates that simply make their devices work more efficiently.
+     You can usually find firmware updates by going to the "Support" or "Downloads" area of a manufacturer's website. Keeping your firmware up-to-date is often not necessary,
+     but it is still a good idea. Just make sure that once you start a firmware updater, you let the update finish, because most devices will not function if their firmware 
+     is not recognized.
+                                  Examples
+     Examples of firmware include:
+
+      a.The BIOS found in IBM-compatible Personal Computers
+      b.Code inside a printer (in addition to the printer driver that is on the computer)
+      c.Software controlling a heart defibrillator
+      d.Software controlling the lights in an office building
+      e.Software controlling electronics in a car — the radio, the ABS (anti-lock braking system), engine controls, etc.
+      f.Software controlling newer household appliances (microwave ovens, dishwashers, etc.)
+  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  4) Difference between Hard disk, RAM and Cache
+   Ans: https://github.com/pillaynilesh/assignment_UGT_2020/blob/main/Differences_between_RAM%2C_Cache_and_Hard_Disk.pdf
+   
+  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  5) Discuss different Levels of  Computer language
+   Ans:                                   levels of computer languages
+             Low level languages – • These languages provide nothing other than access to the machine’s basic instruction set.
+                    • Example: Assembly language
+             Middle level languages –
+                    • These languages don’t provide all the built-in functions found in high level languages, but provide all building
+                       blocks that we need to produce the result we want.
+                    • Example: C, C++
+             High level languages – • These level languages provide almost everything that the programmer might need to do as already 
+              build into the language.
+                    • Example: Java, Python
+             Base on the view of a programmer.
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  
+
+
      
