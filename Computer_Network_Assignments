@@ -1,0 +1,114 @@
+1) Discuss Cloud Network.
+ Ans:                                    What is cloud networking?
+      Cloud networking is a type of IT infrastructure in which some or all of an organization’s network capabilities and resources are hosted in a public or
+      private cloud platform, managed in-house or by a service provider, and available on demand.
+      Companies can either use on-premises cloud networking resources to build a private cloud network or use cloud-based networking resources in the public 
+      cloud, or a hybrid cloud combination of both. These network resources can include virtual routers, firewalls, and bandwidth and network management 
+      software, with other tools and functions available as required.
+      Cloud networking or cloud-based networking, gives users access to networking resources through a centralized third-party provider operating inter-connected 
+      servers. This involves connecting to a Wide Area Network (WAN) or other internet-based technology, and helps to distribute content quickly and securely.
+                                         TYPES :
+      1) Cloud-enabled networking : 
+                                Using the cloud resources, the management of local network/connection like SAAS network management as well as anti-virus solution.
+      2) Cloud-based networking :
+                               2) Using the network resources completely from the cloud. The equiments needed for the utilization should be cloud based.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 2) Explain the working of WI-Fi and Bluetooth.
+  Ans: https://github.com/pillaynilesh/assignment_UGT_2020/blob/main/Bluetooth_and_WIFI.pdf
+ 
+ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 3) Discuss different Types of Computer Viruses.
+  Ans:                            What is a computer virus?
+       A computer virus, much like a flu virus, is designed to spread from host to host and has the ability to replicate itself. Similarly, in the same way that flu viruses 
+       cannot reproduce without a host cell, computer viruses cannot reproduce and spread without programming such as a file or document.
+       In more technical terms, a computer virus is a type of malicious code or program written to alter the way a computer operates and is designed to spread from one
+       computer to another. A virus operates by inserting or attaching itself to a legitimate program or document that supports macros in order to execute its code.
+       In the process, a virus has the potential to cause unexpected or damaging effects, such as harming the system software by corrupting or destroying data.
+                                   How does a computer virus attack?
+       Once a virus has successfully attached to a program, file, or document, the virus will lie dormant until circumstances cause the computer or device to execute its
+       code. In order for a virus to infect your computer, you have to run the infected program, which in turn causes the virus code to be executed. 
+       This means that a virus can remain dormant on your computer, without showing major signs or symptoms. However, once the virus infects your computer, the virus can 
+       infect other computers on the same network. Stealing passwords or data, logging keystrokes, corrupting files, spamming your email contacts, and even taking over your
+       machine are just some of the devastating and irritating things a virus can do.
+       While some viruses can be playful in intent and effect, others can have profound and damaging effects. This includes erasing data or causing permanent damage to your
+       hard disk. Worse https://us.norton.com/internetsecurity-malware-what-is-a-computer-virus.html e yet, some viruses are designed with financial gains in mind.
+                                  What are the different types of computer viruses?
+       1. Boot sector virus:
+                   This type of virus can take control when you start — or boot — your computer. One way it can spread is by plugging an infected USB drive into
+                   your computer.
+       2. Web scripting virus:
+                   This type of virus exploits the code of web browsers and web pages. If you access such a web page, the virus can infect your computer.
+       3. Browser hijacker:
+                    This type of virus “hijacks” certain web browser functions, and you may be automatically directed to an unintended website.
+       4. Resident virus:
+                    This is a general term for any virus that inserts itself in a computer system’s memory. A resident virus can execute anytime when
+                    an operating system loads.
+       5. Direct action virus:
+                    This type of virus comes into action when you execute a file containing a virus. Otherwise, it remains dormant.
+       6. Polymorphic virus:
+                    A polymorphic virus changes its code each time an infected file is executed. It does this to evade antivirus programs.
+       7. File infector virus:
+                    This common virus inserts malicious code into executable files — files used to perform certain functions or operations on a system.
+       8. Multipartite virus:
+                    This kind of virus infects and spreads in multiple ways. It can infect both program files and system sectors.
+       9. Macro virus:
+                     Macro viruses are written in the same macro language used for software applications. Such viruses spread when you open an infected 
+                     document, often through email attachments.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4) Differentiate between Twisted pair, Coaxial cable & fibre optics.
+  Ans:                          Types Of Computer Wired
+                                    Twisted Pair Cable
+            Twisted pair cable is often used for telephone communications and most modern Ethernet networks. It is a kind of wiring in which two conductors 
+            of a single circuitare twisted together. A pair of wires forms a circuit that can transmit data. And thepairs are twisted together to provide
+            protection against crosstalk, the noise generatedby adjacent pairs.There are two types of twisted pair Ethernet cable: unshielded twisted pair
+            (UTP) andshielded twisted pair (STP). The commonly used UTP copper cable is Cat5, Cat5e,Cat6, Cat6a and Cat7. The STP copper cable has a 
+            foil-wrapped outside on each pairof wires. The four pairs of wires then are wrapped in an overall metallic braid or foil,usually 150-ohm cable.
+            STP cable has a better capacity of resisting noise than UTPcable, even if both of them can be used in 10GBASE-T. Know the difference between UTP 
+            and STP cable in 10GBASE-T network: UTP or STP Cables for 10GBASE-TNetwork?
+                    Advantages:
+                       Cost-effective
+                       Pliable and easy to install
+                       Performs best over short distance
+                    Disadvantages:
+                       Lower durability (must be routinely maintained)
+                       Susceptible to EMI
+                       Higher attenuation
+                       
+                                       Coaxial Cable
+             Coaxial cable, or coax cable, is designed to transmit high-frequency signals. It’s comprised of a round copper conductor and three layers of insulation and 
+             shielding which prevents crosstalk from motors, lighting and other sources of EMI. With the shield construction, the coaxial cable can support longer cable 
+             lengths between two devices. There are a number of different types of coax, but only two—RG59 and RG6—get the most use in residential applications. 
+             The name “RG” dates back to World War II and means “radio guide” which doesn’t have really signify anything today.
+                    Advantages:
+                       Very durable
+                       Performs best over short distance
+                    Disadvantages:
+                       Signal loss over long distance
+                       Signal leak at points of egress
+                       Speed fluctuations under heavy usage
+                       
+                                           Fiber Optic Cable
+            Fiber optic cable, also called as optical fiber cable, is a type of Ethernet cable which consists of one or more optic fibers that are used to transmit
+            data. Fiber optic cable 
+            transmits data as pulses of light go through tiny tubes of glass. The transmission capacity of optical fiber cable is 26,000 times higher than that of
+            twisted pair cable. Fiber optic cable can be divided into single mode fiber (SMF) and multimode fiber (MMF). Single mode optical fiber has a small core,
+            and only allows one mode of light to propagate at a time. While multimode fiber cable comes with a larger core and is designed to carry multiple light
+            rays or modes at the same time. The common single mode fiber cable is OS2 cable, and multimode fiber cable is OM1, OM2, OM3, OM4, and OM5. And the 
+            transmission distance of single mode fiber cable is up to several kilometers, while the multimode fiber is up to 550 meters over 10G network. 
+                     Advantages:
+                        Can be bundled together
+                        EMI-resistant 
+                        Performs well over long distances
+                     Disadvantages:
+                         More expensive
+                         Harder to install
+                         Susceptible to being cut or damaged
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5) What is Phishing?
+ Ans:
+ 
+                   
+                   
+                   
+                   
+                   
