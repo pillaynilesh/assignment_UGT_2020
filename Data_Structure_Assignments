@@ -127,8 +127,8 @@ int main()
 Q.6 Create a stack of 5 characters and display all elements.
 Ans:
      #include<stdio.h>
-     #include<stdlib.h>
-     #define SIZE 6
+#include<stdlib.h>
+#define SIZE 5
 
 typedef struct st
 {
@@ -179,7 +179,9 @@ int is_empty(stack *sp)
 int main()
 {
 	stack s1;
-
+	
+	initialize(&s1);
+	
 	push(&s1,'H');
 	push(&s1,'e');
 	push(&s1,'l');
@@ -275,6 +277,67 @@ int main()
 	printf("\nthis is the end of the Code");	
 }
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+Q.8 Create two stacks A and B . A contains 3 alphabets and B contains 3 numbers. Display Both stacks.
+ Ans:
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.9 Create a queue which contains 5 double values and print all values.
+ Ans:
+     #include<stdio.h>
+     #define SIZE 5
+typedef struct queue
+{
+	int front;
+	int rear;
+	double elements[SIZE];
+}queue;
+void initialize(queue *qp)
+{
+	qp->front=-1;
+	qp->rear=-1;
+}
+void add(queue *qp,double item)
+{
+	if(qp->rear==SIZE-1)
+	  printf("\nQueue Overflow");
+	else 
+	 qp->elements[++qp->rear]=item;
+}
+int rem(queue *qp)
+{
+	double x;
+	if(qp->front==-1)
+	  printf("\nQueue is Empty");
+	else
+	 x=qp->elements[qp->front++];
+	return x;
+}
+void display(queue *qp)
+{
+	int i;
+	for(i=qp->front;i<qp->rear;i++)
+	{
+		printf("%lf\t",qp->elements[i]);
+	}
+}
+int main()
+{
+	queue q;
+	initialize(&q);
+	add(&q,1.2344);
+	add(&q,3.456);
+	add(&q,12.45);
+	add(&q,10);
+	add(&q,1.2);
+	
+	display(&q);
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.10 Create a queue which contains 5 numbers and print the square value of every element of the queue.
+ Ans:
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.11 Create a stack which contains ASCII values for alphabets and print Alphabets.
+ Ans:
+ 
 
 
