@@ -124,4 +124,157 @@ int main()
 	free(p);
 }
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.6 Create a stack of 5 characters and display all elements.
+Ans:
+     #include<stdio.h>
+     #include<stdlib.h>
+     #define SIZE 6
+
+typedef struct st
+{
+	int top;
+	char elements[SIZE];	
+}stack;
+
+
+void initialize(stack *sp)
+{
+	sp->top=-1;
+}
+
+void push(stack *sp,int item)
+{
+		if(is_full(sp))	
+			printf("\nStack overflow\n");
+		else
+			sp->elements[++sp->top]=item;
+}
+
+int pop(stack *sp)
+{
+	int x;
+	if(is_empty(sp))
+		printf("\nStack underflow");
+	else
+		x=sp->elements[sp->top--];
+	return x;	
+}
+
+int is_full(stack *sp)   
+{
+	if(sp->top == SIZE-1)      
+		return 1;
+	else
+		return 0;
+}
+
+int is_empty(stack *sp)   
+{
+	if(sp->top == -1)          
+		return 1;
+	else
+		return 0;	
+}
+
+int main()
+{
+	stack s1;
+
+	push(&s1,'H');
+	push(&s1,'e');
+	push(&s1,'l');
+	push(&s1,'l');
+	push(&s1,'o');
+	int i;
+	
+	for(i=s1.top;i!=-1;i--)
+	{
+		printf("%c ",s1.elements[i]);	
+	}	
+	printf("\nthis is the end of the Code");
+	
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.7 Create a stack of 5 names of employees and delete the last name and display it.
+Ans:
+    #include<stdio.h>
+    #include<stdlib.h>
+    #define SIZE 6
+
+typedef struct st
+{
+	int top;
+	char name[SIZE];	
+}stack;
+
+
+void initialize(stack *sp)
+{
+	sp->top=-1;
+}
+
+void push(stack *sp,char item[10])
+{
+		if(is_full(sp))	
+			printf("\nStack overflow\n");
+		else
+			sp->name[++sp->top]=item;
+}
+
+int pop(stack *sp)
+{
+	int x;
+	if(is_empty(sp))
+		printf("\nStack underflow");
+	else
+		x=sp->name[sp->top--];
+	return x;	
+}
+
+int is_full(stack *sp)   
+{
+	if(sp->top == SIZE-1)      
+		return 1;
+	else
+		return 0;
+}
+
+int is_empty(stack *sp)   
+{
+	if(sp->top == -1)          
+		return 1;
+	else
+		return 0;	
+}
+
+int main()
+{
+	stack s1;
+
+	push(&s1,"Ajay");
+	push(&s1,"Vijay");
+	push(&s1,"Digvijay");
+	push(&s1,"jaya");
+	push(&s1,"jay");
+	printf("Befor POP\n");
+	int i;
+	for(i=s1.top;i!=-1;i--)
+	{
+		printf("%s ",s1.name[i]);	
+	}	
+	pop(&s1);
+	pop(&s1);
+	pop(&s1);
+	printf("After POP\n");
+
+	for(i=s1.top;i!=-1;i--)
+	{
+		printf("%s ",s1.name[i]);	
+	}	
+	printf("\nthis is the end of the Code");	
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
