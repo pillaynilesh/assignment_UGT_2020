@@ -201,8 +201,9 @@ int main()
 Q.7 Create a stack of 5 names of employees and delete the last name and display it.
 Ans:
     #include<stdio.h>
-    #include<stdlib.h>
-    #define SIZE 6
+#include<stdlib.h>
+#include<string.h>
+#define SIZE 10
 
 typedef struct st
 {
@@ -216,65 +217,51 @@ void initialize(stack *sp)
 	sp->top=-1;
 }
 
-void push(stack *sp,char item)
+void push(stack *sp,char* item)
 {
-		if(is_full(sp))	
+		if(sp->top==SIZE-1)	
 			printf("\nStack overflow\n");
 		else
-			sp->name[++sp->top]=item;
+			strcpy(sp->name[++sp->top],item);
 }
 
-int pop(stack *sp)
+
+char* pop(stack *sp)
 {
 	int x;
-	if(is_empty(sp))
+	if(sp->top==-1)
 		printf("\nStack underflow");
 	else
 		x=sp->name[sp->top--];
 	return x;	
+	
+}
+void display(stack *sp)
+{
+	int i;
+	for(i=sp->top;i!=-1;i--)
+	{
+		printf("%s\n",*(sp->name+i));	
+	}	
 }
 
-int is_full(stack *sp)   
-{
-	if(sp->top == SIZE-1)      
-		return 1;
-	else
-		return 0;
-}
-
-int is_empty(stack *sp)   
-{
-	if(sp->top == -1)          
-		return 1;
-	else
-		return 0;	
-}
 
 int main()
 {
 	stack s1;
-
+	initialize(&s1);
 	push(&s1,"Ajay");
 	push(&s1,"Vijay");
 	push(&s1,"Digvijay");
 	push(&s1,"jaya");
 	push(&s1,"jay");
 	printf("Befor POP\n");
-	int i;
-	for(i=s1.top;i!=-1;i--)
-	{
-		printf("%s ",s1.name[i]);	
-	}	
-	pop(&s1);
-	pop(&s1);
+	display(&s1);
+	printf("\n");
 	pop(&s1);
 	printf("After POP\n");
-
-	for(i=s1.top;i!=-1;i--)
-	{
-		printf("%s ",s1.name[i]);	
-	}	
-	printf("\nthis is the end of the Code");	
+	display(&s1);
+	printf("\nthis is the end of the Code");
 }
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.8 Create two stacks A and B . A contains 3 alphabets and B contains 3 numbers. Display Both stacks.
@@ -603,7 +590,88 @@ int main()
 	
 }
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.12 Take 10 numbers from user, Make two stacks as Even & Odd, Even stack contains even numbers , Odd stack contains odd numbers.
+ Ans:
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.13 Make a program to copy elements of one stack to another.
+ Ans:
+  
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.14 Read 5 numbers from user and store it in a stack.
+ Ans:
+     #include<stdio.h>
+     #include<stdlib.h>
+     #define SIZE 5
 
+typedef struct st
+{
+	int top;
+	int elements[SIZE];	
+}stack;
+void initialize(stack *sp)
+{
+	sp->top=-1;
+}
+void push(stack *sp,int item)
+{
+		if(is_full(sp))	
+			printf("\nStack overflow\n");
+		else
+			sp->elements[++sp->top]=item;
+}
+int pop(stack *sp)
+{
+	int x;
+	if(is_empty(sp))
+		printf("\nStack underflow");
+	else
+		x=sp->elements[sp->top--];
+	return x;	
+}
+int is_full(stack*sp)   
+{
+	if(sp->top == SIZE-1)      
+		return 1;
+	else
+		return 0;
+}
+int is_empty(stack *sp)   
+{
+	if(sp->top == -1)          
+		return 1;
+	else
+		return 0;	
+}
+void display(stack *sp)
+{
+	int i;
+	
+	for(i=sp->top;i!=-1;i--)
+	{
+		printf("%d ",sp->elements[i]);	
+	}	
+	printf("\n");
+}
+int main()
+{
+	stack s1;
+	initialize(&s1);
+	int i,j;
+	for(i=s1.top;i<4;i++)
+	{
+		printf("Enter Number :");
+		scanf("%d",&j);
+		push(&s1,j);
+	}
+	display(&s1);
+	printf("\nThis is the end of code ");
+	
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.15 Create a Link list of 5 nodes which stores information as a character.
+ Ans:
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
