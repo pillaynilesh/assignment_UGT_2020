@@ -216,7 +216,7 @@ void initialize(stack *sp)
 	sp->top=-1;
 }
 
-void push(stack *sp,char item[10])
+void push(stack *sp,char item)
 {
 		if(is_full(sp))	
 			printf("\nStack overflow\n");
@@ -279,6 +279,138 @@ int main()
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.8 Create two stacks A and B . A contains 3 alphabets and B contains 3 numbers. Display Both stacks.
  Ans:
+     #include<stdio.h>
+     #include<stdlib.h>
+     #define SIZE 3
+
+typedef struct a_st
+{
+	int Atop;
+	char Aelements[SIZE];	
+}A;
+typedef struct b_st
+{
+	int Btop;
+	int Belements[SIZE];	
+}B;
+
+
+void Ainitialize(A *sp)
+{
+	sp->Atop=-1;
+}
+void Binitialize(B *sp)
+{
+	sp->Btop=-1;
+}
+
+void Apush(A *sp,char item)
+{
+		if(A_is_full(sp))	
+			printf("\nStack overflow\n");
+		else
+			sp->Aelements[++sp->Atop]=item;
+}
+void Bpush(B *sp,int item)
+{
+		if(B_is_full(sp))	
+			printf("\nStack overflow\n");
+		else
+			sp->Belements[++sp->Btop]=item;
+}
+
+int Apop(A *sp)
+{
+	int x;
+	if(A_is_empty(sp))
+		printf("\nStack underflow");
+	else
+		x=sp->Aelements[sp->Atop--];
+	return x;	
+}
+int Bpop(B *sp)
+{
+	int x;
+	if(B_is_empty(sp))
+		printf("\nStack underflow");
+	else
+		x=sp->Belements[sp->Btop--];
+	return x;	
+}
+
+int A_is_full(A*sp)   
+{
+	if(sp->Atop == SIZE-1)      
+		return 1;
+	else
+		return 0;
+}
+int B_is_full(B *sp)   
+{
+	if(sp->Btop == SIZE-1)      
+		return 1;
+	else
+		return 0;
+}
+
+int A_is_empty(A *sp)   
+{
+	if(sp->Atop == -1)          
+		return 1;
+	else
+		return 0;	
+}
+int B_is_empty(B *sp)   
+{
+	if(sp->Btop == -1)          
+		return 1;
+	else
+		return 0;	
+}
+void A_display(A *sp)
+{
+	int i;
+	
+	for(i=sp->Atop;i!=-1;i--)
+	{
+		printf("%c ",sp->Aelements[i]);	
+	}	
+	printf("\n\n");
+}
+
+void B_display(B *sp)
+{
+	int i;
+	
+	for(i=sp->Btop;i!=-1;i--)
+	{
+		printf("%d ",sp->Belements[i]);	
+	}	
+	printf("\n\n");
+}
+
+
+int main()
+{
+	A a;
+	
+	Ainitialize(&a);
+	
+	Apush(&a,'a');
+	Apush(&a,'b');
+	Apush(&a,'c');
+	
+	A_display(&a);
+	
+	B b;
+	Binitialize(&b);
+	Bpush(&b,10);
+	Bpush(&b,20);
+	Bpush(&b,30);
+	
+	B_display(&b);
+	
+}
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.9 Create a queue which contains 5 double values and print all values.
  Ans:
