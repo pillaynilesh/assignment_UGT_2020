@@ -810,7 +810,68 @@ int main()
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.15 Create a Link list of 5 nodes which stores information as a character.
  Ans:
+     #include<stdio.h>
+     #include<stdlib.h>
 
+typedef struct nd             
+{                           
+	char data;
+	struct nd *next;
+}node;
+
+node* createNode(char no)
+{
+	node *np;
+	
+	np=(node*)malloc(sizeof(node));  
+	
+	if(np == NULL)
+	{
+		printf("Memory not available");
+		exit(0);	
+	}
+	
+	np->data=no;
+	np->next=NULL;
+	
+	return np;
+}
+
+int main()
+{	
+	node *p,*head,*tail,*ptr;	
+	
+	head=createNode('H');  
+	tail=head;
+	p=createNode('E');    
+	
+	tail->next=p;  
+    tail=tail->next;
+   
+    p=createNode('L');    
+    
+	tail->next=p;       
+	tail=tail->next;
+	
+	p=createNode('L');    
+    
+	tail->next=p;       
+	tail=tail->next;
+	
+	p=createNode('O');    
+    
+	tail->next=p;       
+	tail=tail->next;
+	
+	ptr=head;
+	
+	while(ptr!=NULL)
+	{
+		printf("%c ",ptr->data);
+		ptr=ptr->next;
+	}
+
+}
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
