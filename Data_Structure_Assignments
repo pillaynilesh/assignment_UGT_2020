@@ -735,7 +735,131 @@ int main()
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.13 Make a program to copy elements of one stack to another.
  Ans:
-  
+     #include<stdio.h>
+     #include<stdlib.h>
+     #include<string.h>
+     #define SIZE 5
+
+typedef struct a_st
+{
+	int Atop;
+	char Aelements[SIZE];	
+}A;
+typedef struct b_st
+{
+	int Btop;
+	char Belements[SIZE];	
+}B;
+
+
+void Ainitialize(A *sp)
+{
+	sp->Atop=-1;
+}
+void Binitialize(B *sp)
+{
+	sp->Btop=-1;
+}
+
+void Apush(A *sp,char item)
+{
+		if(A_is_full(sp))	
+			printf("\nStack overflow\n");
+		else
+			sp->Aelements[++sp->Atop]=item;
+}
+void Bpush(B *sp,char item)
+{
+		if(B_is_full(sp))	
+			printf("\nStack overflow\n");
+		else
+			sp->Belements[++sp->Btop]=item;
+}
+
+
+int Apop(A *sp)
+{
+	int x;
+	if(A_is_empty(sp))
+		printf("\nStack underflow");
+	else
+		x=sp->Aelements[sp->Atop--];
+	return x;	
+}
+
+int A_is_full(A*sp)   
+{
+	if(sp->Atop == SIZE-1)      
+		return 1;
+	else
+		return 0;
+}
+int B_is_full(B*sp)   
+{
+	if(sp->Btop == SIZE-1)      
+		return 1;
+	else
+		return 0;
+}
+
+
+int A_is_empty(A *sp)   
+{
+	if(sp->Atop == -1)          
+		return 1;
+	else
+		return 0;	
+}
+int B_is_empty(B*sp)   
+{
+	if(sp->Btop == -1)          
+		return 1;
+	else
+		return 0;	
+}
+
+void A_display(A *sp)
+{
+	int i;
+	
+	for(i=sp->Atop;i!=-1;i--)
+	{
+		printf("%d ",sp->Aelements[i]);	
+	}	
+	printf("\n\n");
+}
+
+void B_display(B *sp)
+{
+	int i;
+	
+	for(i=sp->Btop;i!=-1;i--)
+	{
+		printf("%d ",sp->Belements[i]);	
+	}	
+	printf("\n\n");
+}
+
+int main()
+{
+	A a;
+	Ainitialize(&a);
+	B b;
+	Binitialize(&b);
+	int *p1;
+	p1=&a;
+	int i,j;
+	for(i=0;i<SIZE;i++)
+	{
+		printf("Enter Number :");
+		scanf("%d",&j);
+		Apush(&a,j);
+		Bpush(&b,j);
+	}
+	A_display(&a);
+	printf("\n");
+	B_display(&b);	
+}
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.14 Read 5 numbers from user and store it in a stack.
  Ans:
