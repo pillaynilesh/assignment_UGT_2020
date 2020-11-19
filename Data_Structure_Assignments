@@ -207,7 +207,7 @@ Ans:
 typedef struct st
 {
 	int top;
-	char name[SIZE];	
+	char name[SIZE][SIZE];	
 }stack;
 
 
@@ -334,10 +334,144 @@ int main()
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.10 Create a queue which contains 5 numbers and print the square value of every element of the queue.
  Ans:
- 
+     #include<stdio.h>
+     #include<stdlib.h>
+     #define SIZE 5
+
+typedef struct queue
+{
+	int front;
+	int rear;
+	int elements[SIZE];
+}queue;
+
+void initialize(queue *qp)
+{
+	qp->front=-1;
+	qp->rear=-1;
+}
+
+void add(queue *qp,int item)
+{
+	if(qp->rear==SIZE-1)
+    printf("\nQueue Overflow");
+    else
+    {
+    	if(qp->front ==-1)
+    	qp->front=0;
+	    qp->elements[++qp->rear]=item;
+    }
+}
+
+int rem(queue *qp)
+{
+	char x;
+	if(qp->front==-1)
+	printf("\nQueue Empty");
+	else
+	x=qp->elements[qp->front++];
+	return x;
+}
+
+void display(queue *qp)
+{
+	int i;
+	for(i=qp->front;i<=qp->rear;i++)
+	{
+		printf("Square Value is : %d\n",(qp->elements[i])*(qp->elements[i]));
+	}
+}
+int main()
+{
+    queue q;
+	initialize(&q);
+	add(&q,1);
+	add(&q,2);
+	add(&q,3);
+	add(&q,4);
+	add(&q,5);
+	
+	display(&q);
+		
+}
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.11 Create a stack which contains ASCII values for alphabets and print Alphabets.
  Ans:
- 
+     #include<stdio.h>
+     #include<stdlib.h>
+     #define SIZE 27
+
+typedef struct st
+{
+	int top;
+	int elements[SIZE];	
+}stack;
+
+
+void initialize(stack *sp)
+{
+	sp->top=-1;
+}
+
+void push(stack *sp,int item)
+{
+		if(is_full(sp))	
+			printf("\nStack overflow\n");
+		else
+			sp->elements[++sp->top]=item;
+}
+
+int pop(stack *sp)
+{
+	int x;
+	if(is_empty(sp))
+		printf("\nStack underflow");
+	else
+		x=sp->elements[sp->top--];
+	return x;	
+}
+
+int is_full(stack *sp)   
+{
+	if(sp->top == SIZE-1)      
+		return 1;
+	else
+		return 0;
+}
+
+int is_empty(stack *sp)   
+{
+	if(sp->top == -1)          
+		return 1;
+	else
+		return 0;	
+}
+void display(stack *sp)
+{
+	int i;
+	for(i=sp->top;i!=-1;i--)
+	{
+		printf("%c\t",sp->elements[i]);
+	}
+}
+
+int main()
+{
+	stack s1;
+	
+	initialize(&s1);
+	
+	int i;
+	for(i=65;i<91;i++)
+	{
+		push(&s1,i);
+	}	
+	display(&s1);
+	printf("\nthis is the end of the Code");
+	
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 
