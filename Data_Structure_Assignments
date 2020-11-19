@@ -592,7 +592,146 @@ int main()
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.12 Take 10 numbers from user, Make two stacks as Even & Odd, Even stack contains even numbers , Odd stack contains odd numbers.
  Ans:
- 
+     #include<stdio.h>
+     #include<stdlib.h>
+     #define SIZE 10
+
+typedef struct Odd_st
+{
+	int Atop;
+	int Aelements[SIZE];	
+}odd;
+typedef struct Even_st
+{
+	int Btop;
+	int Belements[SIZE];	
+}even;
+
+
+void Ainitialize(odd *sp)
+{
+	sp->Atop=-1;
+}
+void Binitialize(even *sp)
+{
+	sp->Btop=-1;
+}
+
+void Apush(odd *sp,char item)
+{
+		if(A_is_full(sp))	
+			printf("\nStack overflow\n");
+		else
+			sp->Aelements[++sp->Atop]=item;
+}
+void Bpush(even *sp,int item)
+{
+		if(B_is_full(sp))	
+			printf("\nStack overflow\n");
+		else
+			sp->Belements[++sp->Btop]=item;
+}
+
+int Apop(odd *sp)
+{
+	int x;
+	if(A_is_empty(sp))
+		printf("\nStack underflow");
+	else
+		x=sp->Aelements[sp->Atop--];
+	return x;	
+}
+int Bpop(even *sp)
+{
+	int x;
+	if(B_is_empty(sp))
+		printf("\nStack underflow");
+	else
+		x=sp->Belements[sp->Btop--];
+	return x;	
+}
+
+int A_is_full(odd*sp)   
+{
+	if(sp->Atop == SIZE-1)      
+		return 1;
+	else
+		return 0;
+}
+int B_is_full(even *sp)   
+{
+	if(sp->Btop == SIZE-1)      
+		return 1;
+	else
+		return 0;
+}
+
+int A_is_empty(odd *sp)   
+{
+	if(sp->Atop == -1)          
+		return 1;
+	else
+		return 0;	
+}
+int B_is_empty(even *sp)   
+{
+	if(sp->Btop == -1)          
+		return 1;
+	else
+		return 0;	
+}
+void A_display(odd *sp)
+{
+	int i;
+	
+	for(i=sp->Atop;i!=-1;i--)
+	{
+		printf("%d ",sp->Aelements[i]);	
+	}	
+	printf("\n");
+}
+
+void B_display(even *sp)
+{
+	int i;
+	
+	for(i=sp->Btop;i!=-1;i--)
+	{
+		printf("%d ",sp->Belements[i]);	
+	}	
+	printf("\n");
+}
+
+int main()
+{
+	odd a;
+	even b;
+	int *s;
+	Ainitialize(&a);
+	Binitialize(&b);
+	int i,j;
+	for(i=0;i<SIZE;i++)
+	{
+		printf("Enter Number :");
+		scanf("%d",&j);
+		{
+	      int val=j%2;
+	          switch(val)
+	     {
+		   case 0:
+				Apush(&a,j);
+				break;
+		   case 1:
+				Bpush(&b,j);
+				break;
+		 }
+        }
+	}
+	A_display(&a);
+	B_display(&b);
+	printf("\nThis is the end of code ");
+	
+}
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.13 Make a program to copy elements of one stack to another.
  Ans:
