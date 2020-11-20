@@ -1062,8 +1062,8 @@ int main()
           3 - Withdraw amount from the balance & show updated balance
           4 - Exit
 Ans:
-    #include<stdio.h>
-    #include<string.h>
+     #include<stdio.h>
+     #include<string.h>
 
 typedef struct Person 
 {   	                   
@@ -1115,6 +1115,7 @@ int main()
                 printf("Name : %s\tAccount type : %s\tAccount Number:%d\tAcount Balance:%d\n",p[i].CustomerName,p[i].TypeOfAccount,p[i].Accno,p[i].Balance);
 	        }
 				break;
+		
 		case 2:
 			    printf(" Enter Person number to whom to Deposit Amount : \n");
 			    scanf("%d",&num);
@@ -1125,35 +1126,40 @@ int main()
 				       scanf("%d",&dep);
 				       tot=(p[1].Balance+dep);
 				       printf("The updated balance is %d\n",tot);
-				       tot=p[1].Balance;
+				       p[1].Balance=tot;
+				       printf("\n%d\n",p[1].Balance);
 				       break;
 				    case 2:
 				    	printf("Amount to Deposit :\n");
 				       scanf("%d",&dep);
 				       tot=(p[2].Balance+dep);
 				       printf("The updated balance is %d\n",tot);
-				       tot=p[2].Balance;
+				       p[2].Balance=tot;
+				       printf("\n%d\n",p[2].Balance);
 				       break;
 				    case 3:
 				    	printf("Amount to Deposit :\n");
 				       scanf("%d",&dep);
 				       tot=(p[3].Balance+dep);
 				       printf("The updated balance is %d\n",tot);
-				       tot=p[3].Balance;
+				       p[3].Balance=tot;
+				       printf("\n%d\n",p[3].Balance);
 				       break;
 				    case 4:
 				    	printf("Amount to Deposit :\n");
 				       scanf("%d",&dep);
 				       tot=(p[4].Balance+dep);
 				       printf("The updated balance is %d\n",tot);
-				       tot=p[4].Balance;
+				       p[4].Balance=tot;
+				       printf("\n%d\n",p[4].Balance);
 				       break;
 				    case 5:
 				    	printf("Amount to Deposit :\n");
 				       scanf("%d",&dep);
 				       tot=(p[5].Balance+dep);
 				       printf("The updated balance is %d\n",tot);
-				       tot=p[5].Balance;
+				       p[5].Balance=tot;
+				       printf("\n%d\n",p[5].Balance);
 				       break;
 				 }
 		case 3:
@@ -1166,34 +1172,40 @@ int main()
 				       scanf("%d",&with);
 				       tot=(p[1].Balance-with);
 				       printf("The updated balance is %d\n",tot);
-				       tot=p[1].Balance;
+				       p[1].Balance=tot;
+				       printf("\n%d\n",p[1].Balance);
 				       break;
 				    case 2:
 				    	printf("Amount to Withdraw :\n");
 				       scanf("%d",&with);
 				       tot=(p[2].Balance-with);
 				       printf("The updated balance is %d\n",tot);
-				       tot=p[2].Balance;
+				       p[2].Balance=tot;
+				       printf("\n%d\n",p[2].Balance);
 				       break;
 				    case 3:
 				    	printf("Amount to Withdraw :\n");
 				       scanf("%d",&with);
 				       tot=(p[3].Balance-with);
 				       printf("The updated balance is %d\n",tot);
-				       tot=p[3].Balance;
+				       p[3].Balance=tot;
+				       printf("\n%d\n",p[3].Balance);
+				       break;
 				    case 4:
 				    	printf("Amount to Withdraw :\n");
 				       scanf("%d",&with);
 				       tot=(p[4].Balance-with);
 				       printf("The updated balance is %d\n",tot);
-				       tot=p[4].Balance;
+				       p[4].Balance=tot;
+				       printf("\n%d\n",p[4].Balance);
 				       break;
 				    case 5:
 				    	printf("Amount to Withdraw :\n");
 				       scanf("%d",&with);
 				       tot=(p[5].Balance-with);
 				       printf("The updated balance is %d\n",tot);
-				       tot=p[5].Balance;
+				       p[5].Balance=tot;
+				       printf("\n%d\n",p[5].Balance);
 				       break;
 				     default:
 				             printf("Invalid Person Number !!");
@@ -1213,8 +1225,6 @@ int main()
     
 	printf("This the End of code !!");
 }
-
-
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
