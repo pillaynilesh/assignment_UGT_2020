@@ -1062,8 +1062,8 @@ int main()
           3 - Withdraw amount from the balance & show updated balance
           4 - Exit
 Ans:
-     #include<stdio.h>
-     #include<string.h>
+    #include<stdio.h>
+    #include<string.h>
 
 typedef struct Person 
 {   	                   
@@ -1092,15 +1092,18 @@ int main()
 		printf("Account Balance till now  : ");
 		scanf("%d",&p[i].Balance);
 		fflush(stdin);
-	}	 
-
+	}
+	int menu;
+	menu=0;
+	while(menu!=4)
+	{
 	printf("\n");
 	printf("Following is the menu To help you  \n");
 	printf("press 1 - Show all Records of 5 customers in the Bank \n");
 	printf("press 2 - Deposit amount in the available balance of a customer & shows updated balance\n");
 	printf("press 3 - Withdraw amount from the balance & shows updated balance\n");
 	printf("press 4 - Exit\n");
-	int menu,dep,with,tot,num;
+	int dep,with,tot,num;
 	printf("Enter option :\n");
 	scanf("%d",&menu);
 	{
@@ -1189,13 +1192,13 @@ int main()
 				
 				break;
 		case 4 :
-				printf("This is The Exit always Welcome to to help you \n");
+				printf("This is Exit always There to help You out  \n");
 				break;
 		default:
 				printf("Invalid option \n");
 				break;		
 	}
-
+    }
     }
     
 	printf("This the End of code !!");
