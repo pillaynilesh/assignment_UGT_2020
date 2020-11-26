@@ -997,5 +997,828 @@ int main()
 
 }
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.16 Write a program to count the number of nodes in the link list.
+ Ans :
+      #include<stdio.h>
+      #include<stdlib.h>
+
+typedef struct nd             
+{                            
+	int data;
+	struct nd *next;
+}node;
+
+typedef struct li
+{
+	node *head,*tail;	
+}List;
+
+void initialize(List *lp)
+{
+	lp->head=NULL;
+	lp->tail=NULL;	
+}
+
+node* createNode(int no)
+{
+	node *np;
+	
+	np=(node*)malloc(sizeof(node)); 
+	
+	if(np == NULL)
+	{
+		printf("Memory not available");
+		exit(0);	
+	}
+	
+	np->data=no;
+	np->next=NULL;
+	
+	return np;
+}
 
 
+void insertAtTail(List *lp,int x)         // lp = lp, x =100
+{
+	node *np;
+	
+	np=createNode(x);     // Creating a node
+	if(lp->head == NULL)
+		lp->head=np;
+	else
+		lp->tail->next =np;
+	lp->tail= np;
+	
+}
+
+List* createList(int size)
+{
+	List *lp;
+	lp=(List*)malloc(sizeof(List));
+		initialize(lp);
+	int i;
+	int x;
+	for(i=0;i<size;i++)
+	{
+		printf("Enter Item : ");
+		scanf("%d",&x);
+		insertAtTail(lp,x);
+	}
+	return lp;
+}
+
+void traverse(List *lp)
+{
+	node *p;
+	p=lp->head;
+	printf("List is : ");
+	while(p!=NULL)
+	{
+		printf("%d ",p->data);
+		p=p->next;	
+	}	
+}
+
+int getNodeCount(List *lp)
+{
+	node *p;
+	
+	int count=0;
+	
+	for(p=lp->head;p!=NULL;p=p->next)
+	{
+		++count;	
+	}	
+	printf("\nCount the number of nodes in the link list is %d",count);
+}
+
+int main()
+{	
+	List *lp;
+	int x;
+	printf("Enter Number Of node to Create :");
+	scanf("%d",&x);
+	lp=createList(x);
+	traverse(lp);
+	getNodeCount(lp);
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+Q.17 Create a Link list of 3 nodes containing 3 double values and print the average of 3 numbers.
+ Ans:
+     #include<stdio.h>
+     #include<stdlib.h>
+
+typedef struct nd             
+{                           
+	float data;
+	struct nd *next;
+}node;
+
+node* createNode(float  no)
+{
+	node *np;
+	
+	np=(node*)malloc(sizeof(node));  
+	
+	if(np == NULL)
+	{
+		printf("Memory not available");
+		exit(0);	
+	}
+	
+	np->data=no;
+	np->next=NULL;
+	
+	return np;
+}
+
+int main()
+{	
+	node *p,*head,*tail,*ptr;	
+	
+	head=createNode(10);  
+	tail=head;
+	p=createNode(20);    
+	
+	tail->next=p;  
+    tail=tail->next;
+   
+    p=createNode(30);    
+    
+	tail->next=p;       
+	tail=tail->next;
+	
+	ptr=head;
+	
+	while(ptr!=NULL)
+	{
+		printf("%f ",ptr->data);
+		ptr=ptr->next;
+	}
+	ptr=head;
+	float tot=0;
+	while(ptr!=NULL)
+	{
+		tot=(tot+ptr->data);
+		ptr=ptr->next;
+	}
+	printf("\n%f",tot);
+	float avg=0;
+	avg=tot/3;
+	printf("\n%f",avg);
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+Q.18 Create a Link list of 5 nodes and print it in reverse order.
+ Ans:
+     #include<stdio.h>
+     #include<stdlib.h>
+
+typedef struct nd            
+{                           
+	int data;               
+	struct nd *next;        
+	struct nd *prev;        
+}node;
+
+int main()
+{	
+	 node *head;
+	 node *one=NULL;
+	 node *two=NULL;
+	 node *three=NULL;
+	
+	one=(node*)malloc(sizeof(node));    
+	two=(node*)malloc(sizeof(node));    
+	three=(node*)malloc(sizeof(node));  
+		
+	one->data=101;
+	two->data=102;
+	three->data=103;
+	
+	one->next=two;
+	one->prev=NULL;
+	
+	two->next=three;
+	two->prev=one;
+	
+	three->next=NULL;
+	three->prev=two;
+	
+	head=one;
+	
+	node *p;
+	printf("In Reverse Order :\n");
+	p=three;
+	printf("%d ",p->data);
+	p=p->prev;
+	
+	printf("%d ",p->data);
+	p=p->prev;
+	
+	printf("%d ",p->data);
+	p=p->prev;
+	
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+Q.19 Create a Link list of 3 nodes and delete the head node.
+ Ans:
+     #include<stdio.h>
+     #include<stdlib.h>
+//MULTIPLE NODES
+typedef struct st
+{
+    int data;
+    struct nd *next;
+}node;
+
+
+typedef struct ls
+{
+    node *head,*tail;
+}list;
+
+
+void initialize(list *s)
+{
+    s->head = NULL;
+    s->tail = NULL;
+}
+
+
+node* createnode(int* x)
+{
+    node *sp;
+    
+    sp = (node*)malloc(sizeof(node));
+    
+    if(sp == NULL)
+    {
+        printf("MEMORY UNAVAILABLE");
+        exit(0);
+    }
+    
+    sp->data = x;
+    sp->next = NULL;
+    
+    return sp;
+}
+
+
+void insertAtail(list *s,int *x)
+{
+    node *sp;
+    
+    sp=createnode(x);
+    if(s->head==NULL)
+    s->head=sp; 
+    else
+    s->tail->next=sp;
+    s->tail=sp;
+}
+
+void traverse(list *s)
+{
+    node *p;
+    
+    p=s->head->next;
+    
+    while(p!=0)
+    {
+        printf("\t%d\t",p->data);
+        p=p->next;
+    }
+}
+
+
+int main()
+{
+    list *s;
+    
+    s=(list*)malloc(sizeof(list));
+    
+    if(s == NULL)
+    {
+        printf("MEMORY UNAVAILABLE");
+        exit(0);
+    }
+    
+    initialize(s);
+    
+    insertAtail(s,10);
+    insertAtail(s,20);
+    insertAtail(s,30);
+    
+    
+    traverse(s);
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.20 Create a list of 3 city names and Enter a city to be searched in the list .If city name exists in list then Display City Found.
+ Ans:
+     #include<stdio.h>
+     #include<string.h>
+int main()
+{
+    char data[100][100],search[50];
+    int i,c=0;
+    for(i=0;i<3;i++)
+    {
+        printf("Enter City Name %d : = ",i+1);
+        scanf("%s",data[i]);
+    }
+    printf("\nCity Name are:\n");
+    for(i=0;i<3;i++)
+    {
+        printf("%s\t",data[i]);
+    }
+    printf("\n\nEnter Name to be Searched: ");
+    scanf("%s",search);
+    for(i=0;i<3;i++)
+    {
+        if(strcmp(data[i],search)==0)
+        {
+            c=1;
+            break;
+        }
+    }
+    if(c==1)
+        printf("\n%s Found at Position '%d'",data[i],i+1);
+    else
+        printf("\n%s NOT Present in Above Array",data[i]);
+    return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.21 Create an array of 5 integer values and search an element in the array using Linear Search.
+ Ans:
+     #include<stdio.h>
+int main()
+{
+	int a[10]={10,20,30,40,150,50,60,70,80,90};
+	int i,item,flag;
+	for(i=0;i<10;i++)
+	{
+		printf("%d ",a[i]);
+	}
+	printf("\nEnter A name to sesrched\n");
+	scanf("%d",&item);
+	for(i=0;i<10;i++)
+	{
+		if(a[i] == item)
+		{
+			flag=i+1;
+			break;
+		}
+		else
+		flag=0;
+	}
+	if(flag !=0)
+	{
+		printf("\nItem is Found At The Location %d",flag);
+	}
+	else
+	{
+		printf("\nitem is not found ");
+	}
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.22 Create an array of string and search a perticular string using Linear Search.
+ Ana:
+     #include<stdio.h>
+     #include<string.h>
+int main()
+{
+    char data[10][10],item[5];
+    int i,flag;
+    for(i=0;i<5;i++)
+    {
+        printf("Enter Name :  ");
+        scanf("%s",data[i]);
+    }
+    printf("\nName are:\n");
+    for(i=0;i<5;i++)
+    {
+        printf("%s\t",data[i]);
+    }
+    printf("\nEnter Name which is to be searched\n");  
+    scanf("%s",item); 
+    for(i=0;i<5;i++)
+    {
+        if(strcmp(data[i],item)==0)
+        {
+            flag=1;
+            break;
+        }
+    }
+    if(flag==1)
+        printf("\n%s Found at Position '%d'",data[i],i+1);
+    else
+        printf("\n%s NOT Present in Above Array",data[i]);
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.23 Sort an array of 5 numbers using Insertion sort.
+ Ans:
+     #include <stdio.h>
+int main()
+{
+    int  i, j, temp;
+    int arr[10]={20,40,10,100,2,4,10,4,90,1};
+ 
+
+    for (i=0;i<10;i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    for (i=1;i<=10-1;i++)
+    {
+	    j=i;
+            while (j>0 && arr[j-1]>arr[j])
+            {	        
+                temp=arr[j];
+                arr[j]=arr[j-1];
+                arr[j-1]=temp;
+                j--;
+            }
+    }
+    printf("\nSorted list in ascending order:\n");
+    for (i=0;i<=10-1;i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.24 Make a tree which contains 3 nodes. A is Root node, B is left child and C is right child.
+ Ans:
+     #include<stdio.h>
+     #include<stdlib.h>
+
+typedef struct tr
+{
+	int data;
+	struct tr *left;
+	struct tr *right;
+}tree;
+
+tree* create_node(int value)
+{
+	tree *n;
+	n=(tree*)malloc(sizeof(tree));
+	if(n==NULL)
+	{
+		printf("Memory is not available");
+		exit(1);
+	}
+	
+	n->data=value;
+	n->left=NULL;
+	n->right=NULL;
+	
+	return n;
+}
+int main()
+{
+	tree *root,*n1,*n2;
+	
+	root=create_node(100);
+	n1=create_node(200);
+	n2=create_node(300);
+	
+	root->left=n1;
+	root->right=n2;
+	printf("\t%d\n",root->data);
+	printf("%d\t",root->left->data);
+	printf("\t%d",root->right->data);
+	
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.25 Create a tree of 3 nodes where root node displays the value as "Color" , Left node of root shows value as "Red" and right node shows value as Green. 
+     and print all node values in using preorder traversal.
+ Ans:
+     #include<stdio.h>
+     #include<stdlib.h>
+
+struct tree
+ {
+  char data;
+  struct tree* left;
+  struct tree* right;
+};
+
+void preorderTraversal(struct tree* root) 
+{
+  if (root == NULL) return;
+  printf("%s ->", root->data);
+  preorderTraversal(root->left);
+  preorderTraversal(root->right);
+}
+ struct tree* create_node(char value)
+{
+	
+	struct tree *n;
+	n=(struct tree*)malloc(sizeof(struct tree));
+
+	n->data=value;
+	n->left=NULL;
+	n->right=NULL;
+	
+	return n;
+}
+int main()
+{
+	struct tree *root,*n1,*n2;
+	root=create_node("color")
+	n1=create_node("Red");
+	n2=create_node("Green");
+	
+	root->left=n1;
+	root->right=n2;
+	printf("\t%s\n",root->data);
+	printf("%s\t",root->left->data);
+	printf("\t%s",root->right->data);
+	
+	//printf("\nPreorder traversal \n");
+    //preorderTraversal(root);	
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.26 Create a link list of 3 integers and print the elements of link list in reverse order using stack.
+ Ans:
+     #include<stdio.h>
+     #include<stdlib.h>
+
+typedef struct nd             
+{                           
+	char data;
+	struct nd *next;
+}node;
+
+typedef struct st
+{
+	int top;
+	int elements[3];	
+}stack;
+
+void initialize(stack *sp)
+{
+	sp->top=-1;
+}
+
+
+void push(stack *sp,int item)
+{
+		if(sp->top == 3-1)	
+			printf("\nStack overflow\n");
+		else
+			sp->elements[++sp->top]=item;
+}
+
+void display(stack *sp)
+{
+	int i;
+	
+	for(i=sp->top;i!=-1;i--)
+	{
+		printf("%d ",sp->elements[i]);	
+	}	
+}
+
+node* createNode(int no)
+{
+	node *np;
+	
+	np=(node*)malloc(sizeof(node));  
+	
+	if(np == NULL)
+	{
+		printf("Memory not available");
+		exit(0);	
+	}
+	
+	np->data=no;
+	np->next=NULL;
+	
+	return np;
+}
+
+int main()
+{	
+	node *p,*head,*tail,*ptr;	
+	
+	stack s1;
+	
+	initialize(&s1);
+	
+	head=createNode(10);  
+	tail=head;
+	p=createNode(20);    
+	
+	tail->next=p;  
+    tail=tail->next;
+   
+    p=createNode(30);    
+    
+	tail->next=p;       
+	tail=tail->next;
+	
+	ptr=head;
+	printf("This is Link List :\n");
+	while(ptr!=NULL)
+	{
+		printf("%d ",ptr->data);
+		int a=ptr->data;
+		push(&s1,a);
+		ptr=ptr->next;
+	}
+	printf("\n");
+	printf("This is Stack :\n");
+	display(&s1);
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.27 Write a program to crate an adjacency matrix(3 by 3) using graph , where create edges (0,1),(1,2),(1,1), Store the student age information.
+ Ans:
+     #include<stdio.h>
+
+int main()
+{
+	int ad[30][3];
+	
+	int age;
+	
+	int i,j;
+	
+	for(i=0;i<3;i++)
+	{
+		for(j=0;j<3;j++)
+		{
+			if(i==0 && j==1)
+			{
+				printf("Enter age :");
+				scanf("%d",&age);
+				ad[i][j]=age;
+			}
+			else if(i==1 && j==1)
+			{
+				printf("Enter age :");
+				scanf("%d",&age);
+				ad[i][j]=age;
+			}
+			else if(i==1 && j==2)
+			{
+				printf("Enter age :");
+				scanf("%d",&age);
+				ad[i][j]=age;
+			}
+			else
+			{
+				ad[i][j]=0; 
+			}
+		
+		}
+	}
+	
+	for(i=0;i<3;i++)
+	{
+		for(j=0;j<3;j++)
+		{
+			printf("%d\t",ad[i][j]);
+		}
+		printf("\n");
+	} 
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.28 Create a Binary Serch Tree with 10 nodes where node value is character and Traverse the tree in postorder.
+ Ans:
+     #include<stdio.h>
+     #include<stdlib.h>
+
+typedef struct st
+{
+	char key;
+	struct st *left;
+	struct st *right;
+}node;
+
+node* newnode(char data)
+{
+	node *t;
+	t=(node*)malloc(sizeof(node));
+	t->key=data;
+	t->left=NULL;
+	t->right=NULL;
+	return t;
+}
+
+node* insert(node *nd,int data)
+{
+	if(nd==NULL)
+		return newnode(data);
+	
+	if(data < nd->key)
+		nd->left = insert(nd->left,data);
+		
+	else if(data > nd->key)
+		nd->right = insert(nd->right,data);
+
+	return nd;
+}
+
+void postorder(node* root) 
+{
+  if (root == NULL) return;
+  postorder(root->left);
+  postorder(root->right);
+  printf("%c ->", root->key);
+}
+
+int main()
+{
+	node *root;
+	root=insert(root,'A');
+	root = insert(root,78);
+	int i;
+	char x;
+	
+	for(i=0;i<10;i++)
+	{
+		printf("Enter Character:");
+		scanf("%c",&x);
+		insert(root,x);
+		fflush(stdin); 
+	}
+	postorder(root);
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.29 Create an unsorted array of 5 elements and sort the array in descending order using bubble sort and search an element in array using Binary Search.
+ Ans:
+     #include <stdio.h>
+
+int binarySearch(int a[], int beg, int end, int item)   
+{                                                      
+    int mid;  
+    if(end >= beg)   
+    {     
+        mid = (beg + end)/2;  
+        if(a[mid] == item)    
+        {  
+            return mid+1;     
+        }  
+        else if(a[mid] > item)   
+        {  
+            return binarySearch(a,mid+1,end,item);  
+        }  
+        else   
+        {  
+            return binarySearch(a,beg,mid-1,item);  
+        }  
+      
+    }  
+    return -1;   
+}  
+
+int main()
+{
+    int  i, j, temp;
+    int search,arr[10],location=-1;
+    
+    printf("Enter %d integers\n",10);
+
+  for (i=0;i<10;i++)
+    scanf("%d", &arr[i]);
+      for (i=0;i<10;i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    
+  for (i=0;i<10-1;i++)
+  {
+    for (j=0;j<10-i- 1;j++)
+    {
+      if (arr[j]<arr[j+1]) 
+      {
+        temp=arr[j];
+        arr[j]=arr[j+1];
+        arr[j+1]=temp;
+      }
+    }
+  }
+    printf("\nSorted list in Descending order:\n");
+    for (i=0;i<=10-1;i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    printf("\n\n");
+  
+	printf("Enter value to find\n");
+    scanf("%d", &search);
+    
+     location = binarySearch(arr, 0, 10, search); 
+     
+       if(location != -1)   
+    {  
+        printf("Item found at location %d",location);  
+    }  
+    else  
+    {  
+        printf("Item not found");  
+    } 
+
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
