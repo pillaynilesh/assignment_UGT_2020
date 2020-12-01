@@ -1,0 +1,63 @@
+Q.1 Create a table Result which stores the records of 5 students where the fields as 
+    rollno, name, percentage
+  Ans:
+   create table Result(rollno number , name varchar2(15), percentage number);
+   insert into Result values(1,'Soham',67);
+   insert into Result values(2,'Ajay',45);
+   insert into Result values(3,'Jay',65);
+   insert into Result values(4,'Digvijay',75)
+   insert into Result values(5,'Digvijay',19);
+   select * from Result;
+    ROLLNO NAME            PERCENTAGE
+---------- --------------- ----------
+         1 Soham                   67
+         2 Ajay                    45
+         3 Jay                     65
+         4 Digvijay                75
+         5 Digvijay                19
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.2 Add a column in the Result table named as Grade.
+ Ans:
+    alter table Result add Grade varchar2(2);
+    Table altered. 
+    select * from Result;
+    ROLLNO NAME            PERCENTAGE GR
+---------- --------------- ---------- --
+         1 Soham                   67
+         2 Ajay                    45
+         3 Jay                     65
+         4 Digvijay                75
+         5 Digvijay                19
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.3 Create a table marks which stores the marks of 5 subjects(physics,chemistry,maths,computer,english) and display the percentage. Store record of 5 students.
+ Ans: 
+ create table Student_marks(physics number,chemistry number,maths number,computer number,english number,percentage as (((physics+chemistry+maths+computer+english)*100)/500));
+ Table created.
+ insert into Student_marks(physics,chemistry,maths,computer,english) values(50,45,65,75,80);
+ 1 row created.
+ select * from Student_marks;
+   PHYSICS  CHEMISTRY      MATHS   COMPUTER    ENGLISH PERCENTAGE
+---------- ---------- ---------- ---------- ---------- ----------
+        50         45         65         75         80         63
+ insert into Student_marks(physics,chemistry,maths,computer,english) values(50,50,50,50,50);
+ 1 row created.
+ insert into Student_marks(physics,chemistry,maths,computer,english) values(35,35,35,35,35);
+ 1 row created.
+ insert into Student_marks(physics,chemistry,maths,computer,english) values(67,80,90,90,90);
+ 1 row created.
+ insert into Student_marks(physics,chemistry,maths,computer,english) values(89,90,90,90,90);
+ 1 row created.
+ select * from Student_marks;
+   PHYSICS  CHEMISTRY      MATHS   COMPUTER    ENGLISH PERCENTAGE
+---------- ---------- ---------- ---------- ---------- ----------
+        50         45         65         75         80         63
+        50         50         50         50         50         50
+        35         35         35         35         35         35
+        67         80         90         90         90       83.4
+        89         90         90         90         90       89.8
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.4 Rename the table Result with StudentScore.
+ Ans:
+ alter table Result rename to Student_score;
+ Table altered.
+ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
