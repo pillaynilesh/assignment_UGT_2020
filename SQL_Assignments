@@ -61,3 +61,91 @@ Q.4 Rename the table Result with StudentScore.
  alter table Result rename to Student_score;
  Table altered.
  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Q.5 Create two tables A and B where A has 3 columns and B has 2 columns , Copy last two columns from table A to Table B.
+  Ans:
+  create table A(id number , name varchar2(15), contact number);
+  create table B( emp_name varchar2(15), emp_contact number);
+
+insert into A values(01,'Soham',1234567891);
+1 row created.
+insert into A values(02,'Raju',1234567892);
+1 row created.
+insert into A values(03,'Ajay',1234567893);
+1 row created.
+insert into A values(04,'Vijay',1234567894);
+1 row created.
+insert into A values(05,'Jay',1234567895);
+1 row created.
+insert into B(emp_name,emp_contact) select name,contact from A;
+5 rows created.
+select * from B;
+EMP_NAME        EMP_CONTACT
+--------------- -----------
+Soham            1234567891
+Raju             1234567892
+Ajay             1234567893
+Vijay            1234567894
+Jay              1234567895
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.6 Create a table which stores the information about a product . Fields are pid,pname,pqty,pcost. 
+     a) Display records in ascending order of quantity.  
+     b) Display records in descending order of product cost.
+     c) Display record for the product where the cost is highest.
+     d) Display the pid and pname of those products where the pcost is same.
+  Ans:
+create table Product(pid number, pname varchar2(20),paty number,pcost number);
+Table created.
+insert into Product values(101,'Laptop',15,15000);
+1 row created.
+insert into Product values(104,'Keyborad',25,1000);
+1 row created.
+insert into Product values(102,'ROM',05,21000);
+1 row created.
+insert into Product values(106,'Walkman',10,1100);
+1 row created.
+insert into Product values(103,'Ipod',10,1100);
+1 row created.
+insert into Product values(105,'Iphone',06,110000);
+1 row created.
+select * from Product;
+       PID PNAME                      PATY      PCOST
+---------- -------------------- ---------- ----------
+       101 Laptop                       15      15000
+       104 Keyborad                     25       1000
+       102 ROM                           5      21000
+       106 Walkman                      10       1100
+       103 Ipod                         10       1100
+       105 Iphone                        6     110000
+
+6 rows selected.
+select * from product ORDER BY paty;
+       PID PNAME                      PATY      PCOST
+---------- -------------------- ---------- ----------
+       102 ROM                           5      21000
+       105 Iphone                        6     110000
+       106 Walkman                      10       1100
+       103 Ipod                         10       1100
+       101 Laptop                       15      15000
+       104 Keyborad                     25       1000
+6 rows selected.
+select * from product ORDER BY paty desc;
+       PID PNAME                      PATY      PCOST
+---------- -------------------- ---------- ----------
+       104 Keyborad                     25       1000
+       101 Laptop                       15      15000
+       106 Walkman                      10       1100
+       103 Ipod                         10       1100
+       105 Iphone                        6     110000
+       102 ROM                           5      21000
+6 rows selected.
+select pid,pname from product where pcost = 1100
+       PID PNAME
+---------- --------------------
+       106 Walkman
+       103 Ipod
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.7 Create a table where insert 5 records like name,dob and city of a customer using single insert query.
+ Ans:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.8 Create a table which stores the salary of 3 employees along with the name and display the names salary wise (highest first).
+Q.9 Update the highest salary of the employee in above question to the minimum of all.
