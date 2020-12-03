@@ -252,7 +252,7 @@ select city, sum(Sales) as "Total_Sale" from  ItemSales group by city ;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.13 Make a table which stores the email id and password where password should not be saved if the length is less than 8 character.
  Ans:
- Create table e_mail(email_id  varchar2(15),pass number check();
+Create table e_mail(email_id  varchar2(15),password varchar2(15)  check (password >=length('password'));
 INSERT INTO e_mail(email_id,pass) VALUES('Nilesh',12345678);
 INSERT INTO e_mail(email_id,pass) VALUES('Nilesh',12);
 select *from e_mail;
@@ -265,4 +265,54 @@ INSERT INTO gen_infor VALUES('Nilesh',1234567890);
 INSERT INTO gen_infor VALUES('Pillay',1);
 select *from gen_infor;
 drop table gen_infor;
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.15 Create a table person which stores the ID,name,email where define ID as primary key.Create another table Birthday which stores date of birth and ID.
+     Join both tables and create Foreign key in Birthday.
+    Ans:
+      create table Empl(emp_id number,name varchar2(20),e_mail varchar2(20),primary key(emp_id));
+     create table Birthday(DOB date ,id number CONSTRAINT fk_eid REFERENCES Empl(emp_id));
+   
+    insert into Empl values(101,'Amit','amit12@gmail.com');
+    insert into Empl values(102,'Suresh','suresh10@gmail.com');
+    insert into Empl values(103,'Sunny','sunny34@gmail.com');
+    insert into Empl values(104,'Bunny','bunny09@gmail.com');
+    insert into Empl values(105,'Happy','Happy007@gmail.com');
+    
+    select * from Empl;
+    
+    insert into  Birthday values(date '1975-03-23',101);
+    insert into Birthday values(date '1982-06-21',102);
+    insert into Birthday values(date '1983-01-12',103);
+    insert into Birthday values(date '1989-12-30',104);
+     insert into Birthday values(date '1989-01-10',105);
+    
+    select * from  Birthday;
+    
+    select e.emp_id,e.name,e.e_mail,a.dob from Empl e, Birthday a where e.emp_id=a.id;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.16 Create a table where records of an employee is maintained . 
+     Fields are EID (primary key), Ename (NOT NULL), officeno (Unique), DateOfJoining(NOT NULL),CompanyName(Default),Salary(Check is : salary > 0)
+     Create PersonnelDetails : ID( Foreign Key ) , Addres (NOT NULL), contactno(NOT NULL , UNIQUE) 
+     Join Both tables and Display output
+  Ans:
+   create table Employee_Digit(eid number,ename varchar2(20) NOT NULL ,office_no number Unique,Date_Of_Joining date NOT NULL,CompanyName varchar2(10) Default 'Digit',salary number Check ( salary > 0),primary key(eid));
+    create table Personnel_Details(Address varchar2(25) NOT NULL ,contact_no number NOT NULL ,id number CONSTRAINT pk_eid REFERENCES Employee_Digit(eid));
+   
+    insert into Employee_Digit values(101,'Amit',020454678,date '2002-05-12','Digit',21000);
+    insert into Employee_Digit values(102,'Atif',020454674,date '2002-06-19','Digit',20000);
+    insert into Employee_Digit(eid ,ename ,office_no ,Date_Of_Joining ,CompanyName ,salary )values(103,'Mahadev',020454100,date '2002-10-25',25000);
+    insert into Employee_Digit values(104,'Ravaan',020454623,date '2002-01-06','Digit',30000);
+    insert into Employee_Digit values(105,'Rishi',020453478,date '1999-05-27','Digit',40000);
+    
+    select * from Employee_Digit;
+    
+    insert into  Personnel_Details values('Pune-411006',9944556677,101);
+    insert into  Personnel_Details values('Pune-411011',9944557788,102);
+    insert into  Personnel_Details values('Pune-411032',9944552266,103);
+    insert into  Personnel_Details values('Pune-411001',9944667788 ,104);
+    insert into  Personnel_Details values('Pune-411012',9944558899 ,105);
+    
+    select * from  Personnel_Details;
+    
+    select e.eid,e.ename,e.office_no ,e.Date_Of_Joining ,e.CompanyName ,e.salary ,a.Address,a.contact_no from Employee_Digit e, Personnel_Details a where e.eid=a.id;
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
