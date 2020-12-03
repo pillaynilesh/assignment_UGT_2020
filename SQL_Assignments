@@ -254,3 +254,6 @@ Q.13 Make a table which stores the email id and password where password should n
  Ans:
  
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.14 Make a table which stores the name and mobile no of customers. where mobile no can not saved in database if the mobile no is less than 10 digits.
+ Ans:
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
