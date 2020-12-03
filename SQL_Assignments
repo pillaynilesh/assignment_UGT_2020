@@ -149,11 +149,11 @@ Q.7 Create a table where insert 5 records like name,dob and city of a customer u
  create table info(name varchar2(15),dob date,city varchar2(10));
 
 insert all
-into info(name,dob,city) values('Soham',date '2014-10-09','PUNE')
-into info(name,dob,city) values('Ajay',date '2002-02-21','SATARA')
-into info(name,dob,city) values('Rishikish',date '1999-05-27','MUMBAI')
-into info(name,dob,city) values('Digvijay',date '1999-10-01','PUNE')
-into info(name,dob,city) values('jay',date '2001-11-28','SATARA')
+into info(name,dob,city) values('Soham',date '2014-10-09','Pune')
+into info(name,dob,city) values('Ajay',date '2002-02-21','Satara')
+into info(name,dob,city) values('Rishikish',date '1999-05-27','Mumbai')
+into info(name,dob,city) values('Digvijay',date '1999-10-01','Pune')
+into info(name,dob,city) values('jay',date '2001-11-28','Satara')
 
 select * from dual;
 
@@ -180,3 +180,77 @@ Q.9 Update the highest salary of the employee in above question to the minimum o
 
 select * from employee ORDER BY salary DESC;
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.10 create a table employee: eid, age, dept, salary. Show name of dept with lowest salary using group by.
+ Ans:
+ create table employee_1(eid number, age number, dept varchar2(20), salary number);
+ 
+insert all
+into employee_1(eid, age, dept, salary) values(1001,25,'Production',20000)
+into employee_1(eid, age, dept, salary) values(1045,32,'Purchasing',35000)
+into employee_1(eid, age, dept, salary) values(1020,26,'Marketing',25000)
+into employee_1(eid, age, dept, salary) values(1006,23,'Production',22000)
+into employee_1(eid, age, dept, salary) values(1049,30,'Purchasing',32000)
+into employee_1(eid, age, dept, salary) values(1024,21,'Marketing',15000)
+
+select *from dual;
+
+select * from employee_1;
+
+select dept, min(salary) as "min_salary" from  employee_1 group by dept having min(salary)<35000;
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.11 Write a query to perform following operations on the table :
+      a) Create a table as Population :  State, popoulation
+      b) Find minimum population
+      c) Find maximum population
+      d) find average population
+      e) Display name of state population wise in descending order
+      f) Display name of state population wise in ascending order
+ Ans:
+CREATE table Population(State varchar2(20), Population number);
+
+insert all
+into Population(State,Population) values('Uttar Pradesh',237882725)
+into Population(State,Population) values('Maharashtra',123144223)
+into Population(State,Population) values('Lakshadweep',73183)
+into Population(State,Population) values('Goa',1586250)
+into Population(State,Population) values('West Bengal',99609303)
+
+select * from dual;
+
+select min(Population) AS Min_Population from Population;
+
+select max(Population) AS Min_Population from Population;
+
+select Avg(Population) AS Min_Population from Population;
+
+select * from Population ORDER BY Population desc;
+
+select * from Population ORDER BY Population ;
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.12 Create a table ItemSales : Itemname, Sales, city  
+     Display the following output (Create a query which displays the Total sales citywise)
+      Item           Sales
+      ----           -----
+      RAM             4
+      Hard Disk       3
+      Mouse           1
+ Ans:
+Create table ItemSales(Itemname varchar2(20), Sales number, city varchar2(20));
+
+insert all
+into ItemSales(Itemname, Sales, city) values('RAM',4,'Pune')
+into ItemSales(Itemname, Sales, city) values(' Hard Disk',3,'Pune')
+into ItemSales(Itemname, Sales, city) values('Mouse',1,'Bombay')
+into ItemSales(Itemname, Sales, city) values('ROM',6,'Satara')
+into ItemSales(Itemname, Sales, city) values('Head phone',4,'Pune')
+
+select * from dual;
+
+select *from ItemSales;
+
+select city, sum(Sales) as "Total_Sale" from  ItemSales group by city ;
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.13 Make a table which stores the email id and password where password should not be saved if the length is less than 8 character.
+ Ans:
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
