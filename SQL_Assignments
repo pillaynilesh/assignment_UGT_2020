@@ -146,6 +146,37 @@ select pid,pname from product where pcost = 1100
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.7 Create a table where insert 5 records like name,dob and city of a customer using single insert query.
  Ans:
+ create table info(name varchar2(15),dob date,city varchar2(10));
+
+insert all
+into info(name,dob,city) values('Soham',date '2014-10-09','PUNE')
+into info(name,dob,city) values('Ajay',date '2002-02-21','SATARA')
+into info(name,dob,city) values('Rishikish',date '1999-05-27','MUMBAI')
+into info(name,dob,city) values('Digvijay',date '1999-10-01','PUNE')
+into info(name,dob,city) values('jay',date '2001-11-28','SATARA')
+
+select * from dual;
+
+select * from info;
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.8 Create a table which stores the salary of 3 employees along with the name and display the names salary wise (highest first).
+ Ans:
+ create table employee(ename varchar2(15),salary number(5));
+
+insert all
+into employee(ename,salary) values('Ajay',20000)
+into employee(ename,salary) values('Jay',35000)
+into employee(ename,salary) values('Vijay',25000)
+
+select *from dual;
+
+select * from employee;
+
+select * from employee ORDER BY salary DESC;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.9 Update the highest salary of the employee in above question to the minimum of all.
+ Ans:
+ update employee set salary = 20000 where salary > 30000;
+
+select * from employee ORDER BY salary DESC;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
