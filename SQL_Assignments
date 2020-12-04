@@ -260,11 +260,10 @@ drop table e_mail;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.14 Make a table which stores the name and mobile no of customers. where mobile no can not saved in database if the mobile no is less than 10 digits.
  Ans:
- Create table gen_infor(name varchar2(20),mobile_no number check(mobile_no=10 and mobile_no>0));
+Create table gen_infor(name varchar2(20),mobile_no varchar2(11) check(mobile_no>=length('12345678')));
 INSERT INTO gen_infor VALUES('Nilesh',1234567890);
 INSERT INTO gen_infor VALUES('Pillay',1);
 select *from gen_infor;
-drop table gen_infor;
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.15 Create a table person which stores the ID,name,email where define ID as primary key.Create another table Birthday which stores date of birth and ID.
      Join both tables and create Foreign key in Birthday.
