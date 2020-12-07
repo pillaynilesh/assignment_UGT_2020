@@ -252,16 +252,15 @@ select city, sum(Sales) as "Total_Sale" from  ItemSales group by city ;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.13 Make a table which stores the email id and password where password should not be saved if the length is less than 8 character.
  Ans:
-Create table e_mail(email_id  varchar2(15), pass varchar2(12)  check (length(pass)>8));
+Create table e_mail(email_id  varchar2(15), pass varchar2(12)  check (length(pass)>=8));
 
 INSERT INTO e_mail VALUES('Nilesh',123456789);
 INSERT INTO e_mail VALUES('Nilesh',12);
 select *from e_mail; 
-drop table e_mail;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.14 Make a table which stores the name and mobile no of customers. where mobile no can not saved in database if the mobile no is less than 10 digits.
  Ans:
-Create table gen_infor(name varchar2(20),mobile_no varchar2(11) check(mobile_no>=length('1234567890')));
+Create table gen_infor(name varchar2(20),mobile_no varchar2(11) check(length(mobile_no)>=10));
 
 INSERT INTO gen_infor VALUES('Nilesh',1234567890);
 INSERT INTO gen_infor VALUES('Pillay',1);
