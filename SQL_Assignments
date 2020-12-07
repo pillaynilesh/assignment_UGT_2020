@@ -396,3 +396,11 @@ Q.19 Create a PL/SQL Block which declares the radius of a circle and make a cons
            dbms_output.put_line('Area is the :' ||Area);
            END;
  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.20 PRINT ALL ALPHABETS IN UPPERCASE IN DESCENDING ORDER
+ Ans:
+ 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.21 PRINT ALL APLHABETS FROM a to z IN ASCENDING
+Q.22 PRINT ALL EVEN NUMBERS BETWEEN 10 AND 30 USING WHILE LOOP.USE IF CONDITION TO CHECK.
+Q.23 PRINT ALPHABETS IN REVERSE ORDER USING FOR LOOP.
+Q.24 PRINT THE FACTORIAL OF A NUMBER USING FOR LOOP.
