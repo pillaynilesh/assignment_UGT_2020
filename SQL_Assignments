@@ -528,4 +528,21 @@ begin
    demo_pr(n,i);
   DBMS_OUTPUT.PUT_LINE('Area of circle :'||i);
 end;
- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.29 create a procedure which accepts a single parameter as a integer and it is defined as IN OUT .Procedure returns the cube of the number.
+ Ans:
+    create or replace procedure demo_pr1(x1 in out integer)
+is 
+begin
+x1 := x1*x1*x1;
+end;
+--------------
+declare
+i integer;
+begin 
+  i:= 4;
+   demo_pr1(i);
+  DBMS_OUTPUT.PUT_LINE('cube of the number is '||i);
+end;
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      
