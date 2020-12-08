@@ -453,3 +453,37 @@ Q.23 PRINT ALPHABETS IN REVERSE ORDER USING FOR LOOP.
  
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.24 PRINT THE FACTORIAL OF A NUMBER USING FOR LOOP.
+ Ans:
+ declare 
+n integer := 5;
+i integer :=2;
+f integer :=1;
+begin 
+  while i<=n loop
+      f :=f *i;
+        i :=i+1;
+   end loop;
+    dbms_output.put_line(f);
+    end;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.25 Create an array of 5 names and print all names in Capital case.
+ Ans:
+ declare
+       TYPE chars IS VARRAY(5) OF varchar2(10);
+       nm chars; 
+begin
+       nm := chars('Ajay','Digvijay','Vijay','Sanjay','Soham');
+       
+       for i in 1..5 loop
+        dbms_output.put_line(nm(i));
+       end loop;
+end; 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.26 Create an array of 5 names and print all names with length in Capital case.
+      "abc" ===>  ABC : 3 
+ Ans:
+ 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.27 CONVERT A SMALL CASE LETTER TO UPPERCASE AND PRINT IT.
+ Ans:
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
