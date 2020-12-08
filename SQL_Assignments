@@ -475,14 +475,25 @@ begin
        nm := chars('Ajay','Digvijay','Vijay','Sanjay','Soham');
        
        for i in 1..5 loop
-        dbms_output.put_line(nm(i));
+        dbms_output.put_line((UPPERnm(i)));
        end loop;
 end; 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.26 Create an array of 5 names and print all names with length in Capital case.
       "abc" ===>  ABC : 3 
  Ans:
- 
+ declare
+       TYPE chars IS VARRAY(5) OF varchar2(10);
+       nm chars; 
+begin
+       nm := chars('Ajay','Digvijay','Vijay','Sanjay','Soham');
+       
+       for i in 1..5 loop
+        dbms_output.put_line(UPPER(nm(i)) || ':' || length(UPPER(nm(i))));
+
+        
+       end loop;
+end; 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.27 CONVERT A SMALL CASE LETTER TO UPPERCASE AND PRINT IT.
  Ans:
