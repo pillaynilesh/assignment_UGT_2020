@@ -398,9 +398,58 @@ Q.19 Create a PL/SQL Block which declares the radius of a circle and make a cons
  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.20 PRINT ALL ALPHABETS IN UPPERCASE IN DESCENDING ORDER
  Ans:
- 
+ declare 
+str varchar2(20);
+ch char(1):='Z';
+c char;
+i integer;
+begin 
+i := ASCII (ch);
+     LOOP    
+            IF (i = 64) then
+                   exit;
+            END IF;
+            c := chr(i);
+              DBMS_OUTPUT.PUT_LINE(c );
+            i :=i-1;
+       END LOOP;
+END;
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.21 PRINT ALL APLHABETS FROM a to z IN ASCENDING
+ Ans :
+ declare 
+str varchar2(20);
+ch char(1):='a';
+c char;
+i integer;
+begin 
+i := ASCII (ch);
+     LOOP      
+            IF (i = 123) then
+                   exit;
+            END IF;
+            c := chr(i);
+              DBMS_OUTPUT.PUT_LINE(c );
+            i :=i+1;
+       END LOOP;
+END;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.22 PRINT ALL EVEN NUMBERS BETWEEN 10 AND 30 USING WHILE LOOP.USE IF CONDITION TO CHECK.
+ Ans :
+ DECLARE 
+        v number :=10;
+        i integer;
+BEGIN
+    WHILE v<=30 LOOP       
+ if mod(v,2)=0 then 
+dbms_output.put_line ( v); 
+end if; 
+v := v+1;
+    END LOOP;
+END;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.23 PRINT ALPHABETS IN REVERSE ORDER USING FOR LOOP.
+ Ans:
+ 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.24 PRINT THE FACTORIAL OF A NUMBER USING FOR LOOP.
