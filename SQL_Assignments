@@ -497,4 +497,35 @@ end;
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.27 CONVERT A SMALL CASE LETTER TO UPPERCASE AND PRINT IT.
  Ans:
+ declare 
+str varchar2(20);
+ch char(1):='f';
+c char;
+i integer;
+begin 
+i := ASCII (ch);
+            IF (i >97) then
+                i :=i-32;
+            END IF;
+            c := chr(i);
+              DBMS_OUTPUT.PUT_LINE(c );
+END;
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.28 Create a procedure which accepts one parameter as a radius of circle. Declare pi as constant in the procedure and calculate area of circle & print the area in 
+     other PLSQL Block.
+  Ans:
+create or replace procedure demo_pr(x1 in integer, x3 out real)
+is 
+pi CONSTANT real :=3.14;
+begin
+x3 := x1*x1*pi;
+end;
+-----
+declare
+n real := 4;
+i real;
+begin 
+   demo_pr(n,i);
+  DBMS_OUTPUT.PUT_LINE('Area of circle :'||i);
+end;
+ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
