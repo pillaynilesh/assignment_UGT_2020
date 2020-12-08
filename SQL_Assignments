@@ -545,4 +545,89 @@ begin
   DBMS_OUTPUT.PUT_LINE('cube of the number is '||i);
 end;
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-      
+Q.30 Create following procedures :
+     Employee : eid (primary key),name (Not NULL), age (NOT NULL)
+     a) Create a table
+     b) Procedure 1 inserts 5 records where age of employee is greater than 18.
+     c) Procedure 2 updates a record based on the employee id.
+     d) Procedure 3 deletes a record based on employee id.
+     e) Procedure 4 shows all records.
+     f) Procedure 5 shows the record based on employee id.
+     g) Procedure 6 arranges all records age wise in ascending order.
+ Ans:
+ CREATE TABLE Employee_info(eid number primary key,name varchar2(15) Not NULL, age number NOT NULL);--a)
+create or replace procedure inserts(v1 in number,v2 in varchar2,v3 in number)
+is 
+begin
+if v3 > 18 then
+insert into Employee_info values(v1,v2,v3);
+end if;
+end;
+------
+create or replace procedure updates(v1 in number,v2 in number)
+is 
+begin
+update Employee_info set age=v2 where eid=v1;
+end;
+-------
+create or replace procedure deletes(v1 in integer)
+is 
+begin
+ delete from Employee_info where eid=v1;
+end;
+------
+create or replace procedure shows
+is 
+begin
+select eid,name,age from Employee_info;
+end;
+---------
+create or replace procedure shows_eid(v1 in number)
+is 
+i number;
+n varchar2(15);
+ag number;
+begin
+select eid,name,age into i,n,ag from Employee_info where eid=v1;
+dbms_output.put_line('id: '||i||' Name: '||n||' Age: '||ag);
+end;
+-----------
+create or replace procedure arranges
+is 
+begin
+ select eid,name,age from Employee_info ORDER BY eid ASC;
+end;
+---------------
+declare
+begin 
+  inserts(101,'Soham',35);
+  inserts(102,'Ram',23);
+  inserts(103,'Ajay',25);--b)
+  inserts(104,'Vijay',38);
+  inserts(105,'Digvijay',20);
+  inserts(106,'Soam',16);
+end;
+select * from Employee_info;
+drop table Employee_info;
+
+begin 
+updates(105,23);--c)
+end;
+
+
+begin 
+deletes(105);--d)
+end;
+
+begin 
+shows;--e)
+end;
+
+begin 
+shows_eid(103);--f)
+end;
+
+begin 
+arranges(103);--g)
+end;
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
