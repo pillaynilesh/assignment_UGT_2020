@@ -612,7 +612,7 @@ begin
   inserts(103,'Ajay',25);--b)
   inserts(104,'Vijay',38);
   inserts(105,'Digvijay',20);
-  inserts(106,'Soam',16);
+  inserts(106,'Soham',16);
 end;
 select * from Employee_info;
 drop table Employee_info;
@@ -641,10 +641,143 @@ end;
 Q.31 Create a function which accepts your name as a parameter and age and returns the following string as an output :
      Ex:  Input Name :  abcd 
           Output     :  ABCD 24
+ Ans:
+ CREATE OR REPLACE FUNCTION  emp_info(a IN varchar2, b IN number) RETURN varchar2  
+As
+d varchar2(25);
+BEGIN
+     d := (a||' : '||b);
+
+return d ;
+END;
+
+DECLARE
+ result varchar2(15);
+BEGIN
+    result := Emp_info('Ajay',19);   
+    dbms_output.put_line(result ||' ');
+END;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.32 Create a function which is applied on the following table : EMPLOYEE (ename , salary)
      Function will return the avg salary of employees.
+ Ans:
+CREATE TABLE Employee_demo(ename varchar2(20), salary number);
+select * from Employee_demo;
+-----
+CREATE OR REPLACE PROCEDURE insert_nmsal(ename in varchar2, salary in number) 
+IS
+BEGIN
+insert into Employee_demo values(ename,salary);
+END;
+-----
+CREATE OR REPLACE FUNCTION avg_sal RETURN NUMBER
+AS
+c number;
+BEGIN
+ select avg(salary) into c from Employee_demo;
+return c;
+END;
+----
+DECLARE 
+a number;
+BEGIN
+
+insert_nmsal('Soham',56000);
+insert_nmsal('Ajay',380000);
+insert_nmsal('Digvijay',35000);
+
+a := avg_sal;
+dbms_output.put_line(a);
+END;
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 Q.33 Create a procedure to see a record of an employee in Q.30 . Make a record variable in the same procedure . Using the record variable show the name and age.
+ Ans:
+ select * from Employee_info;
+ 
+CREATE OR REPLACE PROCEDURE show_rec(no in number)
+IS
+record Employee_info%rowtype;
+BEGIN
+select * into record from Employee_info where eid = no;
+dbms_output.put_line('Record :-) Name :'||record.name || 'Age : ' || record.age);
+END;
+-----
+begin
+show_rec(103);
+end;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.34 Create a function which accepts one argument as an integer. The function is dividing a number by the argument passed. If the passed number is zero then
      handle zero divide exception.
+ Ans:
+ CREATE OR REPLACE FUNCTION demo21(x1 in integer) RETURN INTEGER
+AS
+a integer;
+BEGIN
+a := x1;
+RETURN a;
+END;
+
+DECLARE
+i integer := 35;
+x2 integer := 0;
+b integer;
+BEGIN
+b := demo21(i);
+
+dbms_output.put_line(b / x2);
+
+EXCEPTION
+
+WHEN NO_DATA_FOUND then
+dbms_output.put_line('No Data Found');
+WHEN TOO_MANY_ROWS then
+dbms_output.put_line('Database Gives Too Many Rows');
+WHEN ZERO_DIVIDE then
+dbms_output.put_line('Number Cannot Be Divided By Zero');--zero divide exception
+WHEN OTHERS THEN
+dbms_output.put_line('Unknown Exceptions');
+END;
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.35 Create a procedure which is inserting a record in a table named as IDCard (name,age,city). IF AGE is less than insertion will not be possible and will generate
      an exception message "Age is less than 18" otherwise insert record in the table and print as "Data saved successfully".
+  Ans:
+ create table ID_card(name varchar2(30),age number(3),city varchar2(20));
+
+CREATE OR REPLACE PROCEDURE Insert_rec(name in varchar2, age in number, city in varchar2)
+IS
+my_exception exception;
+BEGIN
+IF age < 18 then
+RAISE my_exception;
+ELSE
+INSERT INTO ID_card values(name,age,city);
+END IF;
+
+EXCEPTION
+WHEN NO_DATA_FOUND THEN
+dbms_output.put_line('NO DATA TO BE ENTERED');
+WHEN my_exception then
+dbms_output.put_line('AGE MUST BE GREATER THAN 22');
+END;
+
+BEGIN
+INSERT_REC('Ajay',26,'Pune');
+INSERT_REC('Digvijay',18,'Mumbai');
+INSERT_REC('Jay',31,'Bangalore');
+INSERT_REC('Heman',14,'Pune');
+
+dbms_output.put_line('Data saved successfully');
+END;
+
+SELECT * FROM ID_card;
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.36 Create a table Movie which contains the movie name,release year,rating (1-5). Create a Statement level trigger which is executed after insertion of records.
+     Create a Row level trigger on this table which is executed before updating the movie name when movie rating is greater than 0.
+  Ans:
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.37 Create a cursor on the Movie table which displays only those records where Movie rating is more than 3.
+ Ans:
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.38 Create an Associative Array which maintains the population citywise.
+ Ans:
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
