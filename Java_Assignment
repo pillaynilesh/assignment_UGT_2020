@@ -72,5 +72,29 @@ public static void main(String[] args) {
 }
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.3 Create a method in a class which accepts a double and integer parameters and display the multiplication of passed values.
+ Ans:
+ package Pro_Ass;
+
+public class Ass_3 {
+	public int x;
+	public double y,result;
+	public void multiplication(int i, double d )
+	{
+		x=i;
+		y=d;
+		result=i*d;
+		System.out.println("Multiplication of "+i+" and "+d+" is "+result);
+	}
+
+	public static void main(String[] args) 
+	{
+		Ass_3 m=new Ass_3();
+		
+		m.multiplication(10,2.3);	
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.4 Write a program where a class is having a function as display() which declares a city code as a local variable in it and give some default city code value in it. 
     Display () method display the city name which is passed to this method along with the city code.
+ Ans:
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
