@@ -1,0 +1,76 @@
+Q.1 Create a program to Assign username & password in a method and display the username, password in a different function.
+ Ans:
+ package Pro_Ass;
+
+public class Ass_1 {
+	  String user="Ajay";
+	  String pass="Welcome@123";
+	
+	public void show()
+	{
+		System.out.println("Username : "+user);
+		System.out.println("Password : "+pass);
+	}
+
+	public static void main(String[] args) 
+	{
+		Ass_1 a=new Ass_1();
+		a.show();
+	}
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.2 Write a program to Define employee Company as static and display the details of employee like eid,ename,salary with company name for 5 employees.
+ Ans:
+ package Pro_Ass;
+
+public class Ass_2 {
+
+	  static String compName;
+	  public int eid;
+	   String ename;
+	  protected int salary;
+	  
+	public static void getinfo()
+	{
+		compName ="Digit 01";
+		
+	}
+	public void setDetails(String n,int id, int sa )
+	{
+		eid=id;
+		ename=n;
+		salary=sa;
+	}
+	
+public void showDetails()
+{
+	System.out.println("Company Name : "+compName+" Employee ID : "+eid+" Name : "+ename+" Salary : "+salary);
+}
+
+public static void main(String[] args) {
+	Ass_2 e1=new Ass_2();
+	Ass_2 e2=new Ass_2();
+	Ass_2 e3=new Ass_2();
+	Ass_2 e4=new Ass_2();
+	Ass_2 e5=new Ass_2();
+	
+	getinfo();
+	
+	e1.setDetails("Sachin",101,100);
+	e2.setDetails("Rohit",102,100);
+	e3.setDetails("Virat",103,100);
+	e4.setDetails("Ajay",104,100);
+	e5.setDetails("Rahul",105,100);
+	
+	e1.showDetails();
+	e2.showDetails();
+	e3.showDetails();
+	e4.showDetails();
+	e5.showDetails();
+	
+}
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.3 Create a method in a class which accepts a double and integer parameters and display the multiplication of passed values.
+Q.4 Write a program where a class is having a function as display() which declares a city code as a local variable in it and give some default city code value in it. 
+    Display () method display the city name which is passed to this method along with the city code.
