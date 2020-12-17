@@ -116,3 +116,13 @@ public class Ass_4 {
 	}
 }
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.5 Write a program to enter a year and check if the year is a leap year or not.
+ Ans:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.6 Create a program to check for a number entered by user is Positive , negative or zero.
+ Ans:
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.7 Write a program to enter the height of a person in cm and weight of a person in kg, Calculate the BMI. If BMI value is less tha 18.5 then show "Underweight",
+     BMI is in range from 18.5 to 24.9 show "Normal Weight" , If range is 25 to 25.9 then show "Overweight" otherwise show "Obesity".
+ Ans:
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
