@@ -117,19 +117,126 @@ public class Ass_4 {
 }
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.5 Write a program to enter a year and check if the year is a leap year or not.
- Ans:
+ Ans:package Pro_Ass;
+
+import java.util.Scanner;
+
+public class Ass_5 {
+	private void check(int num) 
+	{
+		if(num%4==0)
+			System.out.println(num+" is leap year ");
+		else
+			System.out.println(num+" is not leap year");
+		
+	}
+
+	public static void main(String[] args) {
+	Ass_5 obj=new Ass_5();
+		
+		Scanner sc=new Scanner(System.in);
+		
+		int num;
+		
+		System.out.println("Enter a number : ");
+		num=sc.nextInt();
+		
+		obj.check(num);
+		
+		sc.close();
+
+	}
+}
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.6 Create a program to check for a number entered by user is Positive , negative or zero.
  Ans:
+ package Pro_Ass;
+
+import java.util.Scanner;
+
+public class Ass_6 {
+
+	public void check(int num)
+	{
+		if(num>0)
+			System.out.println(num+" is positive ");
+		else if(num<0)
+			System.out.println(num+" is negative ");
+		else
+			System.out.println(num+" is zero ");
+	}
+
+	public static void main(String[] args) {
+		
+		Ass_6 obj=new Ass_6();
+		
+		Scanner sc=new Scanner(System.in);
+		
+		int num;
+		
+		System.out.println("Enter a number : ");
+		num=sc.nextInt();
+		
+		obj.check(num);
+		
+		sc.close();
+		
+	}
+}
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.7 Write a program to enter the height of a person in cm and weight of a person in kg, Calculate the BMI. If BMI value is less tha 18.5 then show "Underweight",
      BMI is in range from 18.5 to 24.9 show "Normal Weight" , If range is 25 to 25.9 then show "Overweight" otherwise show "Obesity".
  Ans:
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ package Pro_Ass;
+
+import java.util.Scanner;
+
+
+
+public class Ass_7 {
+	private void check(int n1, int n2) {
+		
+		{
+			double  BMI;
+			BMI=n1/(n2*n2);
+			
+			if((18.5<BMI)&&(24.9>BMI))
+				System.out.println(BMI+" = Normal Weight ");
+			else if((25<BMI)&&(25.9>BMI))
+				System.out.println(BMI+" = Overweight ");
+			else
+				System.out.println(BMI+" = Obesity ");
+		}
+	}
+
+	public static void main(String[] args) {
+          Ass_7 ob=new Ass_7();
+		
+		Scanner sc=new Scanner(System.in);
+		
+		int num1,num2;
+		
+		System.out.println("Enter a height in cm : ");
+		num1=sc.nextInt();
+		
+		System.out.println("Enter a weight in Kg : ");
+		num2=sc.nextInt();
+		
+		num1=num1*100;
+		
+		ob.check(num1,num2);
+		
+		sc.close();
+
+	}
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.8 Create a class Employee . Declare name, yearOfExperiance, Salary. Create a method which takes the details from user. Take records of 5 employees using Array of 
     objects. Create a method which checks the years of experiance of an employee. If Experiance is more than 3 years then Give 5000/- Rs Bonus to the employees .
     If Experiance is more than 1 year & less than 3 years then Give bonus of 1000/- Rs. If Experiance is less than 1 year , no bonus will be given. Display the 
     Updated details of every employee.
+ Ans:
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.9 Write a program to create a Menu based program where perform the following operations.
     Product (Class) : pid,pname,Description,cost
     1. Display List of 5 products.
