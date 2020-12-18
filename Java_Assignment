@@ -271,7 +271,6 @@ public class Ass_8 {
 
 	public static void main(String[] args) {
 		Employee e[]=new Employee[5]; 
-		Employee p1=new Employee();
 		Scanner s=new Scanner(System.in);
 		String E_N;
 		int Y_O_E;   
