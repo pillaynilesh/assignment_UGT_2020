@@ -236,6 +236,91 @@ Q.8 Create a class Employee . Declare name, yearOfExperiance, Salary. Create a m
     If Experiance is more than 1 year & less than 3 years then Give bonus of 1000/- Rs. If Experiance is less than 1 year , no bonus will be given. Display the 
     Updated details of every employee.
  Ans:
+ package Pro_Ass;
+import java.util.Scanner;
+
+class Employee
+{     
+	public String Employee_Name;
+	public  int yearOfExperiance;   
+	public double Employee_Salary;
+	
+
+	public void getInfo( String EN, int YOE,double ES)
+	{
+		Employee_Name=EN;
+		yearOfExperiance=YOE;
+		Employee_Salary=ES;
+	}
+
+	public void showDetails(int i)
+	{
+	    	
+	    	System.out.println("Enter Employee Name  : "+Employee_Name);
+	    	
+	    	System.out.println("Enter Employee's Year Of Experiance  : "+yearOfExperiance);
+	    
+	    	System.out.println("Enter Employee's Salary  : "+Employee_Salary);
+	    	
+	    	System.out.println("================================================");
+	}
+
+}
+
+public class Ass_8 {
+
+	public static void main(String[] args) {
+		Employee e[]=new Employee[5]; 
+		Employee p1=new Employee();
+		Scanner s=new Scanner(System.in);
+		String E_N;
+		int Y_O_E;   
+		double E_S;
+		    for(int i=0;i<5;i++)
+		    {
+		    	e[i]=new Employee();
+		    	
+		    	System.out.println("Enter Employee Name  : "+(i+1));
+				E_N=s.nextLine();
+		  
+		    	System.out.println("Enter Employee's Year Of Experiance  : "+(i+1));
+		    	Y_O_E=s.nextInt();
+		    	
+		    	System.out.println("Enter Employee's Salary  : "+(i+1));
+		    	E_S=s.nextDouble();
+		    	s.nextLine();
+		    	
+		    	e[i].getInfo(E_N,Y_O_E,E_S);
+		    }
+		    
+		    for(int i=0;i<5;i++)
+			   {
+				   e[i].showDetails(i);
+			   }
+		
+	    	System.out.println("======================= Happy Working =========================");
+
+		
+		 for(int i=0;i<5;i++)
+		   {
+				{
+					if (e[i].yearOfExperiance>3)
+						e[i].Employee_Salary=e[i].Employee_Salary+5000;
+					else if((e[i].yearOfExperiance<3)&&(e[i].yearOfExperiance>1))
+						e[i].Employee_Salary=e[i].Employee_Salary+1000;
+					else
+						e[i].Employee_Salary=e[i].Employee_Salary+0000;
+				}
+		   }
+
+		    for(int i=0;i<5;i++)
+			   {
+				   e[i].showDetails(i);
+			   }
+		s.close();
+		
+	}
+}
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.9 Write a program to create a Menu based program where perform the following operations.
     Product (Class) : pid,pname,Description,cost
