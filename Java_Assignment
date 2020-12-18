@@ -346,7 +346,7 @@ public class Ass_10 {
 		System.out.println("========Topper of the School========");
 		for(String x : numbers)    
 		{
-			System.out.println(i+") "+x);
+			System.out.println(i+") "+x+" Length of Name is : "+x.length());
 			i++;
 		}
 
