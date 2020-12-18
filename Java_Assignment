@@ -329,6 +329,162 @@ Q.9 Write a program to create a Menu based program where perform the following o
     4. Dipslay average Cost of All products.
     5. Display only Product Name and cost.
  Ans:
+ package Pro_Ass;
+
+import java.util.Scanner;
+
+class Product_1 {
+	public int pid,cost,result,avg;
+	public String pname,Description;
+	
+	public void setdetails(int pid,int cost,String pname,String Description)
+	{
+		this.pid = pid;
+		this.cost = cost;
+		this.pname = pname;
+		this.Description = Description;
+	}
+
+	public void getdetails()
+	{
+		System.out.println(" Prouct ID : "+pid+" Prouct Name : "+pname+" Prouct Cost : "+cost+" Prouct Description : "+Description);
+	}
+	
+	public void getUpper()
+	{
+		System.out.println(" Prouct ID : "+pid+" Prouct Name : "+pname.toUpperCase()+" Prouct Cost : "+cost+" Prouct Description : "+Description);
+	}
+	
+	
+	public void totamount(Product_1 Pro_1,Product_1 Pro_2,Product_1 Pro_3,Product_1 Pro_4,Product_1 Pro_5)
+	{
+		result = (Pro_1.cost)+(Pro_2.cost)+(Pro_3.cost)+(Pro_4.cost)+(Pro_5.cost);
+		
+		System.out.println("Total Amount Of Costs is : "+result);
+	}
+	
+	public void getavg()
+	{
+		avg = result/5;
+		System.out.println("Average Cost Of All Products : "+avg);
+	}
+	
+	public void showdetails()
+	{
+		System.out.println(" Prouct Name : "+pname+", Prouct Cost : "+cost);
+	}
+}
+
+public class Ass_9 {
+	public static Scanner s;
+
+
+		public static void main(String[] args) {
+			s = new Scanner(System.in);
+
+			Product_1 Pro_1 = new Product_1();
+			Product_1 Pro_2 = new Product_1();
+			Product_1 Pro_3 = new Product_1();
+			Product_1 Pro_4 = new Product_1();
+			Product_1 Pro_5 = new Product_1();
+	  
+			Pro_1.setdetails(501,50000,"Motherboard","Motherboard is the backbone of nearly any technological device.");
+			Pro_2.setdetails(502,200000,"The Central Processing Unit","The CPU is often called the \"brain\" of a computer, thanks to its direct plug\n connection to the motherboard, and communication with all of the computer’s other components");
+			Pro_3.setdetails(503,500000,"The Graphics Processing Unit (GPU)","It's not uncommon to hear gamers obsess over the next new graphics card,\n as these graphic cards make it possible for computers to generate high-end visuals like\n those found in the many different types of video games.");
+			Pro_4.setdetails(504,5000000,"Storage","All computers need somewhere to store their data.\n Modern computers either use a Hard Disk Drive (HDD) or Solid State Drive (SSD).");
+			Pro_5.setdetails(505,50000,"RAM","RAM, also known as volatile memory, stores data regarding\n frequently accessed programs and processes.");
+			
+		
+			    
+			int i=0;
+			
+			while(i!=6)
+			{
+				System.out.println("1. Display List of 5 products.");
+				System.out.println("2. Display all products in Capital case.");
+				System.out.println("3. Display the Total cost of All products.");
+				System.out.println("4. Dipslay average Cost of All products.");
+				System.out.println("5. Display only Product Name and cost.");
+				System.out.println("6.End shoping!!");
+	
+				i=s.nextInt();
+				switch (i) {
+				case 1:
+				{
+					   Pro_1.getdetails();
+					    System.out.println("======================================================================");
+					
+					    Pro_2.getdetails();
+					    System.out.println("======================================================================");
+					
+					    Pro_3.getdetails();
+					    System.out.println("======================================================================");
+					
+					    Pro_4.getdetails();
+					    System.out.println("======================================================================");
+					
+					    Pro_5.getdetails();
+					    System.out.println("======================================================================");
+				}
+					break;
+				case 2:
+				{
+				    System.out.println("=================UPPER CASE DATA===============");
+				    Pro_1.getUpper();
+				    System.out.println("=====================================================================");
+				    Pro_2.getUpper();
+				    System.out.println("=====================================================================");
+				    Pro_3.getUpper();
+				    System.out.println("=====================================================================");
+				    Pro_4.getUpper();
+				    System.out.println("=====================================================================");
+				    Pro_5.getUpper();
+				    System.out.println("=====================================================================");
+				} 
+					break;
+				case 3:
+				{
+				    Pro_1.totamount(Pro_1,Pro_2,Pro_3,Pro_4,Pro_5);
+				    System.out.println("======================================================================");
+				} 
+					break;
+				case 4:
+				{
+					Pro_1.getavg();
+				    System.out.println("======================================================================");
+				}
+					break;
+				case 5:
+				{
+				    Pro_1.showdetails();
+				    System.out.println("=======================================================================");
+				    
+				    Pro_2.showdetails();
+				    System.out.println("=======================================================================");
+				    				    
+				    Pro_3.showdetails();
+				    System.out.println("=======================================================================");
+				    				    
+				    Pro_4.showdetails();
+				    System.out.println("=======================================================================");
+				    				    
+				    Pro_5.showdetails();
+				    System.out.println("=======================================================================");
+				    
+				}
+					break;
+				case 6:
+					System.out.println("Come back again !!\nThis is End of Java "); 
+					break;
+					
+				default:
+					System.out.println("Invalid choice");
+					break;
+				}
+			}
+		}
+	}
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.10 Create an array of names of 3 students and display names with length.
  Ans:
