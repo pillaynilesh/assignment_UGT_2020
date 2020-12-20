@@ -593,3 +593,147 @@ public class Ass_12 {
 	}
 }
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.13 Write a program to make a class as Factorial where calculate the factorial in a function the function returns the factorial of the passed number to this function. 
+     Print the factorial of the number.
+ Ans:
+ package Pro_Ass;
+
+class Factorial
+{
+	public int sum=1;
+
+	public void getFactorial( int a)
+	{
+		for(int i=2;i<(a+1);i++)
+		{
+			sum=sum*i;		
+		}
+		System.out.println("The Factorial of "+a+" is : "+sum);
+	}
+}
+
+public class Ass_13 {
+
+	public static void main(String[] args) 
+	{
+		Factorial obj=new Factorial();
+		obj.getFactorial(7);
+			
+	}
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.14 Create a Class Alphabets which is printing Capital case alphabets in its member method. Create another Class where a main function resides. In main method create 
+    the object of Alphabets class and call the method which is printing alphabets.
+ Ans:
+ package Pro_Ass;
+
+class Alphabets
+{
+	
+
+	public void getUpper(String a)
+	{
+		System.out.println(a+" is Lower Case Alphabet : "+a.toUpperCase()+" is Upper Case Alphabet");
+	}
+}
+
+public class Ass_14 {
+
+	public static void main(String[] args) 
+	{
+		Alphabets obj=new Alphabets();
+		obj.getUpper("a");	
+	}
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.15 Write a program to create a method in a class which takes the first name as first parameter and last name as second parameter. This method returns the full name. 
+    Print full name.
+  Ans:
+  package Pro_Ass;
+
+
+
+public class Ass_15 {
+	public void getFullname(String a,String b)
+	{
+		System.out.println("Your Full Name Is : "+a+" "+b);
+	}
+
+	public static void main(String[] args) 
+	{
+		Ass_15 obj=new Ass_15();
+		obj.getFullname("Soham","Naidu");
+	}
+}
+ --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Q.16 Write a program to overload a method named as getResult() 3 times , first definition prints the cube of passed number. Second function prints square of passed 
+     number. Third definition print that number.
+  Ans:
+  package Pro_Ass;
+
+public class Ass_16 {
+	public void getResult(int a)
+	{
+		int x;
+		x=a*a*a;
+		System.out.println("Cube of "+a+" is "+x);
+	}
+	public void getResult(double a)
+	{
+		double x;
+		x=a*a;
+		System.out.println("Square of "+a+" is "+x);
+	}
+	public void getResult()
+	{
+		System.out.println("This is the prog of overload !!");
+	}
+
+	public static void main(String[] args) 
+	{
+		Ass_16 obj=new Ass_16();
+		obj.getResult(5);
+		obj.getResult(10.00);
+		obj.getResult();
+	}
+}
+ --------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.17 Write a program to find the sum of digits of a number.
+ Ans:
+ package Pro_Ass;
+
+import java.util.Scanner;
+
+public class Ass_17 {
+	private static Scanner s;
+
+
+	public void getResult(int a,int b)
+	{
+		int x;
+		x=a+b;
+		System.out.println("Sum of "+a+" and "+b+" is "+x);
+	}
+
+
+	public static void main(String[] args) 
+	{
+		int a,b;
+		Ass_17 obj=new Ass_17();
+		s = new Scanner(System.in);
+		
+		System.out.println("Entre Number :");
+		a=s.nextInt();
+		
+		System.out.println("Entre Number :");
+		b=s.nextInt();
+		obj.getResult(a,b);
+		
+	}
+
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.18 Write a program to create two objects of a class named as Numbers. In which there is a function getMax(). Assign a value for a number to every object and 
+     compare two objects together and print the maximum value
+ Ans:
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
