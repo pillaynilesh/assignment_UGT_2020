@@ -622,37 +622,29 @@ public class Ass_13 {
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.14 Create a Class Alphabets which is printing Capital case alphabets in its member method. Create another Class where a main function resides. In main method create 
     the object of Alphabets class and call the method which is printing alphabets.
- Ans:
- package Pro_Ass;
+ Ans:package Pro_Ass;
 
-import java.util.Scanner;
-
-interface Calculator 
+class Alphabets
 {
-	public double getResult(double a);
-}
-
-class class_01 implements Calculator 
-{
-	public double getResult(double a) {
-		double x;
-		x=(a-32)*5/9;
+	public void getUpper(char a)
+	{
+		char z;
+		int x;
+		x=((int)a)-32;
+		z=((char)x);
 		
-		return x;
+		System.out.println(a+" is Lower Case Alphabet and "+z+" is Upper Case Alphabet");
 	}
 }
 
-public class Ass_19 {
+public class Ass_14 {
 
-	private static Scanner s;
-	public static void main(String[] args) {
-		class_01 obj=new class_01();
-		s = new Scanner(System.in);
-		double C,a;
-		System.out.println("Enter Temperature in Ferhenite to convert into Celcius :");
-		a=s.nextDouble();
-		C=obj.getResult(a);
-		System.out.println(C+" Celcius");
+	public static void main(String[] args) 
+	{
+		Alphabets obj=new Alphabets();
+		obj.getUpper('a');
+		
+			
 	}
 }
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
