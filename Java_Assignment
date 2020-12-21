@@ -625,22 +625,34 @@ Q.14 Create a Class Alphabets which is printing Capital case alphabets in its me
  Ans:
  package Pro_Ass;
 
-class Alphabets
-{
-	
+import java.util.Scanner;
 
-	public void getUpper(String a)
-	{
-		System.out.println(a+" is Lower Case Alphabet : "+a.toUpperCase()+" is Upper Case Alphabet");
+interface Calculator 
+{
+	public double getResult(double a);
+}
+
+class class_01 implements Calculator 
+{
+	public double getResult(double a) {
+		double x;
+		x=(a-32)*5/9;
+		
+		return x;
 	}
 }
 
-public class Ass_14 {
+public class Ass_19 {
 
-	public static void main(String[] args) 
-	{
-		Alphabets obj=new Alphabets();
-		obj.getUpper("a");	
+	private static Scanner s;
+	public static void main(String[] args) {
+		class_01 obj=new class_01();
+		s = new Scanner(System.in);
+		double C,a;
+		System.out.println("Enter Temperature in Ferhenite to convert into Celcius :");
+		a=s.nextDouble();
+		C=obj.getResult(a);
+		System.out.println(C+" Celcius");
 	}
 }
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -735,3 +747,14 @@ Q.18 Write a program to create two objects of a class named as Numbers. In which
      compare two objects together and print the maximum value
  Ans:
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.19 Create an interface named as Calculator and create a method in it as getResult(). 
+     7 class are to be defined which are implementing Calculator interface.
+     Class A will return factorial of a number.    (Vishal)
+     Class B will return square of a number.       (Saloni)
+     Class C will return maximum of two numbers.   (Hemant)
+     Class D will print numbers from 1 to 50.      (Josephine)
+     Class E will return the sum of 5 digit number. (Nimesh)
+     Class F will return the sum of 5 values in an array.  (Abhishek)
+     Class G will return the temperature in celcius for the given ferhenite value. (Nilesh)
+ Ans:
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
