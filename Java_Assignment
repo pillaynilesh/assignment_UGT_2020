@@ -596,31 +596,7 @@ public class Ass_12 {
 Q.13 Write a program to make a class as Factorial where calculate the factorial in a function the function returns the factorial of the passed number to this function. 
      Print the factorial of the number.
  Ans:
- package Pro_Ass;
-
-class Factorial
-{
-	public int sum=1;
-
-	public void getFactorial( int a)
-	{
-		for(int i=2;i<(a+1);i++)
-		{
-			sum=sum*i;		
-		}
-		System.out.println("The Factorial of "+a+" is : "+sum);
-	}
-}
-
-public class Ass_13 {
-
-	public static void main(String[] args) 
-	{
-		Factorial obj=new Factorial();
-		obj.getFactorial(7);
-			
-	}
-}
+ 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.14 Create a Class Alphabets which is printing Capital case alphabets in its member method. Create another Class where a main function resides. In main method create 
     the object of Alphabets class and call the method which is printing alphabets.
