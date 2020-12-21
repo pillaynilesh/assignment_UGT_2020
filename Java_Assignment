@@ -738,6 +738,39 @@ public class Ass_17 {
 Q.18 Write a program to create two objects of a class named as Numbers. In which there is a function getMax(). Assign a value for a number to every object and 
      compare two objects together and print the maximum value
  Ans:
+ package Pro_Ass;
+
+public class Ass_18 {
+	public int a;
+	public int getNum(int x)
+	{
+		a=x;
+		return 0;
+	}
+	public void getMax()
+	{
+		if ()
+		System.out.println("object 1 is bigger than object 2");
+		
+		else
+			System.out.println("object 2 is bigger than object 1");
+	}
+
+	public static void main(String[] args) {
+		Ass_18 obj1=new Ass_18();
+		Ass_18 obj2=new Ass_18();
+		Ass_18 max=new Ass_18(obj1,obj2);
+		
+		obj1.getNum(10);
+		
+		obj2.getNum(15);
+		
+		max.getMax();
+		
+		
+	}
+
+}
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.19 Create an interface named as Calculator and create a method in it as getResult(). 
      7 class are to be defined which are implementing Calculator interface.
