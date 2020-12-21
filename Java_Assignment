@@ -750,3 +750,25 @@ Q.19 Create an interface named as Calculator and create a method in it as getRes
      Class G will return the temperature in celcius for the given ferhenite value. (Nilesh)
  Ans:
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.20 Write a program to take first name and lastname as a command line arguments and print the full name in capital case along with the length of fullname.
+ Ans:
+ package Pro_Ass;
+
+public class Ass_20 {
+
+	public static void main(String[] args) {
+		String result,Nu=" ";
+		 result=(args[0])+Nu+(args[1]);
+		System.out.println("Your Full name is : "+result.toUpperCase()+" its leght is : "+result.length());
+
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.21 Create a class Person. Create name,mobile,age as instance variables . Make getters and setters and display the records of 3 cusomers using array of objects and 
+     print records.
+  Ans:
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.22 Define name and salary of an employee both as a string variable. Define a method which updates the salary of an employee by 1000. Print updated salary with name.
+ Ans:
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
