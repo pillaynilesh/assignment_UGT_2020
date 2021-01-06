@@ -127,5 +127,136 @@ public class Ass_03 extends GenericServlet {   // GenericServlet is protocol ind
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.4 Create 2 servlets and make a web.xml file in which a Integer value is defined as a parameter. First servlet is printing the square value of the parameter and second 
     servlet is printing the factorial of the parameter.
+ Ans:
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.5 Create 2 servlets and one web.xml file in which name is set as a parameter for first servlet and city is set as a parameter for second servlet. First servlet prints
     the length of the name and second servlet prints the city name in Capital case.
+ Ans:
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.6 Create a servlet which displays all records of a table.
+ Ans:
+ package org.demo;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/Ass_06")
+public class Ass_06 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public Ass_06() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out=response.getWriter();
+		
+		
+		 try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root"); 
+			 
+			 Statement smt = cn.createStatement(); 
+			 String query01="select * from dummyy";
+                          ResultSet rs = smt.executeQuery(query01);  
+			 String Str;
+			 while(rs.next())
+			 {
+				 Str=(rs.getString(1)+" "+rs.getInt(2));
+				 out.print(Str+"<br>");
+				 
+			 }
+			 cn.commit();
+			 cn.close(); 
+			
+      	
+  		out.print("Table !!" );	
+  		out.close();
+			 
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.7 Create a servlet which accepts id from the URL and delete the record for that id.
+ Ans:
+ package org.demo;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/Ass_07")
+public class Ass_07 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public Ass_07() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out=response.getWriter();
+		
+		
+		 try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root"); 
+			 
+			String Id=request.getParameter("Id");
+			 Statement smt = cn.createStatement(); 
+			 String query="delete from dummyy where id="+Integer.parseInt(Id);
+			 smt.executeUpdate(query);
+			 cn.commit();
+			 cn.close(); 
+			
+      	
+  		out.print("Record deleted successfully...." );	
+  		out.close();
+			 
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
