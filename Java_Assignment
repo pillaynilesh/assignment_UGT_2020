@@ -2265,4 +2265,142 @@ public class Ass_50 {
 	}
 }
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.51 Write a JDBC Program to do the following operations on the table given :
+      Employee : eid (primary key) , name (varchar2 not null), city varchar2, salary number
+     a) Insert 5 employee records using a stored Procedure.
+     b) Update the salary of the last record.
+     c) Delete the 3rd record.
+     d) Display name and salary for all employees.
+     e) Add 1000/- to the salary of all employees.
+     f) Count Total number of records having salary more than 10000.
+     g) Show all records in descending order of salary.
+     h) Show all records in Alphabetical order of names of employees.
+ Ans:
+ package Pro_Ass;
 
+import java.sql.Connection; 
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class Ass_51 {
+
+	public static void main(String[] args) {
+		
+             try {
+			 
+            	 Class.forName("oracle.jdbc.driver.OracleDriver");
+			 
+			 Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root"); 
+			 
+			 
+			 
+			 Statement smt01 = cn.createStatement();
+			 //a)
+			 String query01="insert all\r\n" + 
+			 		"into Employee_new(eid,name,city,esalary) values(1001,'Soham','Pune',24000)\r\n" + 
+			 		"into Employee_new(eid,name,city,esalary) values(1002,'Ajay','Goa',9000)\r\n" + 
+			 		"into Employee_new(eid,name,city,esalary) values(1003,'Jay','Nagpure',21000)\r\n" + 
+			 		"into Employee_new(eid,name,city,esalary) values(1004,'Digvijay','Pune',14000)\r\n" + 
+			 		"into Employee_new(eid,name,city,esalary) values(1005,'Durva','Pune',9800)\r\n" + 
+			 		"select * from dual";
+			 smt01.executeUpdate(query01);
+			 
+			 Statement smt02 = cn.createStatement();
+			 //b)
+			 String query02=" update Employee_new set esalary=8800 where eid=1005";
+			 smt02.executeUpdate(query02);
+			 
+			 Statement smt03 = cn.createStatement();
+			 //c)
+			 String query03="delete from Employee_new where eid=1003";
+			 smt03.executeUpdate(query03);
+			 
+			 Statement smt04 = cn.createStatement();
+			 //d)
+			 String query04=" select * from Employee_new";
+			 smt04.executeUpdate(query04);
+			 
+			 Statement smt05 = cn.createStatement();
+			 //e)
+			 String query05="update Employee_new set esalary=(esalary+1000)";
+			 smt05.executeUpdate(query05);
+
+			 Statement smt06 = cn.createStatement();
+			//f)
+			 String query06="select count(ename) from Employee_new where esalary>=10000 ";
+			 smt06.executeUpdate(query06);
+			 
+			 Statement smt07 = cn.createStatement();
+			//g)
+			 String query07=" select * from Employee_new ORDER BY esalary DESC";
+			 smt07.executeUpdate(query07);
+			 
+			 Statement smt08 = cn.createStatement();
+			//g)
+			 String query08=" select * from Employee_new ORDER BY ename";
+			 smt08.executeUpdate(query08);
+			 
+			 cn.commit();
+			 cn.close(); 
+			
+ 			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}  
+	}
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.52 Write a program to record the birth dates of 5 persons along with the names and do following : 
+     a) Show all records.
+     b) Use PreparedStatement to insert the records at run time.
+  Ans:
+  package Pro_Ass;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+public class Ass_52 {
+
+	private static Scanner s;
+
+	public static void main(String[] args) throws SQLException, ClassNotFoundException {
+		
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		 
+		 Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root"); 
+		 
+		 Statement smt = cn.createStatement(); 
+		 
+		 String query;
+		 
+		 PreparedStatement psmt=cn.prepareStatement("insert into Employee_birth_dates values(?,Date?)");
+		 s = new Scanner(System.in);
+		 String name,DOB;
+		 
+		 for(int i=0;i>5;i++)
+		 {
+		 System.out.println("Enter name : ");
+		 name=s.nextLine();
+		 
+		 s.nextLine();
+		 System.out.println(" Enter birth date ");
+		 DOB=s.nextLine();
+		
+		 psmt.setString(1, name);
+		psmt.setString(2, DOB);
+		 psmt.executeUpdate();
+		 query="commit";
+		 smt.executeUpdate(query);
+		 }
+		 psmt.close();
+		 cn.commit();
+		 cn.close(); 
+	}
+}
+ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
