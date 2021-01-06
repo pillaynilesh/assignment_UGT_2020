@@ -1,0 +1,131 @@
+Q.1 Create a servlet on extending HttpServlet class which prints a Welcome message on the WebPage.
+ Ans:
+ package org.demo;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/Ass_01")
+public class Ass_01 extends HttpServlet {
+	private static final long serialVersionUID = 1L;      
+    
+    public Ass_01() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+	
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+
+		PrintWriter pw=response.getWriter();
+		
+		pw.print("Welcome To My Webside !!" );
+		
+		pw.close();	
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.2 Create a Servlet which accepts two numbers as parameters in the form of query string and prints the sum,multiplication,Division,Subtraction.
+ Ans:
+ package org.demo;
+import java.io.IOException;
+import javax.servlet.GenericServlet;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebServlet;
+
+
+@WebServlet("/Ass_02")
+public class Ass_02 extends GenericServlet {   // GenericServlet is protocol independent class
+	private static final long serialVersionUID = 1L;
+       
+ 
+    public Ass_02() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+
+	public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		String sum,sun,mul,div;
+		
+		String num1=request.getParameter("num1");  
+	
+		String num2=request.getParameter("num2");
+		int no1,no2,isum,isun,imul,idiv;
+		no1=(Integer.parseInt(num1));
+		no2=(Integer.parseInt(num2));
+		
+		isum=no1+no2;
+		sum=String.valueOf(isum);
+		
+		isun=no1-no2;
+		sun=String.valueOf(isun);
+		
+		imul=no1*no2;
+		mul=String.valueOf(imul);
+		
+		idiv=no1/no2;
+		div=String.valueOf(idiv);
+		
+		
+		response.getWriter().print("The Sum of "+num1+" and "+num2+" is "+sum+"<br>");
+		response.getWriter().print("The Multiplication of "+num1+" and "+num2+" is "+mul+"<br>");
+		response.getWriter().print("The Division of "+num1+" and "+num2+" is "+div+"<br>");
+		response.getWriter().print("The Subtraction of "+num1+" and "+num2+" is "+sun+"<br>");
+	}
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.3 Create a Servlet which accepts firstname & lastname from query string and display the fullname in Capital case along with length.
+ Ans:
+ package org.demo;
+import java.io.IOException;
+import javax.servlet.GenericServlet;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebServlet;
+
+
+@WebServlet("/Ass_03")
+public class Ass_03 extends GenericServlet {   // GenericServlet is protocol independent class
+	private static final long serialVersionUID = 1L;
+       
+
+    public Ass_03() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+    
+	public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		int length;
+		
+		String firstname=request.getParameter("firstname");  // Accepting parameter values from client /user as a request
+	
+		String lastname=request.getParameter("lastname");
+		
+		response.getWriter().print("Your Name in Capital case : "+firstname.toUpperCase()+" "+lastname.toUpperCase());
+		
+		length=firstname.length()+lastname.length();
+		
+		response.getWriter().print("<br>Length of your Name is "+length);	
+	}
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.4 Create 2 servlets and make a web.xml file in which a Integer value is defined as a parameter. First servlet is printing the square value of the parameter and second 
+    servlet is printing the factorial of the parameter.
+Q.5 Create 2 servlets and one web.xml file in which name is set as a parameter for first servlet and city is set as a parameter for second servlet. First servlet prints
+    the length of the name and second servlet prints the city name in Capital case.
