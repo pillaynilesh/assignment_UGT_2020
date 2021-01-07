@@ -262,6 +262,90 @@ public class Ass_07 extends HttpServlet {
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.8 Create a form which accepts ID and City and saves the data in the database.
  Ans:
+     Html:
+    <!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Form</title>
+</head>
+<body>
+<form action="Ass_08" method="get">
+Id<input type="text" name="Id"><br>
+City<input type="text" name="City"><br>
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>
+      Servlet:
+   package org.demo;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/Ass_08")
+public class Ass_08 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+   
+    public Ass_08() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+          PrintWriter out=response.getWriter();
+		
+		response.setContentType("text/html");
+		int Id=Integer.parseInt(request.getParameter("Id"));
+		String City=request.getParameter("City");
+		
+		//out.print("Id : "+Id);
+		//out.print("<br>City : "+City+"<br>");
+		
+		 try {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root"); 
+				 
+				 PreparedStatement psmt=cn.prepareStatement("insert into dummyy values(?,?)");
+				 psmt.setInt(2, Id);
+				 psmt.setString(1, City);
+				 psmt.executeUpdate();
+				 cn.commit();
+				 cn.close(); 
+				
+	       	
+	   		out.print("Record inserted....." );
+	   		                                     
+	   		
+	   		out.close();
+				 
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+}
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.9 create 2 servlets. In first servlet create an object of employee class which sets the attribute value for employee object .In second servlet retrieve the values
     of employee object and display all information about an employee.
