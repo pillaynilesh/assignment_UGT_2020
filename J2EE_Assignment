@@ -128,38 +128,6 @@ public class Ass_03 extends GenericServlet {   // GenericServlet is protocol ind
 Q.4 Create 2 servlets and make a web.xml file in which a Integer value is defined as a parameter. First servlet is printing the square value of the parameter and second 
     servlet is printing the factorial of the parameter.
  Ans:
-	-------------------------
-	web.xml:
-	
-	<?xml version="1.0" encoding="UTF-8"?>
-	<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-	<display-name>MyWebsite1</display-name>
-	<welcome-file-list>
-	<welcome-file>index.html</welcome-file>
-
-	</welcome-file-list>
-
- 
-<context-param>
-	<param-name>Number</param-name>
-	<param-value>10</param-value>
-	</context-param>
-
-<servlet>
-	<description></description>
-	<display-name>Ass_4ser1</display-name>
-	<servlet-name>Ass_4ser1</servlet-name>
-	<servlet-class>org.demo.Ass_4ser1</servlet-class>
-	</servlet>
-
-<servlet>
-	<description></description>
-	<display-name>Ass_4ser2</display-name>
-	<servlet-name>Ass_4ser2</servlet-name>
-	<servlet-class>org.demo.Ass_4ser2</servlet-class>
-	</servlet>
-
-------------------------
 Ass_4ser1:
 
 package org.demo;
@@ -187,12 +155,13 @@ package org.demo;
 	PrintWriter out=response.getWriter();
 	
 	ServletContext context=getServletContext();
-	String num = +context.getInitParameter("Number");
-	out.print("Number is : "+num+”<br>”);
-Int number=(Integer.parseInt(num));
-out.print("Square value of the paramete is : "+(number*number));
-	
+	String num = context.getInitParameter("Number");
+	out.print("Number is : "+num);
 	out.print("<br>==================================================<br>");
+        int number=(Integer.parseInt(num));
+        out.print("Square value of the paramete is : "+(number*number));
+	
+	
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -230,10 +199,10 @@ out.print("Square value of the paramete is : "+(number*number));
 	PrintWriter out=response.getWriter();
 	
 	ServletContext context=getServletContext();
-	String num = +context.getInitParameter("Number");
-	out.print("Number is : "+num+”<br>”);
-     Int number=(Integer.parseInt(num));
-
+	String num = context.getInitParameter("Number");
+	out.print("Number is : "+num);
+        int number=(Integer.parseInt(num));
+        out.print("<br>==================================================<br>");
 	 int sum=1;
 	for(int i=2;i<(number+1);i++)
 	{
@@ -241,7 +210,7 @@ out.print("Square value of the paramete is : "+(number*number));
 	}
 	out.print("<br>The Factorial of "+number+" is : "+sum);
 	
-out.print("<br>==================================================<br>");
+
 
 	}
 	
@@ -251,6 +220,36 @@ out.print("<br>==================================================<br>");
 	}
 	
 	}
+	-------------------------
+	web.xml:
+	
+	<?xml version="1.0" encoding="UTF-8"?>
+  <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>J2EE_Assignment</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>Form.html</welcome-file>
+  </welcome-file-list>
+
+ 
+<context-param>
+	<param-name>Number</param-name>
+	<param-value>10</param-value>
+	</context-param>
+
+<servlet>
+	<description></description>
+	<display-name>Ass_4ser1</display-name>
+	<servlet-name>Ass_4ser1</servlet-name>
+	<servlet-class>org.demo.Ass_4ser1</servlet-class>
+	</servlet>
+
+<servlet>
+	<description></description>
+	<display-name>Ass_4ser2</display-name>
+	<servlet-name>Ass_4ser2</servlet-name>
+	<servlet-class>org.demo.Ass_4ser2</servlet-class>
+	</servlet>
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.5 Create 2 servlets and one web.xml file in which name is set as a parameter for first servlet and city is set as a parameter for second servlet. First servlet prints
@@ -334,12 +333,12 @@ Q.5 Create 2 servlets and one web.xml file in which name is set as a parameter f
 	web.xml:
 	
 	<?xml version="1.0" encoding="UTF-8"?>
-	<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-	<display-name>MyWebsite1</display-name>
-	<welcome-file-list>
-	<welcome-file>index.html</welcome-file>
-
-	</welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>J2EE_Assignment</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>Form.html</welcome-file>
+  </welcome-file-list>
 	
 	<servlet>
 	<description></description>
