@@ -132,6 +132,123 @@ Q.4 Create 2 servlets and make a web.xml file in which a Integer value is define
 Q.5 Create 2 servlets and one web.xml file in which name is set as a parameter for first servlet and city is set as a parameter for second servlet. First servlet prints
     the length of the name and second servlet prints the city name in Capital case.
  Ans:
+        -------------------------------------------
+	Ass_5_Serlet1:
+	package org.demo;
+	
+	import java.io.IOException;
+	import java.io.PrintWriter;
+	
+	import javax.servlet.ServletConfig;
+	import javax.servlet.ServletException;
+	import javax.servlet.http.HttpServlet;
+	import javax.servlet.http.HttpServletRequest;
+	import javax.servlet.http.HttpServletResponse;
+	
+	public class Ass_5ser1 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
+	public Ass_5ser1() {
+	super();
+	// TODO Auto-generated constructor stub
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	PrintWriter out=response.getWriter();
+	
+	ServletConfig sc=getServletConfig(); 
+	
+	String name=sc.getInitParameter("Name");
+	out.print("Length of is Name : "+name.length());
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	// TODO Auto-generated method stub
+	doGet(request, response);
+	}
+	
+	}
+	
+	-------------------------------------------
+	Ass_5_Serlet2:
+	
+	package org.demo;
+	
+	import java.io.IOException;
+	import java.io.PrintWriter;
+	
+	import javax.servlet.ServletConfig;
+	import javax.servlet.ServletException;
+	import javax.servlet.http.HttpServlet;
+	import javax.servlet.http.HttpServletRequest;
+	import javax.servlet.http.HttpServletResponse;
+	
+	public class Ass_5ser2 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
+	public Ass_5ser2() {
+	super();
+	// TODO Auto-generated constructor stub
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	PrintWriter out=response.getWriter();
+	
+	ServletConfig sc=getServletConfig(); // SERVLET CONFIG
+	
+	String City=sc.getInitParameter("City");
+	out.print("City Name in Upper case : "+City.toUpperCase());
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	// TODO Auto-generated method stub
+	doGet(request, response);
+	}
+	
+	}
+	-------------------------
+	web.xml:
+	
+	<?xml version="1.0" encoding="UTF-8"?>
+	<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+	<display-name>MyWebsite1</display-name>
+	<welcome-file-list>
+	<welcome-file>index.html</welcome-file>
+
+	</welcome-file-list>
+	
+	<servlet>
+	<description></description>
+	<display-name>Servlet1</display-name>
+	<servlet-name>Ass_5ser1</servlet-name>
+	<servlet-class>org.demo.Ass_5er1</servlet-class>
+	<init-param>
+	<param-name>Name</param-name>
+	<param-value>Rohan</param-value>
+	</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+	<servlet-name>Ass_5ser1</servlet-name>
+	<url-pattern>/Servlet1</url-pattern>
+	</servlet-mapping>
+	<servlet>
+	<description></description>
+	<display-name>Servlet2</display-name>
+	<servlet-name>Ass_5ser2</servlet-name>
+	<servlet-class>org.demo.Ass_5ser2</servlet-class>
+	<init-param>
+	<param-name>City</param-name>
+	<param-value>Pune</param-value>
+	</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+	<servlet-name>Ass_5ser2</servlet-name>
+	<url-pattern>/Servlet2</url-pattern>
+	</servlet-mapping>
+	</web-app>
+	
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.6 Create a servlet which displays all records of a table.
  Ans:
@@ -351,3 +468,12 @@ Q.9 create 2 servlets. In first servlet create an object of employee class which
     of employee object and display all information about an employee.
  Ans:
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.10 Create an Application which displays Marksheet of a Student.
+    a) Create a servlet1 which takes marks of 5 subjects from Html page as marksentry.html. Also takes name of student. Insert record in database.
+    b) Create a servlet2 which displays the result of all students on calulating percentage. Display Student name along with Percentage.
+    c) Display Records Percentage wise in Descending order.
+    d) Delete record of the student who got minimum percentage.
+    e) Update name of the student who got Maximum Percentage.
+Q.11 Create a Login Page where Username & password is entered. If username is "abcd" and password is "1234" then Display a message "Welcome abcd" on the second HTML 
+     Page display.html .If Username or password is incorrect then Display the message "Invalid Username/password" in third webpage Invalid.html. Write code to validate
+     username & password in a servlet
