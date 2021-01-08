@@ -221,7 +221,7 @@ Q.5 Create 2 servlets and one web.xml file in which name is set as a parameter f
 	<description></description>
 	<display-name>Servlet1</display-name>
 	<servlet-name>Ass_5ser1</servlet-name>
-	<servlet-class>org.demo.Ass_5er1</servlet-class>
+	<servlet-class>org.demo.Ass_5ser1</servlet-class>
 	<init-param>
 	<param-name>Name</param-name>
 	<param-value>Rohan</param-value>
