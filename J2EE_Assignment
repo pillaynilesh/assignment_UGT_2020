@@ -590,6 +590,136 @@ public class Ass_08 extends HttpServlet {
 Q.9 create 2 servlets. In first servlet create an object of employee class which sets the attribute value for employee object .In second servlet retrieve the values
     of employee object and display all information about an employee.
  Ans:
+ Servlet 01:---
+    package Assignment;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class Ass_09ser1 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public Ass_09ser1() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out=response.getWriter();
+		response.setContentType("text/html");
+		String ename=request.getParameter("En"); 
+		int eid=(Integer.parseInt(request.getParameter("Eid")));
+		
+		Connection cn;
+		Statement smt;
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			cn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root");
+			
+			smt=cn.createStatement();
+			
+			Employee c=new Employee();     // Create object of Model class
+			
+			c.setEname(ename);  // Setting data to Model class 
+			c.setEid(eid);
+			
+			String query="insert into Employee_info_Ass09 values('"+c.getEname()+"','"+c.getEid()+"')";  
+			
+			smt.executeUpdate(query); 
+			
+			out.print("<h4>Record submitted successfully...</h4>");
+			smt.close();
+			cn.commit();
+			cn.close();
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+}
+   Servlet 02:---
+   package Assignment;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class Ass_09ser2 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public Ass_09ser2() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out=response.getWriter();
+		response.setContentType("text/html");
+		Connection cn;
+		PreparedStatement psmt;
+		
+		try {
+              Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			cn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root");
+			
+			psmt=cn.prepareStatement("select * from Employee_info_Ass09");
+			
+			ResultSet rs=psmt.executeQuery();
+			
+			out.print("<center>");
+			out.print("<table border=4>");
+			out.print("<caption></u><b><font size=3 color='red'>Empolyee Details</font></b></u></caption>");
+			out.print("<tr><th>Employee Name</th><th>Employee Id</th></tr>");
+			while(rs.next())
+			{
+				out.print("<tr><td>"+rs.getString(1)+"</td><td>"+rs.getString(2)+"</td></tr>");   
+				
+			}
+			out.print("</table>");
+			out.print("</center>");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+}
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.10 Create an Application which displays Marksheet of a Student.
     a) Create a servlet1 which takes marks of 5 subjects from Html page as marksentry.html. Also takes name of student. Insert record in database.
@@ -597,11 +727,307 @@ Q.10 Create an Application which displays Marksheet of a Student.
     c) Display Records Percentage wise in Descending order.
     d) Delete record of the student who got minimum percentage.
     e) Update name of the student who got Maximum Percentage.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.11 Create a Login Page where Username & password is entered. If username is "abcd" and password is "1234" then Display a message "Welcome abcd" on the second HTML 
      Page display.html .If Username or password is incorrect then Display the message "Invalid Username/password" in third webpage Invalid.html. Write code to validate
      username & password in a servlet
+ Ans:
+ Login_Page.Html:-----
+  <!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Ass_11" method="get">
+<table border="1">
+<tr><td>username</td><td><input type="text" name="un"></td></tr>
+<tr><td>password</td><td><input type="password" name="pw"></td></tr>
+<tr><td><input type="submit" value="Login"></td><td><input type="reset" value="reset"></td></tr>
+</table>
+</form>
+</body>
+</html>
+ Servlet :--
+  package Assignment;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class Ass_11 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public Ass_11() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+		PrintWriter out=response.getWriter();
+		response.setContentType("text/html");
+		String username=request.getParameter("un");
+		String password=request.getParameter("pw");
+		
+		if(username.equalsIgnoreCase("abcd")&&password.equalsIgnoreCase("1234"))
+		{
+			out.print("Welcome "+username);
+			RequestDispatcher rd=request.getRequestDispatcher("display_Ass11.html");
+			rd.include(request, response);
+		}
+		else
+		{
+			out.print("Username / Password Invalid");
+			RequestDispatcher rd=request.getRequestDispatcher("invalid_Ass11.html");
+			rd.include(request, response);
+		}
+	}
+    
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+}
+Display.html:--
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<font color="green"><h2>Welcome User</h2></font>
+</body>
+</html>Invalid.html:--
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Invalid page</title>
+</head>
+<body>
+<font color="red">Invaild Username or Password, you only got few try remaming </font>
+</body>
+</html>
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.12 Create a web page Form.html which accepts the user details like Username and password. If the length of password is less than 8 characters then send the response on
      the web page as error.html which displays message "Password should not be less than 8 characters" ,If password is valid the send the response to valid.html using 
      sendRedirect() method.
+ Ans:
+ Form.html:---
+  <!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Ass_12" method="get">
+Username<input type="text" name="un"><br>
+Password<input type="password" name="pw"><br>
+<input type="submit" value="submit">
+</form>
+</body>
+</html>
+  Servlet:---
+   package Assignment;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class Ass_12 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+    
+    public Ass_12() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out=response.getWriter();
+		response.setContentType("text/html");
+		
+		String password=request.getParameter("pw");
+		
+		if(password.length()<8)
+		{
+			out.print("error<br>");
+			response.sendRedirect("error_Ass12.html");    
+		
+		}
+		
+		else
+		{
+			out.print("valid<br>");
+			response.sendRedirect("valid_Ass12.html");     
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+}
+error.html:--
+ <!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Password shoud not be less than 8 character</h1>
+</body>
+</html>
+valid.html:--
+ <!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Welcome user</h1>
+</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.13 Make a filter between the form.html in above question and a servlet. The filter will check the same validation above and sends the response to the valid.html if the
      password is valid. If password is invalid then display the form.html on giving a message "Password Invalid".
+ Ans:
+  Form.html:--
+   <!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Ass_13" method="get">
+Username<input type="text" name="un"><br>
+Password<input type="password" name="pw"><br>
+<input type="submit" value="submit">
+</form>
+</body>
+</html>
+Filter.java:--
+ package Assignment;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+
+public class filter_Ass13 implements Filter {
+
+    public filter_Ass13() {
+        // TODO Auto-generated constructor stub
+    }
+
+	public void destroy() {
+		// TODO Auto-generated method stub
+	}
+
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		PrintWriter out=response.getWriter();
+		response.setContentType("text/html");
+		
+		String password=request.getParameter("pw");
+		
+		if(password.length()<8)
+		{
+			chain.doFilter(request, response);
+			out.print("Password Invalid<br>");
+			out.print("Password Should not be less than 8 Characters ");
+			RequestDispatcher rd=request.getRequestDispatcher("form_Ass13.html"); 
+			rd.include(request, response);
+		}
+		
+		else
+		{
+			chain.doFilter(request, response);
+			out.print("valid<br>");
+			RequestDispatcher rd=request.getRequestDispatcher("valid_Ass12.html");
+			rd.include(request, response);    
+		}
+		
+	}
+	public void init(FilterConfig fConfig) throws ServletException {
+		// TODO Auto-generated method stub
+	}
+}
+Servlet:---
+package Assignment;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class Ass_13 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+    public Ass_13() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out=response.getWriter();
+		response.setContentType("text/html");
+		String username=request.getParameter("un");
+		
+		out.print("Username :"+username+"<br>");
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+}
+valid.html:--
+ <!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Welcome user</h1>
+</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.14 Make a table stores records customers cid (primary key),cname, city,contact. create a webpage customers.html which is accepting the data from the text boxes.
+     Make a filter which is applied on a servlet and checks the contactno. If contactno for any customer is same then record in the database table should not be added and
+     a webpage failure.html will be displayed with message "Contact no can not be same" ,If contactno is different then display a Page named as Success.html shows 
+     a message "Record Added successfully".
+Q.15 Create a Listener Class which creates a table for a dynamic project and this table has 3 columns sno, city,temperature. Make a servlet which inserts the records for
+     5 cities in the table.
+Q.16 Create two JSP pages : Form.jsp and Display.jsp.
+     Form.jsp has two fields as First Name and Last Name.
+     Create a Filter CheckLength which is applied on Display.jsp, If the length of fristname & lastname is zero then Filter will send the response back to the Form.jsp
+     otherwise it sends the request to Display.jsp which Displays the Full Name.
+Q.17 Create a Jsp Page which takes the user data like name and contact no  and sends the data to another Jsp page which accepts the data and checks if the 
+     username and contact is not empty then it stores the data in the database table.
+Q.18 Create a Jsp page which sends the data to the Servlet and Servlet displays the data dynamically.
+Q.19 Create a form which takes firstname & lastname and display the fullname in other jsp page using EL.
