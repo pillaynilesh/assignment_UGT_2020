@@ -727,6 +727,305 @@ Q.10 Create an Application which displays Marksheet of a Student.
     c) Display Records Percentage wise in Descending order.
     d) Delete record of the student who got minimum percentage.
     e) Update name of the student who got Maximum Percentage.
+ Ans:
+Index.jsp:--
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<p align="center" >
+<h2>Help your self !!</h2>
+<h3>
+1)<a href="http://localhost:8082/J2EE_Assignment/form_Ass_10.html">Insert Data</a><br>
+2)<a href="http://localhost:8082/J2EE_Assignment/Ass_10_Display">Display Data</a><br>
+3)<a href="http://localhost:8082/J2EE_Assignment/Ass_10_b">Display Student name along with Percentage</a><br>
+4)<a href="http://localhost:8082/J2EE_Assignment/Ass_10_c">Display Records Percentage wise in Descending order</a><br>
+5)<a href="http://localhost:8082/J2EE_Assignment/Ass_10_d">Delete record of the student who got minimum percentage</a><br>
+6)<a href="http://localhost:8082/J2EE_Assignment/Update_name_Ass_10.jsp">Update name of the student who got Maximum Percentage</a><br>
+</h3>
+</p>
+</body>
+</html>
+Form.jsp:--
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<form action="Ass_10_a" method="post">
+<tr><td>Student Name :</td><td><input type="text" name="sname"></td></tr>
+<tr><td>Subject 1 marks:</td><td><input type="number" name="m1"></td></tr>
+<tr><td>Subject 2 marks:</td><td><input type="number" name="m2"></td></tr>
+<tr><td>Subject 3 marks:</td><td><input type="number" name="m3"></td></tr>
+<tr><td>Subject 4 marks:</td><td><input type="number" name="m4"></td></tr>
+<tr><td>Subject 5 marks:</td><td><input type="number" name="m5"></td></tr>
+<tr><td><input type="submit" value="Save the data"></td><td><input type="reset" value="Reset all"></td></tr>
+</form>
+</table>
+</body>
+</html>
+Servlet_a:---
+doGet:
+                PrintWriter out=response.getWriter();
+		response.setContentType("text/html");
+		String name=request.getParameter("sname");
+		int m1=Integer.parseInt(request.getParameter("m1"));
+		int m2=Integer.parseInt(request.getParameter("m2"));
+		int m3=Integer.parseInt(request.getParameter("m3"));
+		int m4=Integer.parseInt(request.getParameter("m4"));
+		int m5=Integer.parseInt(request.getParameter("m5"));
+		 try {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root"); 
+				Statement smt =  cn.createStatement(); 
+				
+				 String query="insert into Ass10Student (Name, Subject_1, Subject_2, Subject_3, Subject_4, Subject_5) values('"+name+"',"+m1+","+m2+","+m3+","+m4+","+m5+")";
+				 
+				 smt.executeQuery(query);
+				 cn.commit();
+				 cn.close(); 
+				
+	   		out.print("Record inserted....." );
+	   		out.print("<br><a href=/J2EE_Assignment/form_Ass_10.html> Add another record</a>");
+	   		
+		    out.print("<br><a href=http://localhost:8082/J2EE_Assignment/Ass_10_Display> Display Table</a><br>");
+
+		    out.print("<a href=http://localhost:8082/J2EE_Assignment/Index_Ass_10.jsp>Go back to Home page</a><br>");
+
+	   		                                     
+	   		out.close();
+				 
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+ Servlet_b:---
+ doget:
+       response.setContentType("text/html");
+        PrintWriter out=response.getWriter();		
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root"); 
+			
+			Statement smt =  cn.createStatement(); 
+			 
+			 String query="select * from Ass10Student";
+			
+			 ResultSet rs = smt.executeQuery(query);
+			 
+			 int i=1;
+			 out.print("<table border=2>");
+			 out.print("<caption>Student name along with Percentage</caption>");
+			 out.print("<th><td>Name</td><td>Percentage</td</th>");
+				 while(rs.next())
+				 {
+				    out.print("<tr><td>"+i+"</td><td>"+rs.getString(1)+"  </td><td> "+rs.getInt(7)+" %</td></tr>");
+				    i++;
+				 }			
+		    out.print("</table>");
+		    
+			out.print("<br><a href=http://localhost:8082/J2EE_Assignment/Ass_10_Display> Display Table</a><br>");
+			
+		    out.print("<a href=http://localhost:8082/J2EE_Assignment/Index_Ass_10.jsp>Go back to Home page</a><br>");
+
+
+		    
+		    rs.close();
+		    cn.commit();
+			 cn.close(); 
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+Servlet_c:---
+doGet:
+		response.setContentType("text/html");
+        PrintWriter out=response.getWriter();
+        
+       		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root"); 
+			
+			Statement smt =  cn.createStatement(); 
+			
+			 String query="select * from Ass10Student ORDER BY Percentage DESC";
+				
+			 ResultSet rs = smt.executeQuery(query);
+			 
+			 int i=1;
+			 out.print("<table border=2>");
+			 out.print("<caption>Records Percentage wise in Descending order</caption>");
+			 out.print("<th><td>Name</td><td>Percentage</td</th>");
+			 while(rs.next())
+			 {
+				 out.print("<tr><td>"+i+"</td><td>"+rs.getString(1)+" </td><td> "+rs.getInt(7)+"%</td></tr>");
+				 i++;
+			 }
+			 out.print("</table>");
+			 
+			   out.print("<br><a href=http://localhost:8082/J2EE_Assignment/Ass_10_Display> Display Table</a><br>");
+			   
+			   out.print("<a href=http://localhost:8082/J2EE_Assignment/Index_Ass_10.jsp>Go back to Home page</a><br>");
+
+
+			
+			 rs.close();
+				 smt.close();
+				 cn.commit();
+				 cn.close(); 
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+Servlet_d:---
+doGet:
+		response.setContentType("text/html");
+        PrintWriter out=response.getWriter();
+		
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+             Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root"); 
+			
+			Statement smt =  cn.createStatement(); 
+			 
+			 String query="DELETE FROM Ass10Student WHERE percentage=(SELECT MIN( percentage ) FROM Ass10Student)";
+			 
+			 smt.executeQuery(query);
+			 
+			 out.print("Record Deleted");
+			 
+			 smt.close();
+			 cn.commit();
+			 cn.close(); 
+			 
+			   out.print("<br><a href=http://localhost:8082/J2EE_Assignment/Ass_10_Display> Display Table</a><br>");
+			   
+			   out.print("<a href=http://localhost:8082/J2EE_Assignment/Index_Ass_10.jsp>Go back to Home page</a><br>");
+
+
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+Update_Name.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Ass_10__e">
+Enter Update name : <input type="text" name="NM"><br>
+<input type="submit" value="Update">
+</form>
+</body>
+</html>
+Servlet_e:---
+doGet:
+		response.setContentType("text/html");
+        PrintWriter out=response.getWriter();
+        
+        String name= request.getParameter("NM");
+		
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+             Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root"); 
+			
+			Statement smt =  cn.createStatement(); 
+			 
+			 String query="UPDATE Ass10Student SET Name='"+name+"'  WHERE  percentage=(SELECT MAX( percentage ) FROM Ass10Student)";
+			 
+			 smt.executeQuery(query);
+			 
+			 out.print("Record Updated");
+
+			 smt.close();
+			 cn.commit();
+			 cn.close(); 
+			 
+			 
+			 out.print("<br><a href=http://localhost:8082/J2EE_Assignment/Ass_10_Display> Display Table</a><br>");
+			 
+			 out.print("<a href=http://localhost:8082/J2EE_Assignment/Index_Ass_10.jsp>Go back to Home page</a><br>");
+
+
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+Servlet_Display:---
+doGet:
+		response.setContentType("text/html");
+        PrintWriter out=response.getWriter();		
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root"); 
+			
+			Statement smt =  cn.createStatement(); 
+			 
+			 String query="select * from Ass10Student";
+			
+			 ResultSet rs = smt.executeQuery(query);
+			 int i=1;
+			out.print("<table border=1.75>");
+			out.print("<caption>Student Marksheet</caption>");
+			out.print("<th><td>Name</td><td>Subject_1</td><td>Subject_2</td><td>Subject_3</td><td>Subject_4</td><td>Subject_5</td><td>Percentage</td</th>");
+				 while(rs.next())
+				 {
+				    out.print("<tr><td>"+i+"</td><td> "+rs.getString(1)+"</td><td> "+rs.getString(2)+"</td><td> "+rs.getString(3)+"</td><td>" +rs.getString(4)+"</td><td> "+rs.getString(5)+"</td><td>"+rs.getString(6)+"</td><td>"+rs.getInt(7)+" %</td</tr>");
+				    i++;
+				 }			
+		    out.print("</table>");
+		    
+		    out.print("<a href=http://localhost:8082/J2EE_Assignment/Index_Ass_10.jsp>Go back to Home page</a><br>");
+		    
+		    rs.close();
+		    cn.commit();
+			 cn.close(); 
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.11 Create a Login Page where Username & password is entered. If username is "abcd" and password is "1234" then Display a message "Welcome abcd" on the second HTML 
      Page display.html .If Username or password is incorrect then Display the message "Invalid Username/password" in third webpage Invalid.html. Write code to validate
@@ -1428,3 +1727,389 @@ ${param.LN}
 </body>
 </html>
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.20 Make a Jsp Page where two textboxes as rollno and name. This page includes other page data where create a selection box to accept city value.Display Rollno,name
+     and city on the page.
+ Ans:
+ Home.jsp:
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Ass_20_Display.jsp">
+Name    : <input type="text" name="name"><br>
+Roll No : <input type="number" name="roll"><br>
+<input type="submit" value="Save">
+<jsp:include page="Ass_20_Includes.jsp"></jsp:include>
+</form>
+</body>
+</html>
+Includes.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+    String name = request.getParameter("name");
+		
+	String roll=request.getParameter("roll");
+	
+	
+	session.setAttribute("nm", name);
+	session.setAttribute("rol", roll);
+	
+	
+	%>
+<form action="Ass_20_Display.jsp">
+<select name="cy">
+<option value="Delhi">Delhi</option>
+<option value="Mumbai">Mumbai</option>
+<option value="Pune">Pune</option>
+<option value="Chennai">Chennai</option>
+<option value="Bengaluru">Bengalore</option>
+</select><br>
+<%-- <input type="submit" value="Plz save">--%>
+</form>
+</body>
+</html>
+Display.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+Name:${param.name}<br>
+Roll No :${param.roll}<br>
+<%out.print("City    : "+request.getParameter("cy")); %><br>
+</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.21 Create a registration form which takes details of a customer and create a servlet which accepts the data and print it in another JSP page as Display.jsp.   
+ Ans:
+ Form.jsp:
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Ass_21_servlet" method="post">
+Customers id <input type="text" name="cid"><br>
+Customers Name<input type="text" name="cname"><br>
+City<input type="text" name="city"><br>
+<input type="submit" value="Save"><input type="reset" value="reset">
+</form>
+</body>
+</html>
+Servlet:---
+doGet:
+		
+		String nm = request.getParameter("cname");
+		request.setAttribute("name", nm);
+		 
+		String ID = request.getParameter("cid");
+		request.setAttribute("id", ID);
+		
+		String cy = request.getParameter("city");
+		request.setAttribute("cy",cy);
+		
+		RequestDispatcher rd=request.getRequestDispatcher("Ass_21_Display.jsp");
+		rd.forward(request, response);
+Display.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>This is JSP Page</h3>
+ID :${id}<br>
+Name :${name}<br>
+City :${cy}<br>
+</body>
+</html>
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.22 Create a form.jsp which accepts two numbers from user and sends numbers to other jsp page in which compare two numbers using JSTL tag and display the largest number.
+ Ans:
+ Form.jsp:
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Display_Ass_22.jsp">
+Enter Number : <input type="number" name="num1"><br>
+Enter Number : <input type="number" name="num2"><br>
+<input type="submit" value="Check">
+</form>
+</body>
+</html>
+Display.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<c:choose>
+  <c:when test="${param.num1>param.num2}">
+    <h3>${param.num1} is bigger than ${param.num2}</h3>
+  </c:when>
+  <c:when test="${param.num2>param.num1}">
+    <h3>${param.num2} is bigger than ${param.num1}</h3>
+  </c:when>
+  <c:otherwise>
+   <h3>${param.num1} and ${param.num2} are equal </h3>
+  </c:otherwise>
+</c:choose>
+</body>
+</html>
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.23 Create a form.jsp which accepts username & password and submits the data to other jsp page which checks if the password is valid then sends the response to 
+     success.jsp page which displays a message as "Valid Login" otherwise sends the response to failure.jsp which displays message "Invalid login" .Use JSTL tag 
+     to compare.
+ Ans:
+Form.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="check_Ass_23.jsp">
+Username <input type="text" name="UN"><br>
+Password <input type="password" name="PASS"><br>
+<input type="submit" value="Logn in">
+ </form>
+</body>
+</html>
+Check.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<c:choose>
+      <c:when test="${param.PASS=='1234'}">
+       <c:redirect url="/success_Ass_23.jsp"></c:redirect>
+      </c:when>
+      <c:otherwise>
+       <c:redirect url="/failure_Ass_23.jsp"></c:redirect>
+       </c:otherwise>
+    </c:choose>
+</body>
+</html>
+Success.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h4>"Valid Login"</h4>
+</body>
+</html>
+Failure.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h4>"Invalid login" </h4>
+</body>
+</html>
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.24 Make a JSP page including 2 form fields in which one is hidden and display the Information on other JSP page including hidden information.
+ Ans:
+Form.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Ass_24_servlet">
+Enter Number : <input type="number" name="num"><br>
+<input type="submit" value="Check">
+<input type="hidden" value="you won" name="hid">
+</form>
+</body>
+</html>
+Servlet:--
+doGet:
+                response.setContentType("text/html");
+		PrintWriter out=response.getWriter();
+		
+		String hid=request.getParameter("hid");
+		int num=Integer.parseInt(request.getParameter("num"));
+		
+		out.print(hid+" "+num+" K  !!!");
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.25 Make a servlet which is called first as a Home page on running the project and this servlet is creating a form where Name, City(selection box) and Radio button
+     and display the complete information in a JSP Page in tabular form.
+ Ans:
+Servlet:---
+doGet:
+		response.setContentType("text/html");
+        PrintWriter out=response.getWriter();
+        
+        out.print("<form action=Ass_25_Display.jsp method=get>");
+        out.print("Name : <input type=text name=un><br>");
+        out.print("Gender :Male<input type=radio name=gender value=Male>Female<input type=radio name=gender value=Female><br>");
+        out.print("City :"+
+        "<select name=cy>"+
+        "<option value=Delhi>Delhi</option>"+
+        "<option value=Mumbai>Mumbai</option>"+
+        "<option value=Pune>Pune</option>"+
+        "<option value=Chennai>Chennai</option>"+
+        "<option value=Bengaluru>Bengalore</option>"+
+        "</select>");
+        out.print("<br><input type=submit value=Save>");
+        out.print("</form> ");
+	
+Display.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<table border="2.75">
+<tr><td>Name : </td><td>${param.un}</td></tr>
+<tr><td>Gender : </td><td>${param.gender}</td></tr>
+<tr><td>City : </td><td>${param.cy}</td></tr>
+</table>
+<h4>This is end of the code</h4>
+</body>
+</html>
+XmlFile:
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>J2EE_Assignment_new</display-name>
+  <welcome-file-list>
+    <welcome-file>Ass_25_servlet</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>Ass_25_servlet</display-name>
+    <servlet-name>Ass_25_servlet</servlet-name>
+    <servlet-class>Assignment.org.Ass_25_servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Ass_25_servlet</servlet-name>
+    <url-pattern>/Ass_25_servlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  </web-app>
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.26 Create a Jsp page which takes name from user and calls servlet 1 , servlet1 calls servlet2 and servlet2 calls servlet3 .Servlet 3 displays the message as 
+     Welcome Username.
+ Ans:
+ 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.27 Create a JSP Page and forward the request from the page to outside application. (Nilesh)
+ Ans:
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.28 Create a servlet which is run using URL and display the parameter value which is passed as a name (vishal)
+ Ans:
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.29 Write a configuration of a parameter in xml file and display the parameter value in the servlet (Hemant)
+ Ans:
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.30 Create a JSP Page which sets the attribute value and sends the value in other page which gets value and display it. (Nimesh)
+
+Q.31 Create a bean class which calculates the cube of the passed no from the web page and display the square on the JSP Page. (Abhishek) 
+
+Q.32 Create two servlets ,servlet1 & servlet2 .servlet1 will be called first when you run project.
+       Servlet1 takes username, password from user. When you click on submit button then Servlet2 will display message "Welcome username". 
+   
+Q.33 Create two servlets and Run the first Servlet file and set the employee object as an attribute in the first servlet and display the values of employee object
+       in the second servlet. 
+ 
+Q.34 Create a JSP Web page which have the fields name, email,city  and a submit button. Send data from this JSP page to the servlet .In this servlet you have to create
+     a Logger .Log messages will be shown if the name ,and email is empty.If not empty then print all the details on the first JSP page.
+     
+Q.35 Create a Web page which has some dummy contents written in the page. Create a Selection Box which has three languages Hindi, English, Bengali. If you select any one
+     language then the contents of the page should be displayed in the respective language.
+
+Q.36 Generate a log file where the messages are stored after login to the web page .Message : Date & Time [Logged In]
+
+Q.37 Create a maven project in which add data from the user into the database.
+
+Q.38 Create a maven project which is a simple project in which take user input in a method of a class for which a Logger is created and a log file is maintained on the
+     disk when all user details have been taken by user.
+Q.39 Create an interface Account in a dynamic web project which has a method as Rate_of_interest(). There are two classes which are SavingAccout and CurrentAccount which are
+     implementing the interface. Create a JSP Page which takes customer information as CustomerName,AccountType(selection Box) and Ammount. If a user selects 
+     a Saving Account then returning Rate of interest will be 7.5 .If User selects Current account then  Rate of interest will be 5.5. Rate of interest is defined by
+     the SavingAccount and CurrentAccount.Display information in other JSP Page.Get input from user in first JSP and Tranfer data to Servlet then Servlet transfers data to
+     Second JSP page.
+
+Q.40 Create a table customer_Details which stores the EmailID & password of the customer .EmailID is primary key.
+     Create a Dynamic Project using Maven. There is a Customer class(Entity Class) which has emailID and Password as fields.
+     Create a DAO class which sets the Email ID and Password in the table through the object of Customer class.
+     Create a Servlet which displays the Email Ids of all cusomers.
+    
+Q.41 Make a Jsp Page which accepts Username and age of a person and submits the data to other JSP page(display.jsp) .In display.jsp Make a check using Core tag that
+     If the age of Person is more than 18 then Page should display message "You are elegible to vote" otherwise it should Display "You are not elegible to vote".
+     
+Q.42 Create a JSP Page which accepts a Full Name from the user and do the following : 
+      1) Name should be displayed in capital case using JSTL tag
+      2) Length of the name should be displayed
+      3) Display the Firstname only
+      4) Display the length of firstname
+      5) Display the Fullname 5 times on the page
+     
+Q.43 Make a Servlet which creates a Form where Username and Password is to be taken and submitted to second servlet .
+      Create a filter which checks the username is "XYZ" and Password is "1234" .If it is valid then a session is created on the second servlet for the username.
+      In second servlet create a submit button which sends the information to third servlet which displays the Username. 
