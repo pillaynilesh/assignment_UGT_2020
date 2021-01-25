@@ -2068,15 +2068,19 @@ Q.29 Write a configuration of a parameter in xml file and display the parameter 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.30 Create a JSP Page which sets the attribute value and sends the value in other page which gets value and display it. (Nimesh)
-
+ Ans:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.31 Create a bean class which calculates the cube of the passed no from the web page and display the square on the JSP Page. (Abhishek) 
-
+ Ans:
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.32 Create two servlets ,servlet1 & servlet2 .servlet1 will be called first when you run project.
        Servlet1 takes username, password from user. When you click on submit button then Servlet2 will display message "Welcome username". 
-   
+ Ans:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.33 Create two servlets and Run the first Servlet file and set the employee object as an attribute in the first servlet and display the values of employee object
        in the second servlet. 
- 
+ Ans:
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.34 Create a JSP Web page which have the fields name, email,city  and a submit button. Send data from this JSP page to the servlet .In this servlet you have to create
      a Logger .Log messages will be shown if the name ,and email is empty.If not empty then print all the details on the first JSP page.
      
