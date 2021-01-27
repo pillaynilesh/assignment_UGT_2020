@@ -2053,7 +2053,45 @@ XmlFile:
 Q.26 Create a Jsp page which takes name from user and calls servlet 1 , servlet1 calls servlet2 and servlet2 calls servlet3 .Servlet 3 displays the message as 
      Welcome Username.
  Ans:
- 
+ Form.jsp:
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Ass_26ser1">
+Enter Username: <input type="text" name="un"><br>
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>
+Servel_01:---
+doGet:
+ response.setContentType("text/html");
+		 PrintWriter out=response.getWriter();
+			
+		 String un=request.getParameter("un");
+		 out.print("<a href=Ass_26ser2?un="+un+">Accept terms and conditions</a>");
+Servel_02:---
+doGet:
+ response.setContentType("text/html");
+		 PrintWriter out=response.getWriter();
+			
+		 String un=request.getParameter("un");
+		 out.print("<a href=Ass_26ser3?un="+un+">Go to Account page</a>");
+
+Servel_03:---
+doGet:
+ response.setContentType("text/html");
+		 PrintWriter out=response.getWriter();
+			
+		 String un=request.getParameter("un");
+		 
+		 out.print("<h3>Welcome user  "+un+"</h3>");
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.27 Create a JSP Page and forward the request from the page to outside application. (Nilesh)
  Ans:
