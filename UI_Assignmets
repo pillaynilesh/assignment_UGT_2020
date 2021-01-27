@@ -1,0 +1,195 @@
+1.Create a Table of 3 columns and 4 records . Headings are : Sno, Name, Photo.
+ Ans:
+ <html>
+    <head>
+        <title>
+            Assignement o1
+        </title>
+    </head>
+    <body>
+        <table border="2">
+         <thead style="border: 2">
+             <tr>
+            <td>
+                <b>sno</b>
+            </td>
+            <td>
+               <b> Name</b>
+            </td>
+            <td>
+                <b>Photo</b>
+            </td>
+            </tr>
+             </thead>
+            <tbody>
+            <tr>
+                <td>
+                    1
+                </td>
+                <td>
+                    Soham
+                </td>
+                <td>
+                    <img src="WIN_20201004_19_00_12_Pro.jpg" width="200" height="200">
+                </td>
+            </tr>
+                 <tr>
+                <td>
+                    2
+                </td>
+                <td>
+                    Durva
+                </td>
+                <td>
+                    <img src="WIN_20201003_14_49_40_Pro.jpg"width="200" height="200">
+                </td>
+            </tr>
+                 <tr>
+                <td>
+                    3
+                </td>
+                <td>
+                    Drishti
+                </td>
+                <td>
+                    <img src="WIN_20201004_20_00_13_Pro.jpg"width="200" height="200">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
+--------------------------------------------------------------------------------------------------------------------------------------------
+2.Create a hyperlink on the web page and this link will switch to other webpage. In second page there is a link as "Back" which will display the first page.
+ Ans:
+ Home.html:
+ <html>
+    <head>
+        <title>
+            Assignment 02 page 01
+        </title>
+    </head>
+    <body>
+         <h1>This is Home Page</h1>
+        <a href="Ass_02_page02.html">Go to next page !!</a>
+    </body>
+</html>
+Next.html:
+<html>
+    <head>
+        <title>
+            Assignment 02 page 02
+        </title>
+    </head>
+    <body>
+        <h1>This is Next Page</h1>
+        <a href="Ass_02_page01.html">Go back home !!</a>
+    </body>
+</html>
+---------------------------------------------------------------------------------------------------------------------------------------------
+3.Create a Paragraph and apply the tags on this paragraph : bold,italic,underline, Mark, strike ,superscript and subscript, emphasis,strong,big.
+ Ans:
+ <html>
+    <head>
+        <title>
+            Assignment 03
+        </title>
+    </head>
+    <body>
+        <p>
+            <b>
+                This line is Bold.<br>
+            </b>
+            <i>
+                This line is Italic.<br>
+            </i>
+            <u>
+                This line is Underline.<br>
+            </u>
+            <mark>
+                This line is Mark.<br>
+            </mark>
+            <strike>
+                This line is Strike.<br>
+            </strike>
+            This is superscript and subscript:=<br>
+            X<sup>4</sup> is not Equal to X<sub>2</sub><br>
+            <em>
+                This line is emphasis.<br>
+            </em>
+            <strong>
+                This line is Strong.<br>
+            </strong>
+            <big>
+                This line is Big.<br>
+            </big>
+        </p>
+    </body>
+</html>
+------------------------------------------------------------------------------------------------------------------------------------------------
+4.Create an image in the web page which has the width as 300 and height as 400 and display the title as "MyImage". Create same image as a hyperlink , clicking on the image will 
+  show the description about the image.
+ Ans:
+ Home.html:
+ <html>
+    <head>
+        <title>
+            Assignement 04 page 01
+        </title>
+    </head>
+    <body>
+       <a href="Assignment_04_page_02.html" > <img src="WhatsApp Image 2020-10-27 at 8.12.36 PM.jpeg" width="300" height="400" title="Myimage">
+        </a>
+    </body>
+</html>
+Next.html:
+<html>
+    <head>
+        <title>
+            Assignement 04 page 02
+        </title>
+    </head>
+    <body>
+        <p>
+           <b>Gentleman rules for your everyday life </b><br>
+            <ol type="i">
+<li>The clothes. One of the most important gentleman rules: "Clothes make people"</li>
+<li>Don't forget your manners.</li>
+<li>The right language.</li>
+<li>A gentleman doesn't show off.</li>
+<li>A real gentleman respects women. </li>
+<li>A gentleman sticks with his wife.</li>
+<li>He can listen. </li>
+<li>He knows how to handle money.</li>
+            </ol>
+        </p>
+    </body>
+</html>
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+5.Create a list of 3 website names and create every list item as a hyperlink. 
+ Ans:
+ <htm>
+    <head>
+        <title>
+            Assignment 05
+        </title>
+    </head>
+    <body>
+        <p>
+            <b><h3>hyperlink</h3></b>
+        <ol type="i">
+            <li>
+                <a href="https://www.google.com/">www.google.com</a>
+            </li>
+            <li>
+                <a href="https://www.w3schools.com/">www.w3schools.com</a>
+            </li>
+            <li>
+                <a href="https://www.github.com">www.github.com</a>
+            </li>
+        </ol>
+        </p>
+    </body>
+</htm>
+----------------------------------------------------------------------------------------------------------------------------------------------------------- 
+ 
