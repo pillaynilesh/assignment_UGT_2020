@@ -2402,38 +2402,646 @@ doGet:
 Q.34 Create a JSP Web page which have the fields name, email,city  and a submit button. Send data from this JSP page to the servlet .In this servlet you have to create
      a Logger .Log messages will be shown if the name ,and email is empty.If not empty then print all the details on the first JSP page.
  Ans:
- 
+ Form.jsp and Display.jsp:
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Ass_34_servlet">
+Name :<input type="text" name="name"><br>
+E-mail :<input type="text" name="email"><br>
+City :<input type="text" name="city"><br>
+<input type="submit" value="Save">
+</form>
+<% String name=request.getParameter("name");
+   String email=request.getParameter("email");
+   String city=request.getParameter("city");
+%>
+<%   if(name!=null) 
+    {
+%>
+<%=name %>
+<%=email %>
+<%=city %>
+<%  
+     }
+%>
+</body>
+</html>
+Servlet:---
+doGet:
+		PrintWriter out=response.getWriter();
+		response.setContentType("text/html");
+		
+		String name=request.getParameter("name");
+		String email=request.getParameter("email");
+	    String city=request.getParameter("city");
+	    int x;
+		
+		out.print("This Servlet !!");
+		Ass_34_class obj=new Ass_34_class();
+		x=obj.method(name, email);
+
+		if(x!=1)
+		{
+		out.print("<form action=form_Ass_34.jsp>");
+		out.print("<input type=hidden name=name value="+name+">");
+		out.print("<input type=hidden name=email value="+email+">");
+		out.print("<input type=hidden name=city value="+city+">");
+		out.print("<input type=submit value=Save >");
+		out.print("</form>");
+		}
+		else
+		{
+			RequestDispatcher rd=request.getRequestDispatcher("form_Ass_34.jsp");
+			rd.forward(request, response);   
+		}
+		
+Class.java:
+package in.co.org;
+
+import org.apache.log4j.Logger;
+
+public class Ass_34_class {
+
+    Logger log=Logger.getLogger(Ass_34_class.class);
+	
+	public int method(String name, String email)
+	{
+
+		int x=0;
+		if(name.equals("")&&email.equals(""))
+		{
+			log.warn("String length is zero or E-mail can not be");
+			x=1;
+		}
+		return x;	
+	}
+}
+Log4j File:
+log4j.rootLogger=INFO,myout,
+
+log4j.appender.myout=org.apache.log4j.ConsoleAppender
+log4j.appender.myout.Target=System.out
+log4j.appender.myout.layout=org.apache.log4j.PatternLayout
+log4j.appender.myout.layout.ConversionPattern=%m 
+
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.35 Create a Web page which has some dummy contents written in the page. Create a Selection Box which has three languages Hindi, English, Bengali. If you select any one
      language then the contents of the page should be displayed in the respective language.
+ Ans:
+ Form.jsp:
+ <%@page import="com.sun.xml.internal.ws.wsdl.writer.document.Import"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="check_Ass_35.jsp">
+languages<br>
+<select name="locale">
+<option value="en_US">English</option>
+<option value="hi_IN">Hindi</option>
+<option value="bn_IN">Bengali</option> 
+</select><br>
+<input type="submit" value="Try">
+</form>
+</body>
+</html>
+Check.jsp:
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<fmt:setLocale value="${param.locale}"/>
+<fmt:bundle basename="org.pro/website">
+<fmt:message key="label.message"></fmt:message>
+</fmt:bundle>
+</body>
+</html>
+webside.properties:
+label.message=Hello, Welcome to India !!
+webside_hi_IN.properties:
+label.message=\u0928\u092E\u0938\u094D\u0915\u093E\u0930, \u092D\u093E\u0930\u0924 \u092E\u0947\u0902 \u0906\u092A\u0915\u093E \u0938\u094D\u0935\u093E\u0917\u0924 \u0939\u0948 !!
+webside_en_US.properties:
+label.message=Hello, Welcome to India !!
+webside_be_IN.properties:
+label.message=\u09B9\u09CD\u09AF\u09BE\u09B2\u09CB \u0986\u09AA\u09A8\u09BE\u0995\u09C7 \u09AD\u09BE\u09B0\u09A4\u09C7 \u09B8\u09CD\u09AC\u09BE\u0997\u09A4\u09AE!
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.36 Generate a log file where the messages are stored after login to the web page .Message : Date & Time [Logged In]
+ Ans:
+ Form.jsp:
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="set_Ass_36_.jsp" method="get">
+Username : <input type="text" name="us">
+Password : <input type="text" name="ps">
+<input type="submit" value="Enter">
+</form></body>
+</html>
+set.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<%
 
+String user = request.getParameter("us");
+
+String pass = request.getParameter("ps");
+
+session.setAttribute("usernm", user);
+
+session.setAttribute("passwd", pass);
+
+response.sendRedirect("servlet_Ass_36");
+
+%>
+</body>
+</html>
+Servlet:---
+doGet:
+	Logger log =Logger.getLogger(servass36.class);
+	
+	HttpSession session = request.getSession();
+	
+    String usernm =(String) session.getAttribute("usernm");
+    
+    String passwd =(String) session.getAttribute("passwd");
+ 
+    if(usernm.contentEquals("abcd") & passwd.contentEquals("abd123"))
+    {
+        log.warn("Logged in");
+	}
+    else
+    {
+    	log.info("ERROR OCCURED");
+    }
+Log4j File:
+log4j.rootLogger=INFO,myfile
+
+
+log4j.appender.myfile=org.apache.log4j.FileAppender
+log4j.appender.myfile.File=D:/Ass_36_logfile.log
+log4j.appender.myfile.layout=org.apache.log4j.PatternLayout
+log4j.appender.myfile.layout.ConversionPattern=%m %C %l %d{dd-MMM-yy} %n
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.37 Create a maven project in which add data from the user into the database.
+ Ans:
+ Form.jsp:
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Ass_37_servlet">
+Id : <input type="number" name="ID"><br>
+City Name : <input type="text" name="NM"><br>
+<input type="submit" value="Save"><input type="reset" value="reset">
+</form>
+</body>
+</html>
+Servlet:---
+doGet:
+		 PrintWriter out=response.getWriter();
+			
+			response.setContentType("text/html");
+			int Id=Integer.parseInt(request.getParameter("ID"));
+			String City=request.getParameter("NM");
+			
+			 try {
+					Class.forName("oracle.jdbc.driver.OracleDriver");
+					Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root"); 
+					 
+					 PreparedStatement psmt=cn.prepareStatement("insert into dummyy values(?,?)");
+					 psmt.setInt(2, Id);
+					 psmt.setString(1, City);
+					 psmt.executeUpdate();
+					// cn.commit();
+					 cn.close(); 
+					
+		       	
+		   		out.print("Record inserted....." );
+		   		                                     
+		   		
+		   		out.close();
+					 
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.38 Create a maven project which is a simple project in which take user input in a method of a class for which a Logger is created and a log file is maintained on the
      disk when all user details have been taken by user.
-Q.39 Create an interface Account in a dynamic web project which has a method as Rate_of_interest(). There are two classes which are SavingAccout and CurrentAccount which are
-     implementing the interface. Create a JSP Page which takes customer information as CustomerName,AccountType(selection Box) and Ammount. If a user selects 
+ Ans:
+ 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.39 Create an interface Account in a dynamic web project which has a method as Rate_of_interest(). There are two classes which are SavingAccout and CurrentAccount which
+     are implementing the interface. Create a JSP Page which takes customer information as CustomerName,AccountType(selection Box) and Ammount. If a user selects 
      a Saving Account then returning Rate of interest will be 7.5 .If User selects Current account then  Rate of interest will be 5.5. Rate of interest is defined by
      the SavingAccount and CurrentAccount.Display information in other JSP Page.Get input from user in first JSP and Tranfer data to Servlet then Servlet transfers data to
      Second JSP page.
+ Ans:
+ Form.jsp:
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Ass_39_servlet">
+Customer Name : <input type="text" name="Cname"><br>
+Account Type
+<select name="Acty">
+<option></option>
+<option value="saving">Saving Account</option>
+<option value="current">Current Account</option>
+</select><br>
+Amount : <input type="number" name="Amt"><br>
+<input type="submit" value="Save">
+</form>
+</body>
+</html>
+Servlet:---
+doGet:
+		PrintWriter out=response.getWriter();
+		response.setContentType("text/html");
+		
+		SavingAccout sa=new SavingAccout();
+		CurrentAccount cu=new CurrentAccount();
+		
+		
+		String name=request.getParameter("Cname");
+		String ty=request.getParameter("Acty");
+		int amt=Integer.parseInt(request.getParameter("Amt"));
+		Double roi=0.0;
+		
+		if(ty.equals("saving"))
+		{
+			roi=sa.Rate_of_interest();
+		}
+		else if(ty.equals("current"))
+		{
+			roi=cu.Rate_of_interest();
+		}
+		out.print("<form action=Display_Ass_39.jsp>");
+		out.print("<input type=hidden value="+name+" name=name>");
+		out.print("<input type=hidden value="+amt+" name=amt>");
+		out.print("<input type=hidden value="+ty+" name=ty>");
+		out.print("<input type=hidden value="+roi+" name=roi>");
+		out.print("<input type=submit value=Check Your Info>");
+		out.print("</table");	
+		//out.print("<a href=http://localhost:8082/J2EE_Assignment_new/Display_Ass_39.jsp?name="+name+"&ty="+ty+"&amt"+amt+"&roi="+roi+">Check Your Info</a>");
+Class:
+package Assignment.org;
 
+interface  Account
+{
+	public double Rate_of_interest();
+}
+
+class SavingAccout implements Account
+{
+	 public double Rate_of_interest() {
+			Double roi=7.5;
+			return roi;
+		}
+}
+
+class CurrentAccount implements Account
+{
+	 public double Rate_of_interest() {
+			Double roi=5.5;
+			return roi;
+		}
+}
+Display.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+Customer Name : ${param.name}<br>
+Account Type : ${param.ty }<br>
+Amount : ${param.amt }<br>
+Rate of Interest :${param.roi }
+</body>
+</html>
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.40 Create a table customer_Details which stores the EmailID & password of the customer .EmailID is primary key.
      Create a Dynamic Project using Maven. There is a Customer class(Entity Class) which has emailID and Password as fields.
      Create a DAO class which sets the Email ID and Password in the table through the object of Customer class.
      Create a Servlet which displays the Email Ids of all cusomers.
+  Ans:
+  Form.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Servlet_Ass_40" method="get">
+Email : <input type="text" name="em">
+Password : <input type="text" name="pas"> 
+<input type="submit" value="Enter">
+</form>
+</body>
+</html>
+Servlet01:---
+doGet:
+		PrintWriter pw = response.getWriter();
+		
+		String email = request.getParameter("em");
+		
+		String passwd = request.getParameter("pas");
+		
+		custDAO cus = new custDAO();
+		
+		int y = cus.method(new cust(), email, passwd);
+		
+		RequestDispatcher rs = request.getRequestDispatcher("serv_40");
+		rs.include(request, response);
+DAO Class:
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+public class custDAO {
+	
+	public custDAO()
+	{
+		
+	}
+	public int method(cust c1,String em,String pass)
+	{
+		c1.setEmailid(em);
+		c1.setPasswd(pass);
+		
+		int i = 0;
+		try {
+			
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root");
+					
+		    PreparedStatement pr = cn.prepareStatement("insert into Ass40tab values('"+c1.getEmailid()+"','"+c1.getPasswd()+"')");
+		    
+		    i = pr.executeUpdate();
+		    
+		    System.out.println("Record Inserted Successfully......");
+		}
+		catch(Exception ea)
+		{
+			ea.printStackTrace();
+			
+		}
+		return i;
+	}
+}
+DTO Class:
+public class cust {
+    String emailid,passwd;
     
+    public String getEmailid() {
+		return emailid;
+	}
+	public void setEmailid(String emailid) {
+		this.emailid = emailid;
+	}
+	public String getPasswd() {
+		return passwd;
+	}
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
+	public cust()
+    {
+    	
+    }
+}
+Servlet02:---
+doGet:
+		 response.setContentType("text/html");
+			PrintWriter pw = response.getWriter();
+			try {
+				
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				
+				Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root");
+						
+			    PreparedStatement pr = cn.prepareStatement("select * from Ass40tab");
+			    
+			    ResultSet r = pr.executeQuery();
+			    
+			    while(r.next())
+			    {
+			    	pw.print("E-mail : "+r.getString(1)+"<br>");
+			    }
+			}
+			catch(Exception ea)
+			{
+				ea.printStackTrace();
+				
+			}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.41 Make a Jsp Page which accepts Username and age of a person and submits the data to other JSP page(display.jsp) .In display.jsp Make a check using Core tag that
      If the age of Person is more than 18 then Page should display message "You are elegible to vote" otherwise it should Display "You are not elegible to vote".
-     
+ Ans:
+ Form.jsp:
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Display_Ass_41.jsp">
+Name : <input type="text" name="name"><br>
+Age : <input type="number" name="age"><br>
+<input type="submit" value="Check">
+</form>
+</body>
+</html>
+Display.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<c:choose>
+<c:when test="${param.age<18 }">
+   Your name is ${param.name}<br>
+   Your age is ${param.age} which is less than 18<br>
+   So sorry ,You are not elegible to vote
+</c:when>
+<c:otherwise>
+ Your name is ${param.name}<br>
+   Your age is ${param.age} <br>
+   So,You are  elegible to vote
+</c:otherwise>
+</c:choose>
+</body>
+</html>
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 Q.42 Create a JSP Page which accepts a Full Name from the user and do the following : 
       1) Name should be displayed in capital case using JSTL tag
       2) Length of the name should be displayed
       3) Display the Firstname only
       4) Display the length of firstname
       5) Display the Fullname 5 times on the page
-     
+ Ans:
+ Form.jsp:
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Display_ass_42.jsp">
+Enter Your Full Name :<input type="text" name="FN"><br>
+<input type="submit" value="Check">
+</form>
+</body>
+</html>
+Display.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="f" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+1)Name In Upper Case :${f:toUpperCase(param.FN)}<br>
+2)Length of Your Name :${f:length(param.FN)}<br>
+<c:set var="name" value ="${f:split(param.FN,' ')}" />
+ 3)Your First Name :${name[0]}<br>
+4)Length Of your First Name :${f:length(name[0])}<br> 
+5)Your Name Five Time : <br><c:forEach var = "i" begin = "1" end = "5">
+<c:out value = "${param.FN} ${i}"/><br>
+ </c:forEach>
+</body>
+</html>
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 Q.43 Make a Servlet which creates a Form where Username and Password is to be taken and submitted to second servlet .
       Create a filter which checks the username is "XYZ" and Password is "1234" .If it is valid then a session is created on the second servlet for the username.
       In second servlet create a submit button which sends the information to third servlet which displays the Username. 
+ Ans:
+ Servlet_Form:---
+ doGet:
+ 		PrintWriter out=response.getWriter();
+		response.setContentType("text/html");
+		
+		out.print("<form action=Ass_43_ser1>");
+		out.print("Username : <input type=text name=UN><br>");
+		out.print("Password : <input type=text name=Pass><br>");
+		out.print("<input type=submit value=Log in");
+		out.print("</form>");
+Filter:--
+doFilter:
+		PrintWriter out=response.getWriter();
+		response.setContentType("text/html");
+		
+		String name=request.getParameter("UN");
+		String pass=request.getParameter("Pass");
+		
+		if(name.equals("XYZ")&&pass.equals("1234"))
+		{
+			out.print("Password Valid<br>");
+			chain.doFilter(request, response);
+			
+		}
+		else 
+		{
+			out.print("Invalid try agian");
+			RequestDispatcher rd=request.getRequestDispatcher("Ass_43_form"); 
+			rd.include(request, response);
+		}
+Servlet01:---
+doGet:
+		PrintWriter out=response.getWriter();
+		response.setContentType("text/html");
+		
+		String name=request.getParameter("UN");
+		String pass=request.getParameter("Pass");
+		
+		HttpSession session=request.getSession();
+		session.setAttribute(name, name);
+		session.setAttribute(pass, pass);
+		out.print("<form action=http:Ass_43_ser2>");
+		out.print("<input type=submit value= terms_and_conditions >");
+		out.print("</fomr>");
+Servlet02:---
+doGet:
+		PrintWriter out=response.getWriter();
+		response.setContentType("text/html");
+		
+		HttpSession session=request.getSession();
+		session.getAttribute("name");
+		session.getAttribute("pass");
+		
+		out.print("Welcome to the family ");
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
