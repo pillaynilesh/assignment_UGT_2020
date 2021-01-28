@@ -2095,33 +2095,315 @@ doGet:
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.27 Create a JSP Page and forward the request from the page to outside application. (Nilesh)
  Ans:
+ jsp:
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+ <% 
+   	response.sendRedirect("http://w3schools.com/");
+  %>
 
+</body>
+</html>
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.28 Create a servlet which is run using URL and display the parameter value which is passed as a name (vishal)
  Ans:
-
+Servlet:---
+doGet:
+	PrintWriter out=response.getWriter();
+		
+		String name=request.getParameter("Name");
+		
+		out.print(name);
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.29 Write a configuration of a parameter in xml file and display the parameter value in the servlet (Hemant)
  Ans:
-
+Servlet:---
+doGet:
+		PrintWriter out=response.getWriter();
+		
+		ServletContext context=getServletContext();
+		String num = context.getInitParameter("Number");
+		out.print("Number is : "+num);
+xml file:
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>MyWebProject_Sir</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+    <context-param>
+    <param-name>Number</param-name>
+    <param-value>10</param-value>
+  </context-param>
+  <servlet>
+    <description></description>
+    <display-name>Hemant_Ass</display-name>
+    <servlet-name>Hemant_Ass</servlet-name>
+    <servlet-class>ser.Hemant_Ass</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Hemant_Ass</servlet-name>
+    <url-pattern>/Hemant_Ass</url-pattern>
+  </servlet-mapping>
+</web-app>
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.30 Create a JSP Page which sets the attribute value and sends the value in other page which gets value and display it. (Nimesh)
  Ans:
+ jsp1:
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="jsp2_Ass_30.jsp">
+Enter Number :<input type="number" name="num"><br>
+<input type="submit" value="Try">
+</form>
+</body>
+</html>
+jsp2:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+You won Rs ${param.num} k !!
+</body>
+</html>
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.31 Create a bean class which calculates the cube of the passed no from the web page and display the square on the JSP Page. (Abhishek) 
  Ans:
+ Form.jsp:
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Ass_31_jsp1.jsp">
+Enter Number :<input type="number" name="no">
+<input type="submit" value="Try square">
+</form>
+</body>
+</html>
+Bean Class:
+package Assignment.org;
+
+public class Ass_31_bean_class {
+
+	int num;
+
+	public Ass_31_bean_class() {
+		
+	}
+
+	public int getNum() {
+		
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+	
+	public int cube()
+	{
+		return num*num*num;
+	}
+	public int sq()
+	{
+		return num*num;
+	}
+}
+Display.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@page import="Assignment.org.Ass_31_bean_class"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<jsp:useBean id="obj" class="Assignment.org.Ass_31_bean_class"></jsp:useBean>
+<jsp:setProperty property="num"  name="obj" value="${param.no}"/>
+<%
+
+int i1 = Integer.parseInt(request.getParameter("num"));
+
+Ass_31_bean_class as = new Ass_31_bean_class();
+
+as.setNum(i1);
+
+out.print("CUBE OF THE NUMBER : "+as.cube()+"<br>");
+
+out.print("SQAURE OF THE NUMBER : "+as.sq());
+
+%>
+
+</body>
+</html>
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.32 Create two servlets ,servlet1 & servlet2 .servlet1 will be called first when you run project.
        Servlet1 takes username, password from user. When you click on submit button then Servlet2 will display message "Welcome username". 
  Ans:
+ Servlet1:---
+ doGet:
+ 		response.setContentType("text/html");
+        PrintWriter out=response.getWriter();
+        
+        out.print("<form action=Ass_32_ser2 method=get>");
+        out.print("Username : <input type=text name=UN><br>");
+        out.print("Password : <input type=Password name=PASS><br>");
+        out.print("<input type=submit value=Log in>");
+        out.print("</form>");
+ Servlet2:---
+ doGet:
+ 		 response.setContentType("text/html");
+		 PrintWriter out= response.getWriter();
+		
+		String username=request.getParameter("UN");
+		
+		out.print("Welcome "+username);
+ Xml File:
+ <?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>J2EE_Assignment_new</display-name>
+  <welcome-file-list>
+    <welcome-file>Ass_32_ser1</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>Ass_32_ser1</display-name>
+    <servlet-name>Ass_32_ser1</servlet-name>
+    <servlet-class>Assignment.org.Ass_32_ser1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Ass_32_ser1</servlet-name>
+    <url-pattern>/Ass_32_ser1</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet>
+    <description></description>
+    <display-name>Ass_32_ser2</display-name>
+    <servlet-name>Ass_32_ser2</servlet-name>
+    <servlet-class>Assignment.org.Ass_32_ser2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Ass_32_ser2</servlet-name>
+    <url-pattern>/Ass_32_ser2</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  </web-app>
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.33 Create two servlets and Run the first Servlet file and set the employee object as an attribute in the first servlet and display the values of employee object
        in the second servlet. 
  Ans:
+ Form.jsp:
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Ass_33_ser1">
+Employee ID : <input type="number" name="Eid"><br>
+Employee Name:<input type="text" name="Ename"><br>
+Employee age: <input type="number" name="Eage"><br>
+<input type="submit" value="Save">
+</form>
+</body>
+</html>
+Servlet01:---
+doGet:
+		PrintWriter out=response.getWriter();
+		response.setContentType("text/html");
+		
+		int id=Integer.parseInt(request.getParameter("Eid"));
+		int age=Integer.parseInt(request.getParameter("Eage"));
+		String name=request.getParameter("Ename");
+		
+		
+		Ass_33_employee_class obj=new Ass_33_employee_class();
+		
+		obj.setAge(age);
+		obj.setID(id);
+		obj.setName(name);
+		
+		out.print("<a href=http://localhost:8082/J2EE_Assignment_new/Ass_33_ser2>Display</a>");
+Employee_class:
+package Assignment.org;
+
+public class Ass_33_employee_class {
+	int ID , Age;
+	String Name;
+	public Ass_33_employee_class() {
+		// TODO Auto-generated constructor stub
+	}
+	public int getID() {
+		return ID;
+	}
+	public void setID(int iD) {
+		ID = iD;
+	}
+	public int getAge() {
+		return Age;
+	}
+	public void setAge(int age) {
+		Age = age;
+	}
+	public String getName() {
+		return Name;
+	}
+	public void setName(String name) {
+		Name = name;
+	}
+}
+Servlet02:---
+doGet:
+		PrintWriter out=response.getWriter();
+		response.setContentType("text/html");
+		
+		int id=Integer.parseInt(request.getParameter("Eid"));
+		int age=Integer.parseInt(request.getParameter("Eage"));
+		String name=request.getParameter("Ename");
+		
+		
+		Ass_33_employee_class obj=new Ass_33_employee_class();
+		
+		obj.setAge(age);
+		obj.setID(id);
+		obj.setName(name);
+		
+		out.print("<a href=http://localhost:8082/J2EE_Assignment_new/Ass_33_ser2>Display</a>");
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.34 Create a JSP Web page which have the fields name, email,city  and a submit button. Send data from this JSP page to the servlet .In this servlet you have to create
      a Logger .Log messages will be shown if the name ,and email is empty.If not empty then print all the details on the first JSP page.
-     
+ Ans:
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.35 Create a Web page which has some dummy contents written in the page. Create a Selection Box which has three languages Hindi, English, Bengali. If you select any one
      language then the contents of the page should be displayed in the respective language.
 
