@@ -139,10 +139,280 @@ public class SaveCtl {
 		
 	}
 }
+SQl:
+create table tabHiQ1 (sno number primary key , Srollno number ,Sname varchar2(15), Sage number);
+
+Select * from tabHiQ1;
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 2. Create a class Student and make a mapping file to map this class. In Student class, Take studentRollno,name,age from user. Sno will be id by default. 
    Table should be created by hibernate and the records in the table should be updated.
+ Ans:
+  Bean Class:
+ package org.prog;
+
+public class Student {
+	private int sno,Srollno,Sage;
+	private String Sname;
+	public int getSno() {
+		return sno;
+	}
+	public void setSno(int sno) {
+		this.sno = sno;
+	}
+	public int getSrollno() {
+		return Srollno;
+	}
+	public void setSrollno(int srollno) {
+		Srollno = srollno;
+	}
+	public int getSage() {
+		return Sage;
+	}
+	public void setSage(int sage) {
+		Sage = sage;
+	}
+	public String getSname() {
+		return Sname;
+	}
+	public void setSname(String sname) {
+		Sname = sname;
+	}
+	public Student() {
+		super();
+	}
+	public Student(int srollno, int sage, String sname) {
+		super();
+		Srollno = srollno;
+		Sage = sage;
+		Sname = sname;
+	}	
+}
+
+cfg.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory >
+        <property name="hbm2ddl.auto">Create</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.username">system</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+        <mapping resource="Student.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>
+
+hbm.xml:
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 17, 2021 5:52:19 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="org.prog.Student" table="tabHiQ1">
+        <id name="sno" type="int">
+            <column name="SNO" />
+            <generator class="increment" />
+        </id>
+        <property name="Srollno" type="int">
+            <column name="SROLLNO" />
+        </property>
+        <property name="Sage" type="int">
+            <column name="SAGE" />
+        </property>
+        <property name="Sname" type="java.lang.String">
+            <column name="SNAME" />
+        </property>
+    </class>
+</hibernate-mapping>
+SaveCtl.java:
+package org.prog;
+import java.util.Scanner;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class SaveCtl {
+	
+
+	public static void main(String[] args) {
+		int temp,rollno,age;
+		String name;
+		
+		Scanner sc=new Scanner(System.in);
+		
+     SessionFactory sf=new Configuration().configure().buildSessionFactory();  
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		System.out.println("Enter number of student to login : ");
+		temp=sc.nextInt();
+		Student[] so=new Student[(temp)];
+		int i;
+		for(i=0;i<temp;i++)
+		{
+			System.out.println("Student  "+i);
+			
+			System.out.println("Enter Rollno :");
+			rollno=sc.nextInt();
+			
+			sc.nextLine();
+			
+			System.out.println("Enter Name ");
+			name=sc.nextLine();
+			
+			System.out.println("Enter Age :");
+			age=sc.nextInt();
+			
+			so[i]=new Student(rollno,age,name);
+			
+			s.save(so[i]);
+			
+		}
+		s.getTransaction().commit();
+		
+		s.close();
+		
+		sf.close();
+		
+		System.out.println("Record Save..");
+		
+		sc.close();
+		
+	}
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 3. Make a class Account which has fields like accno,name & acctype. Acoount class will be Entity class. Take data from user and the table will be created automatically.
+ Ans:
+ Entity class:
+ package org.prog;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tabHiQ3")
+class BankAccount {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "AccNo")
+	private int accno;
+	
+	@Column(name = "AccName")
+	private String name;
+	
+	@Column(name = "AccType")
+	private String acctype;
+	
+	public int getAccno() {
+		return accno;
+	}
+	public void setAccno(int accno) {
+		this.accno = accno;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getAcctype() {
+		return acctype;
+	}
+	public void setAcctype(String acctype) {
+		this.acctype = acctype;
+	}
+	/*public BankAccount(int accno, String name, String acctype) {
+		super();
+		this.accno = accno;
+		this.name = name;
+		this.acctype = acctype;
+	}*/
+	public BankAccount() {
+		super();
+	}	
+}
+
+cfg.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory >
+        <property name="hbm2ddl.auto">update</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.username">system</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+    </session-factory>
+</hibernate-configuration>
+
+SaveCtl.java:
+package org.prog;
+
+import java.util.Scanner;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class BankSaveCtl {
+
+	public static void main(String[] args) {
+		int temp=0,Accno;
+		String Accname,Acctype;
+		
+		Scanner sc=new Scanner(System.in);
+		
+		SessionFactory sf=new Configuration().configure().buildSessionFactory();  
+			
+		Session s=sf.openSession();
+			
+		s.beginTransaction();
+		
+		BankAccount bn=new BankAccount();
+		
+		System.out.println("Enter Account Number :");
+		Accno=sc.nextInt();
+		
+		sc.nextLine();
+		
+		System.out.println("Enter Account Holder Name ");
+		Accname=sc.nextLine();
+		
+		System.out.println("Enter Account Type :");
+		Acctype=sc.nextLine();
+		
+		bn.setAccno(Accno);
+		bn.setName(Accname);
+		bn.setAcctype(Acctype);
+		
+		s.saveOrUpdate(bn);
+		
+		s.getTransaction().commit();
+		
+		s.close();
+		
+		sf.close();
+		
+		System.out.println("Record Save..");
+		
+		sc.close();
+	}
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 4. Create a hibernate project in Maven which is a Dynamic web Project and Create a mapping file for the POJO class.Two JSP pages(A,B) will be created.First Jsp will 
    accepts username,Password and stores the deails in the logintable. In the same project Create another servlet which updates the password in the table. Create a 
    seperate JSP to update the password.Once the record is saved in table then second JSP page will display the message as "Record submitted".
