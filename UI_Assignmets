@@ -192,4 +192,871 @@ Next.html:
     </body>
 </htm>
 ----------------------------------------------------------------------------------------------------------------------------------------------------------- 
+6.Create a HomePage where a unorderd list is created in which the list items are the hyperlinks . On clicking a hyperlink the respective page should open.
+ Ans:
  
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+7 Create a LoginPage in which background color of textbox should be skyblue. Placeholder should be applied and password length must be atleast 8 characters.
+ Ans:
+ <html>
+    <head>
+        <title>Assignment 07</title>
+        <style>
+            .c1
+            {
+                background-color: skyblue;
+            }
+        </style>
+    </head>
+    <body >
+        <form>
+			<fieldset>
+				<legend><b>Way To Virtua World !!</b></legend>
+            Username : <input type="text" class="c1"
+						placeholder="Give Your User ID Here"><br><br>
+            Password : <input type="password" class="c1"  
+					   minlength="8" placeholder="Give Your Pass Word Here" required><br><br> 
+            <input type="submit" value="Log_in">
+			</fieldset>	
+        </form>
+    </body>
+</html>
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+8 Make a page where create a selection box of cities and a textarea where the information about city is to be entered. Once click on submit button the data is to be 
+  stored in the database table as City along with description.
+ Ans:
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+9 Make an ordered list in reversed manner.
+ Ans:
+ <html>
+    <head>
+        <title>Assignment 09</title>
+    </head>
+    <body >
+		<h3>Students</h3>
+        <ol reversed type="1">
+			<li>Soham</li>
+			<li>Durva</li>
+			<li>Drishti</li>
+			<li>Nilesh</li>
+			<li>Rishikesh</li>
+		</ol>
+    </body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+10 Make a Page which includes contents of a text file in the middle of the page. Create two such pages and link them together using hyperlinks. Add some header and footer
+   in both pages where header background color should be pink and some text is displayed as heading. Footer will display the todays date in (dd-mm-yyyy) in red color in
+   center of the page.
+ Ans:
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+11 Make a form which accepts name and date of birth of a person and stores it in the database.Use date type to take date of birth.
+ Ans:
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+12 Create 3 input text boxes and a submit button. Apply the background color for all text boxes as pink using class selector and change the font color of the submit button
+    using the id selector.
+ Ans:
+ <html>
+	<head>
+		<style>
+			.c1
+			{
+				background-color: pink;
+			}
+			#id1
+			{
+				color: forestgreen;
+			}
+		</style>
+	</head>
+	<body> 
+		<form>
+			<fieldset>
+				<legend>Personal Info</legend>
+				Name : <input type="text" class="c1">
+				Age : <input type="number" class="c1"><br>
+				HomeTown : <input type="text" class="c1"><br>
+				<input type="submit" value="Save" id="id1">
+			</fieldset>
+		</form>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+13 Create a group selector to set the padding (25px) of a division and a paragraph text.
+ Ans:
+ <html>
+	<head>
+		<style>
+			div,p
+			{
+				padding: 25px;
+			}
+		</style>
+	</head>
+	<body>
+		<p>
+			This is a paragraph text.
+		</p>
+		<div>
+			This is a division text.
+		</div>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+14 Create a division and set the left & top margin to 20px and 30px and also set the background color to green and padding to 50px.
+Ans:
+<!DOCKTYPE html>
+<html>
+	<head>
+		<title>Assignment 14</title>
+		<style>
+			div
+			{
+				margin-left: 20px;
+				margin-top: 30px;
+				background-color: green;
+				padding: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>What is Lorem Ipsum?</h2>
+		<div> 
+			This is division <br>
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+		</div>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+15 Make a table with collapse border and color of border is Blue and alignment of text should be bottom right. Background color of the heading should be pink . Font size
+   of text written inside table body is 20px.
+ Ans:
+ <!DOCTYPE html>
+<html>
+	<head>
+		<title>Assignment 15</title>
+		<style>
+			table
+			{	
+				border: 5px solid blue;
+				border-collapse: collapse;
+				text-align: right;
+				font-size: 20px;
+			}
+			thead
+			{
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<table border>
+			<thead>
+				<tr><td>Roll no</td><td>Name</td></tr>
+			</thead>
+			<tbody>
+				<tr><td>01</td><td>Ajay</td></tr>
+				<tr><td>02</td><td>Ram</td></tr>
+				<tr><td>03</td><td>Jay</td></tr>
+				<tr><td>04</td><td>Ail</td></tr>
+				<tr><td>05</td><td>Nilesh</td></tr>
+			</tbody>
+		</table>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------   
+16 Take three integer variables in Javascript.Assign values to first two variables. Print the Sum in the Heading tag and console window.
+ Ans:
+ <html>
+	<body>
+		<h2 id="id1"></h2>
+		<script>
+			var a=10;
+			var b=20;
+			var c=a+b;
+			document.getElementById("id1").innerHTML=c;
+			console.log(c);
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+17 Assign firstname & lastname and print the full name in the alert box.
+ Ans:
+ <html>
+	<body>
+		<script>
+			var FN="Nilesh";
+			var LN="Pillay";
+			alert(FN+" "+LN);
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+18 Display the image with the border 5px , Brown color and image should be displayed in the right of the page along with the Paragraph .Set the image width and heigth
+   to 150px and 150px.
+ Ans:
+ <html>
+	<head>
+		<style>
+			img
+			{
+				width: 150px;
+				height: 150px;
+				float:right;
+				border: 5px solid Brown;
+			}
+		</style>
+	</head>
+	<body>
+		<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+		<img src="WhatsApp%20Image%202020-10-27%20at%208.12.36%20PM.jpeg">
+		<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------   
+19 Create a JSP Home Page with a Menu bar in it. Create 3 web pages and make a menubar for these links as a vertical menu bar. When clicked on any link , the respective
+   webpage should be displayed and all web pages should be linked to each other.
+ Ans:
+ <html>
+	<body>
+		<form>
+			<label>First Name</label><input type="text" autofocus><br>
+			<label>Last Name</label><input type="text"><br>
+			<input type="submit" value="Save">
+		</form>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+20 Create a form with 2 fields and set the Autofocus property to the first field.
+ Ans:
+ <html>
+	<body>
+		<form>
+			<label>First Name</label><input type="text" autofocus><br>
+			<label>Last Name</label><input type="text"><br>
+			<input type="submit" value="Save">
+		</form>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+21 Create a Hyperlink and apply the linkcolor accordingly : 
+   Activelink : yellow
+   visitedLink: Green
+  Ans:
+  <html>
+	<head>
+	<style>
+		a:link
+		{
+			color: blue;
+		}
+		a:visited
+		{
+			color: green;
+		}
+		a:active
+		{
+			color: yellow;
+		}
+	</style>
+	</head>
+	<body>
+		<a href="https://www.google.com">Google</a><br>
+		<a href="https://www.w3schools.com">W3schools</a><br>
+		<a href="https://www.youtube.com">YouTube</a><br>
+	</body>
+</html>
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+22 Create a Javascript file which is included in HTML Page.In this file Assign Name , age and City of a person and display these values as a heading in Red color.
+Ans:
+HTML File:
+<html>
+	<head>
+		<style>
+			h2
+			{
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<h2 id="id1"></h2>
+		<script src="Assignment_22_Javascript.js">
+		</script>
+	</body>
+</html>
+Javascript file:
+var name="Soham";
+var age=7.5;
+var city="pune";
+var info="Name : "+name+" Age : "+age+" City : "+city; 
+
+document.getElementById('id1').innerHTML=info;
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+23 Create a Javascript function which accepts a number and returns the cube of the number and print the cube.
+ Ans:
+ <html>
+	<body>
+		<script>
+			function getCube(n)
+			{
+				var cu=n*n*n;
+				return cu;
+			}
+			var c=getCube(10);
+			document.write("Cube of 10 is "+c);
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+24 Make a function expression which returns the area of circle where PI should be defined as constant.
+ Ans:
+ <html>
+	<body>
+		<script>
+			var getArea=function(r)
+			{
+				const PI=3.14;
+				var Area=PI*(r*r);
+				return Area;
+			}
+			var Ar=getArea(10);
+			document.write("Area of Circle is "+Ar);
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+25 Make an integer array of 5 numbers in a function and print the average of array.
+ Ans:
+ <html>
+	<body>
+		<script>
+			var num=new Array(10,20,30,40,50);
+			var getAverage=function(ar)
+			{
+				var sum=((ar[0])+(ar[1])+(ar[2])+(ar[3])+(ar[4]));
+				var avg=sum/ar.length;
+			    document.write("Avg : "+avg);
+
+			}
+			getAverage(num);
+			
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+26 Create an array of 5 names and print the last two names on creating subarray. Add a name in the 2nd index of the array and print array in reverse order.
+Ans:
+<html>
+	<body>
+		<script>
+			var n=new Array("Soham","Nilesh","Durva","Rishi","Drishti");
+			for(var i of n)
+				{
+					document.write(i+"<br>");
+				}
+			document.write("<hr>");
+			document.write("<h2>Last two elements </h2>");
+			    var subarray=n.slice(-2);
+             document.write(subarray);
+			document.write("<hr>");
+			document.write("<h2>Reverse Order </h2>");
+			  document.write(n.reverse()); 
+			document.write("<hr>");
+			document.write("<h2>Add element </h2>");
+			      n.splice(2,0,"Sairam");
+			for(var i of n)
+				{
+					document.write(i+"<br>");
+				}
+			
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+27 Make an Object as person which has firstname and lastname and print the Full name in capital.
+ Ans:
+ <html>
+	<body>
+		<script> 
+			var Person={
+				"FirstName":"Nilesh",
+				"LastName":"Pillay",
+			}
+			document.write("Your Full Name is "+Person.FirstName.toUpperCase()+" "+Person.LastName.toUpperCase());
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+28 Create an array of 5 cities and print the city names in reverse order.
+ Ans:
+ <html>
+	<body>
+		<script>
+			var city=new Array("Pune","Mumbai","Chennai","Vasco da Gama","Panaji");
+			document.write(city.reverse());
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+29 Take two numbers as input in the dialogbox and calculate sum and print it.
+ Ans:
+ <html>
+	<body>
+		<script>
+			var num1=Number(prompt("Enter num1"));
+			var num2=Number(prompt("Enter  num2"));
+			var sum=num1+num2;
+			document.write("Sum of "+num1+" and "+num2+" is "+sum);    
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+30 Create a confirm box on giving some message.If User clicks Ok button , then background color of the body should be green, If user clicks on cancel button then 
+    background color should be red.
+ Ans:
+ <html>
+	<body id="id1">
+		<script>
+			var con=confirm("Help Poor")
+			var headingElement= document.getElementById("id1");
+			
+			if(con)
+				{
+					 headingElement.style.backgroundColor="Green";
+				}
+			else
+				{
+					 headingElement.style.backgroundColor="red";
+				}
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+31 Make a form in Javascript where 2 text boxes accept numbers. Create 4 buttons ADD,SUB,MUL,DIV. When clicked on a button display the Answer in Heading tag.
+ Ans:
+ <html>
+	<body>
+		Ans:<span id="id1"></span>
+		
+		<form name="myform">
+			<label>Enter num1 : </label><input type="number" name="num1"><br>
+			<label>Enter num2 : </label><input type="number" name="num2"><br>
+			<input type="button" onclick="add()" value="ADD">
+			<input type="button" onclick="sub()" value="SUB">
+			<input type="button" onclick="mul()" value="MUL">
+			<input type="button" onclick="div()" value="DIV">
+		</form>
+		
+		<script>
+			
+			
+			
+			//document.write(num1);
+			//document.write(num2);
+			
+			function add()
+			{
+			   var n1=document.myform.num1.value;
+			   var n2=document.myform.num2.value;
+			   var Ans=Number(n1)+Number(n2);
+			   document.getElementById("id1").innerHTML=Ans;
+			}
+			function sub()
+			{
+			   var n1=document.myform.num1.value;
+			   var n2=document.myform.num2.value;
+			   var Ans=n1-n2;
+			   document.getElementById("id1").innerHTML=Ans;
+			}
+			function mul()
+			{
+			   var n1=document.myform.num1.value;
+			   var n2=document.myform.num2.value;
+				
+			   var Ans=n1*n2;
+			   document.getElementById("id1").innerHTML=Ans;
+			}
+			function div()
+			{
+			   var n1=document.myform.num1.value;
+			   var n2=document.myform.num2.value;
+			   var Ans=n1/n2;
+			   document.getElementById("id1").innerHTML=Ans;
+			}
+			
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+32 Create a Registration form where name,age,city(select box),email and a submit button. Form should not be submitted if age is less than 18.
+ Ans:
+ <html>
+	<body>
+		<form name="myform" onsubmit="findAge()">
+			<label>Name : </label><input type="text"><br>
+			<label>Age : </label><input type="number" name="age"><br>
+			<label>City :</label>
+			<select>
+				<option>Pune</option>
+				<option>Vasco da Gama</option>
+				<option>Panaji</option>
+			</select><br>
+			<label>E-mail ID : </label><input type="email"><br>
+			<input type="submit" value="Save"><input type="reset" value="Reset">
+		</form>
+		<script>
+			
+			function findAge()
+			{
+				var age= document.myform.age.value;
+				//alert(age)
+				if(age<18)
+					{
+						alert("Your Age "+age+" which is less than 18 so we can not sign you up")
+					}
+				else
+					{
+						alert("You sign in !!")
+					}
+					
+			}
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+33 Create a form to accept password and username .3 text boxes for Username, Password and Retype Password. If Both passwords are matched then only form should be 
+   submitted and display the username in the servlet.
+ Ans:
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+34 Create a JSON data which contains book information for three books. Access all the details of every book like bookid,booktitle,bookprice.
+ Ans:
+<html>
+	<body>
+		<h1><span id="id"></span></h1>
+
+		<script>
+			var book={
+               "shopName":"Happy Books For Happy Reader",
+               "booksid":[101,102,103],
+			   "booktitle":["The Very, Extremely, Most Naughty Asura Tales for Kids!","Shiva Trilogy","The Stranger Trilogy: Novoneel Chakraborty"],
+			   "bookprice":[599,2799,1299],
+				
+	           }
+			
+			document.write("<table border=2");
+			document.write("<tr><th>Book ID</th><th>Book Title</th><th>Book Price</th></tr>");
+				for(var i=0;i<3;i++)
+					{
+						document.write("<tr><td>"+book.booksid[i]+"</td><td>"+book.booktitle[i]+"</td><td>"+book.bookprice[i]+"</td></tr>");
+					}
+			document.write("</table>");
+		   
+			document.getElementById("id").innerHTML=book.shopName;
+		
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+35 Create a Javascript object which has a property as StudentName,StudentSkills (Array) . Convert this object to JSON.
+ Ans:
+ <html>
+<head>
+</head>
+<body>
+    
+    <h2 id="i1"> </h2>
+    <h2 id="i2"> </h2>
+<script>
+
+    var student = {name : "Soham",
+                   skills :["Java-Programming","R-Programming","Planner","Bookworm","Happnessgiver"] 
+                  };
+    
+    var jsonstud = JSON.stringify(student);
+    
+    
+ var element = document.getElementById("i1").innerHTML=jsonstud;
+    
+    
+</script>
+</body>
+</html>
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+36 Create 3 buttons named as Red, Green, Blue. When clicked on any button the page background should be changed according to the button.
+ Ans:
+ <html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+	</head>
+	<body>
+		<button class="r1">Red</button><button class="g1">Green</button><button class="b1">Blue</button><hr>
+		<script>
+			$(document).ready(function(){
+				$("button.r1").click(function(){
+					$("body").css("backgroundColor","red");
+				});
+				$("button.g1").click(function(){
+					$("body").css("backgroundColor","green");
+				});
+				$("button.b1").click(function(){
+					$("body").css("backgroundColor","blue");
+				});
+			});
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+37 Create two buttons red and green .Change the font color of the first element of 2 unordered list according to button.
+ Ans:
+ <html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<button class="g1">Green</button><button class="b1">Blue</button>
+		<hr>
+		<h3>unordered list 1</h3>
+		<ul>
+			<li id="c">Happyness</li>
+			<li>enjoy</li>
+			<li>Joyfull</li>
+		</ul>
+	    <h3>unordered list 2</h3>
+		<ul>
+			<li id="c">Drishti</li>
+			<li>Durva</li>
+			<li>Soham</li>
+		</ul>
+		
+		<script>
+			$(document).ready(function(){
+				$("button.g1").click(function(){
+					$("ul li:first-child").css("color","green");
+				});
+					$("button.b1").click(function(){
+					$("ul li:first-child").css("color","blue");
+				});
+			});
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+38 Display numbers from 1 and 10 sequencially. All Odd numbers should be printed in Red color and Even numbers should be displayed in Green Color.
+ Ans:
+ <html>
+	<head>
+		
+		<style>
+			ol
+			{
+				list-style: none;
+			}
+			/*li.g
+			{
+				color: green;
+			}
+			li.r
+			{
+				color: red;
+			}*/
+		</style>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		
+	</head>
+	<body>		
+		<button class="o">Odd</button><button class="e">Even</button>
+		<script>
+			document.write("<ol>");
+			for(var i=1;i<=10;i++)
+				{
+					if(i%2!=0)
+						{
+							document.write("<li class=r > "+i+"</li>");
+						}
+					else
+						{
+							document.write("<li class=g > "+i+"</li>");
+						}
+				}
+			document.write("</ol>");
+			
+			$(document).ready(function(){
+				$("button.o").click(function(){
+					$("li.r").css("color","red");
+					$("li.g").css("color","black");
+				});
+					$("button.e").click(function(){
+					$("li.g").css("color","green");
+					$("li.r").css("color","black");
+				});
+			});	
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+39 Create an image on the web page width : 150px, height : 150px. Make a button where write a JQuery code to increse the width and height of image on Clicking the button 
+   and border width should be changed to 15px and color will be Red.
+Ans:
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		
+	</head>
+	<body>
+		<button>Zoom in</button><br>
+		<img src="WhatsApp%20Image%202020-10-27%20at%208.12.36%20PM.jpeg" width="150px" height="150px">
+		<script>
+			$(document).ready(function(){
+				 $(function () {
+                   $("button").click(function() {
+                       $("img").css({'border': "solid 15px red",'width':"300px", 'height':"300px"});  
+                      });
+               });
+			});
+			
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+40 Make a paragraph and a button . When clicked on the button then paragraph color should be changed to red and then font size of the paragraph should be changed.
+ Ans:
+ <html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		
+	</head>
+	<body>
+		<button>button</button><br>
+		
+		<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+		</p>
+		
+		<script>
+			$(document).ready(function(){
+				$("button").click(function(){
+					$("p").css({'color':"red",'fontSize':"23px"});
+				});
+			});
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+41 Create a Login Form where Username and Password is to be taken in the textbox. The Login form should be hidden When click on the button and also should be displayed 
+   when clicked again.
+ Ans:
+ <html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<button>Login page</button><hr>
+	    <form>
+			<label>Username : </label><input type="text"><br>
+			<label>Password :</label><input type="password"><br>
+			<input type="submit" value="Login">
+		</form>
+		<script>
+			$(document).ready(function(){
+				$("button").click(function(){
+					$("form").toggle();
+				});
+			});
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+42 create div tag with predefined parameters : width :300px, height:300px ,backgroundcolor = red. When move the mouse over the division then height and width should be 
+   increased and color should be changed and when you leave the division area the original width , height and color should be displayed.
+ Ans:
+ <html>
+	<head>
+		<style>
+			div
+			{
+				width: 300px;
+				height: 300px;
+				background-color: red;
+			}
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<div></div>
+		<script>
+			$(document).ready(function(){
+				$("div").mouseenter(function(){
+					$(this).css({"width":"500px","height":"500px","background-color":"blue"})
+				});
+				$("div").mouseleave(function(){
+					$(this).css({"width":"300px","height":"300px","background-color":"red"})
+				});
+			});
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+43 Create two paragraphs p1 and p2. When clicked on the first paragraph the second paragraph should be given the effect of slidingup and sliding down.
+ Ans:
+ <html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!--<style>
+			p
+			{
+				width: 500px;
+				height: 400px;
+			}
+		</style>-->
+       
+	</head>
+	<body>
+		<h2>Paragraphs 1</h2>
+		<p class="p1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+		
+		<h2>Paragraphs 2</h2>
+		<p class="p2">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+		<script>
+			$(document).ready(function(){
+				$("p,p1").click(function(){
+					$("p.p2").slideToggle();
+				});
+			});
+		</script>
+	</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+44 Create an Anonymous function in Typescript where function take firstname & lastname as parameters and returns the full name. Display fullname.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+45 Create an arrow function in typescript which accepts a number as a parameter and returns the square of a number.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+46 Make an anonymous function which accepts a number and calculates the factorial of the number and print it.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+47 Make a function which accepts two arguments as first name and last name, If lastname is not passed then default lastname should be displayed with firstname.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+48 Make a function with optional parameter. This function accepts only one parameter.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+49 Create a class Box. Create 3 properties as length,breadth and height of the box. Create a function which calculates the the volume of the box . A function display()
+   will display the volume along with the property values.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+50 Create an Array of 5 integers and display the average using for..in loop.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+51 Create a tuple which has a string , number and boolean as a first ,second and third value. Display the array elements.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+52 Create two textboxes as name and age of a person in a component as a child of Root component.Create a button as submit. Once clicked on this button , some handler
+    should be called which will display the name and age in the alert box.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+53 Create two components A and B which are the child of Root. Component A shows the text box with a button. Component B displays an unordered list of item.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+54 Create a Component which has 3 variables as rollno, name and Pass/Fail status(boolean). Assign  default values to these variables and print the values in the view
+    as a table format.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+55 Accept two nos in a component from the text box. Make single button "Calculate". When button is pressed then Addition,Subtraction,Multiplication and division
+   should be displayed in the view.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+56 Create a textbox and a button in the component. Enter any string . If the string length is more than 5 characters Then a message should be displayed on the view
+    as "String is valid"
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
