@@ -568,10 +568,117 @@ response.setContentType("text/html");
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.10 Create 4 text boxes and a submit button in Angular View. Take firstname,lastname,email and age as an input. When clicked on the submit button All entered details 
    should be displayed in the same page. Use Two way binding.
+ Ans:
+Q10.component.html:
+FIRSTNAME <input [(ngModel)]="firstname"><br>
+LASTNAME<input [(ngModel)]="lastname"><br>
+EMAIL <input [(ngModel)]="email"><br>
+AGE <input [(ngModel)]="age"><br>
+<button (click)="getdetails()">SUBMIT</button>
 
+<h2>{{fn}}<br>
+{{ln}}<br>
+{{em}}<br>
+{{ag}}</h2>
+
+Q10.component.ts
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-Q10',
+  templateUrl: './Q10.component.html',
+  styleUrls: ['./Q10.component.css']
+})
+export class Head10Component implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+  firstname:string;
+  lastname:string;
+  email:string;
+  age:number;
+
+  fn:string;
+  ln:string;
+  em:string;
+  ag:number;
+
+  getdetails()
+  {
+     this.fn = this.firstname;
+     this.ln = this.lastname;
+     this.em = this.email;
+     this.ag = this.age;
+  }
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.11 Create two components Parent and child.In child component, create an array of 4 employee records as name,email,age,city . Make a button in the child view .Once 
    clicked on the button, All records from the  the child should be displayed in the Parent view. Use child to Parent data transfer concept.
+ Ans:
+ Q11child.component.html
 
+<button (click)="getarr()">GO</button>
+
+Q11child.component.ts
+
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'app-Q11child',
+  templateUrl: './Q11child.component.html',
+  styleUrls: ['./Q11child.component.css']
+})
+export class Q11Child Component implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+  arr:any[];
+
+  @Output() eve = new EventEmitter<any>();
+  
+  getarr()
+  {
+  this.arr = ["Soham","SohamDemo@gmail.com",35,"Panji"]; 
+
+  this.eve.emit(this.arr[0]+" "+this.arr[1]+" "+this.arr[2]+" "+this.arr[3]);
+  }
+}
+
+
+Q11parent.component.html
+
+<app-Q11child (eve)="getarray($event)"></app-Q11child>
+<h2>{{arr}}</h2>
+
+Q11parent.component.ts
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-Q11parent',
+  templateUrl: './Q11parent.component.html',
+  styleUrls: ['./Q11parent.component.css']
+})
+export class Q11Parent Component implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  arr:any;
+
+  getarray(mess:any)
+  {
+    this.arr = mess;
+  }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.12 Create a service which stores name,email and age of 5 students in the array of objects. Make 2 components Parent & child. Create a button in the child component
    when button is clicked , all records from the service should be displayed in the Parent component.
 
