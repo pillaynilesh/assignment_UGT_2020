@@ -1,0 +1,789 @@
+Q.1 Write a program in C to create a linked list of 3 nodes which stores integer values. Add one more node in the begining of linked list & Display the list.
+ Ans:
+ #include<stdio.h>
+#include<stdlib.h>
+
+typedef struct nd          
+{                         
+	int data;
+	struct nd *next;
+}node;
+
+typedef struct li
+{
+	node *head,*tail;	
+}List;
+
+
+void initialize(List *lp)
+{
+	lp->head=NULL;
+	lp->tail=NULL;	
+}
+
+node* createNode(int no)
+{
+	node *np;
+	
+	np=(node*)malloc(sizeof(node)); 
+	
+	if(np == NULL)
+	{
+		printf("Memory not available");
+		exit(0);	
+	}
+	
+	np->data=no;
+	np->next=NULL;
+	
+	return np;
+}
+
+
+void insertAtTail(List *lp,int x)        
+{
+	node *np;
+	
+	np=createNode(x);    
+	if(lp->head == NULL)
+		lp->head=np;
+	else
+		lp->tail->next =np;
+	lp->tail= np;
+}
+
+void insertAtHead(List *lp,int x)        
+{
+	node *np;
+	
+	np=createNode(x);     
+	if(lp->head == NULL)
+		lp->tail=np;
+	else
+		np->next=lp->head;
+	lp->head= np;
+}
+
+List* createList(int size)
+{
+	List *lp;
+	lp=(List*)malloc(sizeof(List));
+		initialize(lp);
+	int i;
+	int x;
+	for(i=0;i<size;i++)
+	{
+		printf("Enter Item : ");
+		scanf("%d",&x);
+		insertAtTail(lp,x);
+	}
+	return lp;
+}
+
+void traverse(List *lp)
+{
+	node *p;
+	p=lp->head;
+	int c=0;
+	int sum=0.0,avg;
+	printf("List is : ");
+	
+	while(p!=NULL)
+	{
+		printf("%d ",p->data);
+			p=p->next;	
+	}
+}
+
+int main()
+{	
+	List *lp;
+	int x,y;
+	
+	printf("Number of linked list want to create :\n");
+	scanf("%d",&y);
+	lp=createList(y);
+	printf("Add At Head !!\n");
+	printf("Add node to the Head :\n");
+	scanf("%d",&x);
+	insertAtHead(lp,x);
+	traverse(lp);
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.2 Create a stack of 5 names in Java.
+ Ans:
+ package Prog;
+
+import java.util.Stack;
+
+public class Q2_15_02_2021 {
+
+	public static void main(String[] args) {
+		
+		Stack<String> st=new Stack<String>();
+		
+		st.add("Soham");
+		st.add("Drishti");
+		st.add("Durva");
+		st.add("Rishi");
+		st.add("Nilesh");
+		
+		 System.out.println(st.toString()); 
+
+	}
+
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.3 Create an interface I1, Abstract class A1. Make a class Demo which inherit I1 & A1. I1 has a method getArea() and A1 has an absract method as getFactorial().
+   Demo class calculates the Area of circle & also factorial of the number which user enters.
+ Ans:
+ package Prog;
+
+import java.util.Scanner;
+
+interface I1
+{
+	public void getArea(int r);
+}
+
+abstract class A1
+{
+	 public abstract void getFactorial( int r); 
+}
+
+class Demo extends A1 implements I1
+{
+
+	@Override
+	public void getFactorial( int r) {
+		int sum=1;
+		for(int i=2;i<(r+1);i++)
+		{
+			sum=sum*i;		
+		}
+		System.out.println("The Factorial of "+r+" is : "+sum);
+	}
+
+	@Override
+	public void getArea(int r ) {
+		double a;
+		final double  pi =3.14159;
+		a=pi*(r*r);
+		System.out.println("Area of Circle is : "+a);
+		
+	}
+	
+}
+public class Q3_15_02_2021 {
+	public Scanner s;
+	public static void main(String[] args)
+	{
+		Scanner s = new Scanner(System.in);
+		
+		System.out.println("Enter Number :\n");
+		int r=s.nextInt();
+		
+		Demo  obj = new Demo();
+		
+		obj.getArea(r);
+		obj.getFactorial(r);
+		
+		s.close();
+	}
+
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.4 Create a Thread class on implementing Runnable interface . Also the same Thread class extends another class and displays info of that class also.
+ Ans:
+ package Prog;
+
+import java.util.Scanner;
+
+class myThread_01 implements Runnable
+{
+	public Scanner s;
+	@Override
+	public void run() 
+	{
+		Scanner s = new Scanner(System.in);
+		System.out.println("Enter Lucky Number :");
+		int num=s.nextInt();
+		System.out.println("Wow !! You Won "+num+" k");
+	}	
+}
+
+
+public class Q4_15_20_2021 {
+	public static void main(String[] args) {
+		myThread_01 t1=new myThread_01();
+		
+		Thread th=new Thread(t1);    
+
+		th.start();
+		
+		
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.5 Define a function in the PLSQL which accepts the age of a student and returns the year of birth.Create a servlet to display the Year of birth based on the entered 
+   age of a student.Make a JSP page to take age as input and sends it to the servlet
+ Ans:
+   Jsp:
+   <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Q5_51_02_2021">
+Name : <input type="text" name="nm">Age : <input type="number" name="age"><br>
+<input type="submit" value="Save">
+</form>
+</body>
+</html>
+
+Servlet:
+doGet:
+response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		
+		int age=Integer.parseInt(request.getParameter("age"));
+		String name=request.getParameter("nm");
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root");
+			
+			CallableStatement csmt=cn.prepareCall("{?=call getYearOfBirth(?)}");
+			
+			csmt.setInt(2, age);
+			
+			csmt.registerOutParameter(1,Types.INTEGER); 
+			
+			csmt.execute();  
+			
+			out.print("You Are "+name+" ,Your Age is "+age+" So you were Born in "+csmt.getInt(1));
+
+		}
+		catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+    PLSQL:
+    SET SERVEROUTPUT ON 
+CREATE OR REPLACE FUNCTION  getYearOfBirth(a IN number) RETURN number -- function definition 
+AS
+c number;
+BEGIN
+c := 2021-a;
+return c;
+END;
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.6 Create a procedure in the PLSQL which deletes a record from the database table.
+ Ans:
+ CREATE OR REPLACE PROCEDURE myprocedure(no IN number)
+IS
+BEGIN
+DELETE FROM dummyy  WHERE city='no';
+END;
+
+BEGIN
+     myprocedure(101);      
+END;
+
+select * from dummyy;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.7 Make two servlets and write the configuration details of database driver in the web.xml file. Both servlets get the same information from web.xml file .One of the
+   servlet is adding information of the employee in database and second servlet is displaying all information from the database. Information can be about any Product.
+ Ans:
+ Servelet01:
+ doGet:
+ response.setContentType("text/html");
+		PrintWriter out=response.getWriter();
+		ServletContext context=getServletContext();
+		String driver = context.getInitParameter("driver");
+		String url=context.getInitParameter("url");
+		String username=context.getInitParameter("username");
+		String password=context.getInitParameter("password");
+		
+		try {
+			Class.forName(driver);
+			Connection cn = DriverManager.getConnection(url+username+password);
+			
+			PreparedStatement smt=cn.prepareStatement("insert into empQ07 values(?,?,?,?)");
+			smt.setInt(1, 101);
+			smt.setString(2, "Soham");
+			smt.setString(3, "Pune");
+			smt.setInt(4, 411006);
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+ 
+ Servelet02:
+ doGet:
+ response.setContentType("text/html");
+		PrintWriter out=response.getWriter();
+		ServletContext context=getServletContext();
+		String driver = context.getInitParameter("driver");
+		String url=context.getInitParameter("url");
+		String username=context.getInitParameter("username");
+		String password=context.getInitParameter("password");
+		
+		try {
+			Class.forName(driver);
+			Connection cn = DriverManager.getConnection(url+username+password);
+			
+            Statement smt =  cn.createStatement(); 
+			 
+			String query="select * from empQ07";
+			
+			ResultSet rs = smt.executeQuery(query); 
+			 String Str;
+			 while(rs.next())
+			 {
+				 Str=(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getString(3)+" "+rs.getInt(4));
+				 out.print(Str+"<br>");
+				 
+			 }
+			 cn.commit();
+			 cn.close(); 
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+    Xml File:
+    <?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>dem</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+<context-param>
+    <param-name>driver</param-name>
+    <param-value>oracle.jdbc.driver.OracleDriver</param-value>
+  </context-param>
+  <context-param>
+    <param-name>url</param-name>
+    <param-value>jdbc:oracle:thin:@localhost:1521:xe</param-value>
+  </context-param>
+  <context-param>
+    <param-name>username</param-name>
+    <param-value>system</param-value>
+  </context-param>
+  <context-param>
+    <param-name>password</param-name>
+    <param-value>root</param-value>
+  </context-param>
+  <servlet>
+    <description></description>
+    <display-name>Q7_15_02_2021_Servlet01</display-name>
+    <servlet-name>Q7_15_02_2021_Servlet01</servlet-name>
+    <servlet-class>dem.co.in.Q7_15_02_2021_Servlet01</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Q7_15_02_2021_Servlet01</servlet-name>
+    <url-pattern>/Q7_15_02_2021_Servlet01</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>Q7_15_02_2021_Servlet02</display-name>
+    <servlet-name>Q7_15_02_2021_Servlet02</servlet-name>
+    <servlet-class>dem.co.in.Q7_15_02_2021_Servlet02</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Q7_15_02_2021_Servlet02</servlet-name>
+    <url-pattern>/Q7_15_02_2021_Servlet01</url-pattern>
+  </servlet-mapping>
+  
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.8 Create a table in the database which stores the records of 5 books like bookId, BookTitle, Author,Price.Make a servlet which access all the details of the books
+   from database and display on the web page created dynamically.
+ Ans:
+    SQL:
+    
+create table tab08book(id number,title varchar2(35),author varchar2(25),price number);
+
+insert all
+into tab08book(id,title,author,price) values(2001,'Ajaya Duryodhana’s Mahabharata','Anand Neelakantan',550)
+into tab08book(id,title,author,price) values(2002,'Jaya','Devdutt Pattanaik',450)
+into tab08book(id,title,author,price) values(2003,'The Rozabal Line','Ashwin Sanghi',300)
+into tab08book(id,title,author,price) values(2004,'The Vault of Vishnu','Ashwin Sanghi',350)
+into tab08book(id,title,author,price) values(2005,'The Stranger Trilogy','Novoneel Chakraborty',1350)
+
+select * from dual;
+
+select * from tab08book;
+
+Servlet:
+doGet:
+PrintWriter out = response.getWriter();
+		response.setContentType("text/html");
+
+		
+	       try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		   
+	       Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root");
+	       
+	       Statement smt = cn.createStatement();
+	       
+	       String q = "select * from tab08book;";
+	       
+	       ResultSet rs = smt.executeQuery(q);
+	       
+	       out.print("<table>");
+	       out.print("<tr><th>Book ID</th><th>Book title</th><th>Book Author</th><th>Book Price</th></tr>");
+	       while(rs.next())
+	       {
+	    	   out.print("<tr><td>"+rs.getInt(1)+"</td><td>"+rs.getString(2)+"</td<td>"+rs.getString(3)+"</td><td>"+rs.getInt(4)+"</td></tr>");
+	       }
+	       out.print("</table>");
+	       rs.close();
+	       
+	       smt.close();
+	       
+	       cn.close();
+	       } catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.9 Create a Class Customer where custId,Cname,Ccity should be declared as memebers . Define getter & setter method in this class which sets the values for customer.
+   Create a servlet and a JSP Page. In Jsp page make a form which takes custId, Cname and Ccity from user and these details should be submitted into the Customer 
+   class and through this class all data should be saved into the database.
+ Ans:
+ Jsp:
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Q9_15_02_2021Servlet">
+Customer ID : <input type="number" name="cid"><br>
+Customer Name : <input type="text" name="cnm"><br>
+Customer City : <input type="text" name="ccy"><br>
+<input type="submit" value="Save">
+</form>
+</body>
+</html>
+
+POJO class:
+package dem.co.in;
+
+class Customer {
+	public int custId;
+	public String Cname,Ccity;
+	public int getCustId() {
+		return custId;
+	}
+	public void setCustId(int custId) {
+		this.custId = custId;
+	}
+	public String getCname() {
+		return Cname;
+	}
+	public void setCname(String cname) {
+		Cname = cname;
+	}
+	public String getCcity() {
+		return Ccity;
+	}
+	public void setCcity(String ccity) {
+		Ccity = ccity;
+	}
+}
+
+public class Q9_15_02_2021 {
+	
+}
+
+Servlet:
+doGet:
+response.setContentType("text/html");
+		PrintWriter out=response.getWriter();
+		int id=Integer.parseInt(request.getParameter("cid"));
+		String name=request.getParameter("cnm");
+		String cy=request.getParameter("ccy");
+		
+		Customer obj=new Customer();
+		obj.setCustId(id);
+		obj.setCname(name);
+		obj.setCcity(cy);
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root");
+			
+			PreparedStatement stmt=cn.prepareStatement("insert into tabQ9cos values(?,?,?)"); 
+			
+			stmt.setInt(1, obj.getCustId());
+			stmt.setString(2,obj.getCname());
+			stmt.setString(3, obj.getCcity());
+			
+			stmt.executeUpdate();
+			
+			out.print("Record Save...");
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.10 Create 4 text boxes and a submit button in Angular View. Take firstname,lastname,email and age as an input. When clicked on the submit button All entered details 
+   should be displayed in the same page. Use Two way binding.
+
+Q.11 Create two components Parent and child.In child component, create an array of 4 employee records as name,email,age,city . Make a button in the child view .Once 
+   clicked on the button, All records from the  the child should be displayed in the Parent view. Use child to Parent data transfer concept.
+
+Q.12 Create a service which stores name,email and age of 5 students in the array of objects. Make 2 components Parent & child. Create a button in the child component
+   when button is clicked , all records from the service should be displayed in the Parent component.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.13 Write a JQuery script which changes the default dimensions(width,height) of an image and background color to blue. Image should be in the center of the web Page.
+ Ans:
+ <html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+         <style>
+               img
+                  {
+         			 width: 200px;
+					 height: 200px;
+         			 display: block;
+         			 margin-left: auto;
+                     margin-right: auto;
+     			  }
+		 </style>
+    </head>
+    <body>
+      <img src="Goa-Vasco_03-2016_02_Vaddem.jpg">
+		<button class="c1">Change</button>
+        <script>
+        
+             $(document).ready(function()
+             {  
+               $(".c1").click(function(){
+                      
+                     $("body").css("background-color","blue");
+				     $("img").css({" width":"450px","height":"450px"});
+				                        });
+			 });
+        </script>
+    </body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.14 Create an HTML page and make an image on it. Aplly the fadeIn, fadeOut,fadeToggle, hide, show, Toggle effect on the same image. For every effect a seperate button
+   should be defined.
+ Ans:
+ <html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head>
+    <body>
+		<img src="Garden-palace-rulers-Maratha-confederacy-Maharashtra-India.jpg" height="300px" width="300px"><br>
+        <button class="fadeinbtn">fade in button</button>
+		<button class="fadeoutbtn">fade out button</button>
+        <button class="fadetoggle">fade toggle</button><br>
+        <button class="hideme">Hide</button>
+        <button class="showme">Show</button>
+		<button class="toggle">toggle</button>
+		<script>
+             $(document).ready(function(){
+              
+                 $(".fadeinbtn").click(function(){
+                    $("img").fadeIn();
+                 });
+                
+                 $(".fadeoutbtn").click(function(){
+                    $("img").fadeOut();
+                 });
+                
+                  $(".fadetoggle").click(function(){
+                    $("img").fadeToggle();
+                 });
+				 ////////////
+                  $(".hideme").click(function(){
+                  $("img").hide(); 
+                 });
+                  $(".showme").click(function(){
+                  $("img").show();
+                 });
+                 $(".toggle").click(function(){
+                    
+                     $("img").toggle();
+                 })  
+          });
+        </script>
+    </body>
+</html>
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.15 Make a Javascript function which changes the background color of the body. Make anoher function which takes a string as Input and apply all string related functions
+   on the string passed.
+ Ans:  
+ <html>
+
+<head>
+ <style>
+body
+     {
+         background-color: red;
+     }
+</style>   
+    
+</head>
+<body id="id1">
+	<form name="myform">
+		Enter your Name : <input type="text" name="str">
+		<input type="button" value="Check" onclick="fun2()">
+	</form>
+	<button onclick="fun1()">Change BC</button>
+<script>
+  function fun1()
+	{
+		 var headingElement= document.getElementById("id1");
+		 headingElement.style.backgroundColor="yellow";
+	}
+    function fun2()
+    {
+        var str="Sir "+document.myform.str.value;
+		var st=str.replace("Sir","Dear");
+		document.write(st);
+        document.write("<br>");
+        document.write(st.toUpperCase());
+        document.write("<br>");
+        document.write(st.length);
+        document.write("<br>");
+        document.write(st.toLowerCase());
+		 
+    }    
+</script>   
+</body>
+</html>
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.16 Create an XML code and JSON code to store the following information about a city.
+   Store 5 cities records
+
+   Cities 
+         city--> name,population,area   
+         
+  Ans:
+  Json:
+  <html>
+<head>
+<style>
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+</head>
+
+
+<body>
+<script>
+    var json = {city : [{name:"Bengaluru",
+                        population:8430000,
+                        area:709},
+                       {name:"Varanasi",
+                        population:1200000,
+                        area:82},
+                       {name:"Thiruvananthapuram",
+                        population:958000,
+                        area:214},
+                       {name:"Coimbatore",
+                        population:1600000,
+                        area:246.8},
+                       {name:"Dehradun",
+                        population:5780000,
+                        area:196.5}]};
+    
+    document.write("<table border=1>");
+    document.write("<caption>Indian Cities</caption>");
+    document.write("<tr><td>Name</td><td>Population</td><td>Area</td></tr>");
+    
+    for(var i=0;i<json.city.length;i++)
+        {
+            
+        document.write("<tr><td>"+json.city[i].name+"</td><td>"+json.city[i].population+"</td><td>"+json.city[i].area+"</td></tr>");
+    
+        }
+    document.write("</table>")
+</script>    
+</body>
+</html>
+
+Xml File:
+<?xml version="1.0" encoding="UTF-8"?>
+
+<indian>
+
+<city>
+<name>Bengaluru</name>
+<population>8430000</population>
+<area>709</area>  
+</city>
+
+<city>
+<name>Varanasi</name>
+<population>1200000</population>
+<area>82</area>  
+</city>
+
+<city>
+<name>Thiruvananthapuram</name>
+<population>958000</population>
+<area>214</area> 
+ </city>
+
+<city>
+<name>Coimbatore</name>
+<population>1600000</population>
+<area>246.8</area> 
+ </city>
+
+<city>
+<name>Dehradun</name>
+<population>5780000</population>
+<area>196.5</area>  </city>
+</indian>
+
+ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  
+  
+  
+  
