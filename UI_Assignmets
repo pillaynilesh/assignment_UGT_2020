@@ -1030,33 +1030,293 @@ Ans:
 </html>
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 44 Create an Anonymous function in Typescript where function take firstname & lastname as parameters and returns the full name. Display fullname.
+ Ans:
+ var nam = function(FN:string,LN:string):string
+{
+    return FN+LN;
+}
+
+console.log(nam("Nilesh"," Pillay"))
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 45 Create an arrow function in typescript which accepts a number as a parameter and returns the square of a number.
+ Ans:
+ var cube = (n:number):number=> n*n*n;
+
+console.log(cube(2));
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 46 Make an anonymous function which accepts a number and calculates the factorial of the number and print it.
+ Ans:
+ var factorial = function(n:number)
+{
+    var res = 1;
+
+    for(var i=1;i<=n;i++)
+    {
+        res *= i;
+    }
+    console.log(res);
+}
+
+factorial(4);
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 47 Make a function which accepts two arguments as first name and last name, If lastname is not passed then default lastname should be displayed with firstname.
+ Ans:
+ function func(Fn:string,LN?:string,DE="Indian")
+{
+    if(!=null)
+    {
+      console.log(FN+" "+Ln);
+    }
+    else
+    {
+        console.log(Fn+" "+DE);
+    }
+}
+
+func("Soham");
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 48 Make a function with optional parameter. This function accepts only one parameter.
+ Ans:
+ function func1(n?:string):string
+{
+    return n;
+}
+
+console.log(func1("Hello"));
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 49 Create a class Box. Create 3 properties as length,breadth and height of the box. Create a function which calculates the the volume of the box . A function display()
    will display the volume along with the property values.
+ Ans:
+  
+class box
+{
+    length : number;
+    breadth : number;
+    height : number;
+    volume  : number;
+
+    
+
+    display()
+    {
+        console.log("IF THE LENGTH, BREADTH, AND HEIGHT IS : "+this.length+" "+this.breadth+" "+this.height);
+        console.log("THEN VOLUME IS : "+this.volume);
+    }
+}
+
+var b1 = new box(10,20,30);
+b1.display();
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 50 Create an Array of 5 integers and display the average using for..in loop.
+ Ans:
+ var aray : number[];
+aray = [10,20,30,40,50];
+
+var sum = 0;
+
+for(var t in aray)
+{
+    sum+=aray[t];
+}
+
+var avg = sum / aray.length;
+console.log("Average of Array is "+avg);
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 51 Create a tuple which has a string , number and boolean as a first ,second and third value. Display the array elements.
+ Ans:
+ let tup :[string,number,boolean];
+
+tup = ["Soham",2014,true];
+
+for(var ten of tup)
+{
+    console.log(ten);
+}
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 52 Create two textboxes as name and age of a person in a component as a child of Root component.Create a button as submit. Once clicked on this button , some handler
     should be called which will display the name and age in the alert box.
+ Ans:
+ component.ts:
+ import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-headQ52',
+  templateUrl: './headQ52.component.html',
+  styleUrls: ['./headQ52.component.css']
+})
+export class HeadQ52Component implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  name:string;
+  age:number;
+
+  getdetails()
+  {
+    alert("Name : "+this.name+" "+"Age : "+this.age+" years old");
+  }
+}
+component.html:
+NAME : <input [(ngModel)]="name"><br>
+AGE :<input [(ngModel)]="age"><br>
+<button (click)="getdetails()">SUBMIT</button>
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 53 Create two components A and B which are the child of Root. Component A shows the text box with a button. Component B displays an unordered list of item.
+ Ans:
+ AQ53.component.ts:
+ import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-AQ53',
+  templateUrl: './AQ53.component.html',
+  styleUrls: ['./AQ53.component.css']
+})
+export class AQ53Component implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+    
+    text:string;
+
+    getdet()
+    {
+      alert(this.text);
+    }
+}
+
+AQ53.component.html:
+<p>A : Component</p>
+<input [(ngModel)]="text"><br>
+<button (click)="getdet()">Check Button</button>;
+
+BQ53.component.html:
+<p>B : Component</p>
+<ul style="list-style-type: symbols();">
+<li>First</li>
+<li>Second</li>
+<li>Third</li>
+<li>Fourth<li>
+</ul>
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 54 Create a Component which has 3 variables as rollno, name and Pass/Fail status(boolean). Assign  default values to these variables and print the values in the view
     as a table format.
+  Ans:
+  component.ts:
+  import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-headQ54',
+  templateUrl: './headQ54.component.html',
+  styleUrls: ['./headQ54.component.css']
+})
+export class HeadQ54Component implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  rollno:number=2014;
+  name:string="Soham";
+  pass:boolean=true;
+}
+component.html:
+<table border= 2>
+<tr><th>Name</th><th>Roll No.</th><th>Pass/Fail status</th></tr>
+<tr><td>{{name}}</td><td>{{rollno}}</td><td>{{pass}}</td></tr>
+</table>
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 55 Accept two nos in a component from the text box. Make single button "Calculate". When button is pressed then Addition,Subtraction,Multiplication and division
    should be displayed in the view.
+ Ans:
+ component.ts:
+ import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-headQ55',
+  templateUrl: './headQ55.component.html',
+  styleUrls: ['./headQ55.component.css']
+})
+export class HeadQ55Component implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+  num1:number;
+  num2:number;
+
+  add:number;
+  sub:number;
+  pro:number;
+  div:number;
+
+  getcal()
+  {
+    this.add= Number(this.num1)+Number(this.num2);
+    this.sub= this.num1-this.num2;
+    this.pro= this.num1*this.num2;
+    this.div= this.num1/this.num2;
+  }
+}
+component.html:
+<input [(ngModel)]="num1"><br>
+<input [(ngModel)]="num2"><br>
+<button (click)="getcal()">magic Button</button>
+<p>{{add}}
+<hr>
+{{sub}}
+<hr>
+{{pro}}
+<hr>
+{{div}}</p>
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 56 Create a textbox and a button in the component. Enter any string . If the string length is more than 5 characters Then a message should be displayed on the view
     as "String is valid"
+ Ans:
+ component.ts:
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-headQ56',
+  templateUrl: './headQ56.component.html',
+  styleUrls: ['./headQ56.component.css']
+})
+export class HeadQ56Component implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  str:string;
+  str2:string;
+
+  checkleng()
+  {
+    var st = this.str;
+    if(st.length > 5)
+    {
+      this.str2="STRING IS VALID";
+    }
+    else
+    {
+      this.str2=" ";
+    }
+  }
+
+}
+component.html:
+<input [(ngModel)]="str"><br>
+<button (click)="checkleng()">Message</button>
+<h2>{{str2}}</h2>
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
