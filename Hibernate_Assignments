@@ -376,7 +376,7 @@ public class BankSaveCtl {
 		
 		Scanner sc=new Scanner(System.in);
 		
-		SessionFactory sf=new Configuration().configure().buildSessionFactory();  
+		SessionFactory sf=new Configuration().configure().addAnnotatedClass(BankAccount.class).buildSessionFactory();  
 			
 		Session s=sf.openSession();
 			
@@ -416,5 +416,12 @@ public class BankSaveCtl {
 4. Create a hibernate project in Maven which is a Dynamic web Project and Create a mapping file for the POJO class.Two JSP pages(A,B) will be created.First Jsp will 
    accepts username,Password and stores the deails in the logintable. In the same project Create another servlet which updates the password in the table. Create a 
    seperate JSP to update the password.Once the record is saved in table then second JSP page will display the message as "Record submitted".
+ Ans:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 5. Make a simple project in Maven using Hibernate to take the details about a Employee like EmpID,Name,Salary. Delete and Update the specific record. 
+ Ans:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 6. Create a Maven project in hibernate to perform CRUD Operations. Create a web Application
+ Ans:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
