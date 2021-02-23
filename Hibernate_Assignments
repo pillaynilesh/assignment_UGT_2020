@@ -424,4 +424,162 @@ public class BankSaveCtl {
 6. Create a Maven project in hibernate to perform CRUD Operations. Create a web Application
  Ans:
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+7. Create 3 Bean classes named as SBI, IDBI, ICICI. In All classes the dependency is injected in the constructor.Dependency class is InterestRate which has one method
+   getRate() which returns the rate of interest according to the bank. Display BankName, Bank Rate.
+ Ans: 
+ RBI.Interface:
+ package org.prog.assingment07;
+
+public interface RBI {
+	public String getBankName();
+	
+	public Double getRateOfInterest();
+}
+SBI.java:
+package org.prog.assingment07;
+
+public class SBI implements RBI {
+
+	public Rate rate;
+	public Double r=6.7;
+
+	public SBI(Rate rate) {
+		this.rate = rate;
+	}
+
+	@Override
+	public String getBankName() {
+		// TODO Auto-generated method stub
+		return "Bank Name is SBI";
+	}
+
+	@Override
+	public Double getRateOfInterest() {
+		// TODO Auto-generated method stub
+		return rate.getRate(r);
+	}
+}
+IDBI.java:
+package org.prog.assingment07;
+
+public class IDBI implements RBI {
+
+	public Rate rate;
+	public Double r=5.8;
+	
+	public IDBI(Rate rate) {
+		this.rate = rate;
+	}
+
+	@Override
+	public String getBankName() {
+		// TODO Auto-generated method stub
+		return "Bank Name is IDBI";
+	}
+
+	@Override
+	public Double getRateOfInterest() {
+		// TODO Auto-generated method stub
+		return rate.getRate(r);
+	}
+}
+ICICI.java:
+package org.prog.assingment07;
+
+public class ICICI implements RBI {
+
+	public Rate rate;
+	public Double r=6.3;
+	
+	
+	public ICICI(Rate rate) {
+		this.rate = rate;
+	}
+
+	@Override
+	public String getBankName() {
+		// TODO Auto-generated method stub
+		return "Bank Name is ICICI";
+	}
+
+	@Override
+	public Double getRateOfInterest() {
+		// TODO Auto-generated method stub
+		return rate.getRate(r);
+	}
+}
+ROI.Interface:
+package org.prog.assingment07;
+
+public interface ROI {
+	public Double getRate( Double r);
+}
+Rate.java:
+package org.prog.assingment07;
+
+public class Rate  implements ROI{
+
+	@Override
+	public Double getRate(Double r) {
+		// TODO Auto-generated method stub
+		return r;
+	}
+}
+Test.java:
+package org.prog.assingment07;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Test {
+
+	public static void main(String[] args) {
+		ApplicationContext context=new ClassPathXmlApplicationContext("applicationContext.xml");
+		//SBI
+		RBI obj=context.getBean("SBIobj",RBI.class);
+		
+		System.out.println(obj.getBankName());
+		System.out.println("Rate of Interes is "+obj.getRateOfInterest()+" %");
+		System.out.println("----------------------------------------------------");
+		
+		//IDBI
+        RBI obj01=context.getBean("IDBIobj",RBI.class);
+		
+		System.out.println(obj01.getBankName());
+		System.out.println("Rate of Interes is "+obj01.getRateOfInterest()+" %");
+		System.out.println("----------------------------------------------------");
+		
+		//ICICI
+        RBI obj02=context.getBean("ICICIobj",RBI.class);
+		
+		System.out.println(obj02.getBankName());
+		System.out.println("Rate of Interes is "+obj02.getRateOfInterest()+" %");
+	}
+}
+applicationContext.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+     <bean id="obj" class="org.prog.assingment07.Rate"></bean>
+     
+      <bean id="SBIobj" class="org.progassingment07..SBI">
+      <constructor-arg ref="obj"></constructor-arg>
+      </bean>  
+      
+      <bean id="ICICIobj" class="org.progassingment07..ICICI">
+      <constructor-arg ref="obj"></constructor-arg>
+      </bean>
+       
+      <bean id="IDBIobj" class="org.progassingment07..IDBI">
+      <constructor-arg ref="obj"></constructor-arg>
+      </bean>   
+</beans>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
