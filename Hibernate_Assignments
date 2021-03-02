@@ -417,12 +417,519 @@ public class BankSaveCtl {
    accepts username,Password and stores the deails in the logintable. In the same project Create another servlet which updates the password in the table. Create a 
    seperate JSP to update the password.Once the record is saved in table then second JSP page will display the message as "Record submitted".
  Ans:
+  Form01.jsp:
+  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>A</h2>
+<form action="Servlet_A" method="post">
+<!--  UserID  : <input type="number" name="ID"><br>  -->
+UserName : <input type="text" name="UN"><br>
+Password : <input type="password" name="PW"><br>
+<input type="submit" value="Login">
+</form>
+</body>
+</html>
+
+Form02.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>B</h2>
+<form action="Servlet_B" method="post">
+UserID  : <input type="number" name="ID"><br>
+UserName : <input type="text" name="UN"><br>
+Old Password : <input type="password" name="OPW"><br>
+New Password : <input type="password" name="NPW"><br>
+<input type="submit" value="Login">
+</form>
+</body>
+</html>
+
+ServletA.java:
+doGet:
+                response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		
+		String un=request.getParameter("UN");
+		String pw=request.getParameter("PW");
+		
+        SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		Login lo=new Login();
+		
+		lo.setUserName(un);
+		lo.setPassword(pw);
+				
+		s.save(lo);
+		
+        s.getTransaction().commit();
+		
+		s.close();
+		
+		sf.close();
+		
+		out.print("<h3>Your UserID is "+lo.getUserID()+" User "+un+" As login!!</h3>");
+		
+		out.print("<a href=http://localhost:8081/Hibernate_Assignment_Q4/Form01.jsp>Go Back to Login Page </a><br>");
+		out.print("<a href=http://localhost:8081/Hibernate_Assignment_Q4/Form02.jsp >Go to Password Update Page </a>");
+ServletB.java:
+doGet:
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		
+		int id=Integer.parseInt(request.getParameter("ID"));
+		String un=request.getParameter("UN");
+		String opw=request.getParameter("OPW");
+		String npw=request.getParameter("NPW");
+		
+		if(opw!=npw)
+		{
+        SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		Login lo=s.get(Login.class,id);
+		
+		lo.setUserName(un);
+		lo.setPassword(npw);
+				
+		s.update(lo);
+		
+        s.getTransaction().commit();
+		
+		s.close();
+		
+		sf.close();
+		
+		out.print("<h3>User "+un+" As Update his Password !!</h3>");
+		
+		}
+		else 
+		{
+		  out.print("<h2>User "+un+" you Type the same old Password !</h2>");
+		}
+		
+		out.print("<a href=http://localhost:8081/Hibernate_Assignment_Q4/Form01.jsp>Go to Login Page </a><br>");
+		out.print("<a href=http://localhost:8081/Hibernate_Assignment_Q4/Form02.jsp >Go Back to Password Update Page </a>");
+POJO class:
+package org.prog;
+
+public class Login {
+	private int UserID;
+	private String UserName;
+	private String Password;
+	
+	public Login(int userID, String userName, String password) {
+		super();
+		UserID = userID;
+		UserName = userName;
+		Password = password;
+	}
+	public Login() {
+		super();
+	}
+	public int getUserID() {
+		return UserID;
+	}
+	public void setUserID(int userID) {
+		UserID = userID;
+	}
+	public String getUserName() {
+		return UserName;
+	}
+	public void setUserName(String userName) {
+		UserName = userName;
+	}
+	public String getPassword() {
+		return Password;
+	}
+	public void setPassword(String password) {
+		Password = password;
+	}
+}
+
+Login.hbm.xml:
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 23, 2021 3:51:16 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="org.prog.Login" table="tabHiQ4">
+        <id name="UserID" type="int">
+            <column name="USERID" />
+            <generator class="increment" />
+        </id>
+        <property name="UserName" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <property name="Password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+    </class>
+</hibernate-mapping>
+
+Hibernate.cfg.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hbm2ddl.auto">update</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.username">system</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+        <property name="show_sql">true</property>
+        <mapping resource="Login.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 5. Make a simple project in Maven using Hibernate to take the details about a Employee like EmpID,Name,Salary. Delete and Update the specific record. 
  Ans:
+ Hibernate.cfg.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hbm2ddl.auto">update</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.username">system</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+        <mapping resource="Employee_Assignment_05.hbm.xml" />
+    </session-factory>
+</hibernate-configuration>
+
+Employee.java:
+package org.porg;
+
+public class Employee_Assignment_05 {
+	
+	 private int EmpID;
+	 private int Salary;
+	 private String Name;
+	public int getEmpID() {
+		return EmpID;
+	}
+	public void setEmpID(int empID) {
+		EmpID = empID;
+	}
+	public int getSalary() {
+		return Salary;
+	}
+	public void setSalary(int salary) {
+		Salary = salary;
+	}
+	public String getName() {
+		return Name;
+	}
+	public void setName(String name) {
+		Name = name;
+	}
+	public Employee_Assignment_05(int empID, int salary, String name) {
+		super();
+		EmpID = empID;
+		Salary = salary;
+		Name = name;
+	}
+	public Employee_Assignment_05() {
+		super();
+	}	 
+}
+
+Employee_Assignment_05.hbm.xml:
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 23, 2021 9:44:52 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="org.porg.Employee_Assignment_05" table="tabHiQ5">
+        <id name="EmpID" type="int">
+            <column name="EMPID" />
+            <generator class="assigned" />
+        </id>
+        <property name="Salary" type="int">
+            <column name="SALARY" />
+        </property>
+        <property name="Name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+    </class>
+</hibernate-mapping>
+
+Save.java:
+package org.porg;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class SaveCtl {
+
+	public static void main(String[] args) {
+		
+		SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		Employee_Assignment_05 Emp=new Employee_Assignment_05(4021,7500,"Ajay");
+		
+		s.save(Emp);
+		
+        s.getTransaction().commit();
+		
+		s.close();
+		
+		sf.close();
+		
+		System.out.println("Record Save..");
+
+	}
+
+}
+Update.java:
+package org.porg;
+
+import java.util.Scanner;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+
+public class UpdateCtl {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int empid;
+		
+		SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		//Query q= s.createQuery("update Employee_Assignment_05 set Salary=12000 where Name='Soham'");
+		
+		//q.executeUpdate();
+		
+
+		Employee_Assignment_05 emp=new Employee_Assignment_05();
+		
+		System.out.println("Enter Employee ID to Update : ");
+
+		empid = sc.nextInt();
+
+
+		emp.setEmpID(empid);
+		
+
+		sc.nextLine();
+
+		emp.setName("Soahm");
+
+		emp.setSalary(14500);
+
+		s.update(emp);
+		
+        s.getTransaction().commit();
+		
+		s.close();
+		
+		sf.close();
+		
+		System.out.println("Record Updated !!");
+		
+		sc.close();
+
+	}
+
+}
+Delete.java:
+package org.porg;
+
+import java.util.Scanner;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class DeleteCtl {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int empid;
+		
+		SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		
+		Employee_Assignment_05 emp=new Employee_Assignment_05();
+		
+		System.out.println("Enter Employee ID to Delete : ");
+
+		empid = sc.nextInt();
+
+
+		emp.setEmpID(empid);
+
+		s.delete(emp);
+		
+        s.getTransaction().commit();
+        
+        		
+		s.close();
+		
+		sf.close();
+		
+		System.out.println("Record Deleted !!");
+		
+		sc.close();
+
+	}
+
+}
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 6. Create a Maven project in hibernate to perform CRUD Operations. Create a web Application
  Ans:
+ Employee_Assignment_06.java:
+ package org.porg;
+
+public class Employee_Assignment_06 {
+	
+	 private int EmpID;
+	 private int Salary;
+	 private String Name;
+	public int getEmpID() {
+		return EmpID;
+	}
+	public void setEmpID(int empID) {
+		EmpID = empID;
+	}
+	public int getSalary() {
+		return Salary;
+	}
+	public void setSalary(int salary) {
+		Salary = salary;
+	}
+	public String getName() {
+		return Name;
+	}
+	public void setName(String name) {
+		Name = name;
+	}
+	public Employee_Assignment_06(int empID, int salary, String name) {
+		super();
+		EmpID = empID;
+		Salary = salary;
+		Name = name;
+	}
+	public Employee_Assignment_06() {
+		super();
+	}	 
+}
+
+CREATE/INSERTED
+Save.java:
+package org.porg;
+
+import java.util.Scanner;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class saveTest {
+
+	public static void main(String[] args) {
+		
+		int temp=0,Empid,Salary;
+		String Name;
+		
+		Scanner sc=new Scanner(System.in);
+		
+		SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		//Employee_Assignment_06 Emp=new Employee_Assignment_06(4021,7500,"Ajay");
+		
+		//s.save(Emp);
+		System.out.println("Enter number of Employee to Enter : ");
+		temp=sc.nextInt();
+		Employee_Assignment_06[] empo=new Employee_Assignment_06[(temp)];
+		int i;
+		for(i=0;i<temp;i++)
+		{
+			System.out.println("Employee  "+i);
+			
+			System.out.println("Enter Employee ID :");
+			Empid=sc.nextInt();
+			
+			sc.nextLine();
+			
+			System.out.println("Enter Employee Name ");
+			Name=sc.nextLine();
+			
+			System.out.println("Enter Employee Salary :");
+			Salary=sc.nextInt();
+			
+			empo[i]=new Employee_Assignment_06(Empid,Salary,Name);
+			
+			s.save(empo[i]);
+			
+		}
+		
+        s.getTransaction().commit();
+		
+		s.close();
+		
+		sf.close();
+		
+		System.out.println("Record Save..");
+		
+		sc.close();
+
+	}
+
+}
+
+READ/SELECT
+
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 7. Create 3 Bean classes named as SBI, IDBI, ICICI. In All classes the dependency is injected in the constructor.Dependency class is InterestRate which has one method
    getRate() which returns the rate of interest according to the bank. Display BankName, Bank Rate.
