@@ -928,8 +928,119 @@ public class saveTest {
 }
 
 READ/SELECT
+select.java:
+package org.porg;
+
+import java.util.List;
+
+import javax.persistence.Query;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class selectTest {
+
+	public static void main(String[] args) {
+		
+		SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+          Query q=s.createQuery("from Employee_Assignment_06");    
+		
+		List <Employee_Assignment_06>l= q.getResultList();   
+		
+		for (Employee_Assignment_06 emp : l) {
+			System.out.println(emp.getEmpID()+" "+emp.getName()+" "+emp.getSalary());
+		}
+        
+        		
+		s.close();
+		
+		sf.close();
+		
+		System.out.println("Record Display !!");
 
 
+	}
+}
+
+UPDATE
+update.java:
+package org.porg;
+
+import javax.persistence.Query;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+
+public class updateTest {
+
+	public static void main(String[] args) {
+		
+		SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		Query q= s.createQuery("update Employee_Assignment_06 set Salary=12000 where Name='Soham'");
+		
+		q.executeUpdate();
+
+        s.getTransaction().commit();
+		
+		s.close();
+		
+		sf.close();
+		
+		System.out.println("Record Updated !!");
+
+	}
+}
+
+DELETE
+delete.java:
+package org.porg;
+
+import javax.persistence.Query;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class deleteTest {
+
+	public static void main(String[] args) {
+		
+		SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		Query q= s.createQuery("delete Employee_Assignment_06 where Name='Ajay'");
+		
+		q.executeUpdate();
+
+		
+        s.getTransaction().commit();
+        
+        		
+		s.close();
+		
+		sf.close();
+		
+		System.out.println("Record Deleted !!");
+
+
+	}
+}
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 7. Create 3 Bean classes named as SBI, IDBI, ICICI. In All classes the dependency is injected in the constructor.Dependency class is InterestRate which has one method
    getRate() which returns the rate of interest according to the bank. Display BankName, Bank Rate.
@@ -1089,4 +1200,981 @@ applicationContext.xml:
 </beans>
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+8. Create two bean classes as Student & Product. Make spring configuration file where configure the setter injection for the method which is saving the entered records 
+   for the student as rollno,name,percentage in the database and do the same for products
+Ans:
+appcontext_ASS8.xml:
+<?xml version="1.0" encoding="UTF-8"?>
 
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <bean id="st" class="ASS_80.student2" />
+    
+    <bean id="pr" class="ASS_80.product2" />
+    
+    <bean id="s" class="ASS_80.student" >
+    <property name="i1" ref="st" />
+    </bean>
+    
+    <bean id="p" class="ASS_80.product">
+    <property name="i2" ref="pr" />
+    </bean>
+
+</beans>
+
+student.java:
+package ASS_80;
+
+public class student {
+
+	public int rollno;
+	public String name;
+    public double percent;
+    
+    INTER i1;
+    
+	public INTER getI1() {
+		return i1;
+	}
+	public void setI1(INTER i1) {
+		this.i1 = i1;
+	}
+	
+	public int getRollno() {
+		return rollno;
+	}
+	public void setRollno(int rollno) {
+		this.rollno = rollno;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public double getPercent() {
+		return percent;
+	}
+	public void setPercent(double percent) {
+		this.percent = percent;
+	}
+    
+	public String saverecs1()
+	{
+		return i1.addrec();
+	}
+}
+
+product.java:
+package ASS_80;
+
+public class product {
+
+	public int pid;
+	public String pro_nm;
+	public int price;
+	
+	INTER i2;
+	
+	public INTER getI2() {
+		return i2;
+	}
+	public void setI2(INTER i2) {
+		this.i2 = i2;
+	}
+	
+	public int getPid() {
+		return pid;
+	}
+	public void setPid(int pid) {
+		this.pid = pid;
+	}
+	public String getPro_nm() {
+		return pro_nm;
+	}
+	public void setPro_nm(String pro_nm) {
+		this.pro_nm = pro_nm;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
+	public String saverecs2()
+	{
+		return i2.addrec();
+	}
+}
+
+INTER:
+package ASS_80;
+
+public interface INTER {
+
+	public String addrec();
+}
+
+student2.java:
+package ASS_80;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
+
+public class student2 implements INTER{
+
+	@Override
+	public String addrec() {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		try {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		
+		Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root");
+		
+		PreparedStatement pmt = cn.prepareStatement("insert into student482 values(?,?,?)");
+		
+		System.out.println("ENTER ROLLNO OF THE STUDENT : ");
+		int roll = sc.nextInt();
+		
+		sc.nextLine();
+		
+		pmt.setInt(1,roll );
+		
+		System.out.println("ENTER NAME OF THE STUDENT : ");
+		String name= sc.nextLine();
+		
+		pmt.setString(2,name );
+		
+		System.out.println("ENTER PERCENTAGE OF THE STUDENT : ");
+		double per = sc.nextDouble();
+		
+		pmt.setDouble(3,per);
+		
+		pmt.execute();
+		
+		pmt.close();
+		
+		cn.close();
+		}
+		catch(Exception ea)
+		{
+			ea.printStackTrace();
+		}
+		
+		return "SUCCESSFULLY INSERTED";
+	}
+}
+
+product2.java:
+package ASS_80;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
+
+public class product2 implements INTER{
+
+	@Override
+	public String addrec() {		
+		Scanner sc = new Scanner(System.in);
+		
+		try {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		
+		Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root");
+		
+		PreparedStatement pmt = cn.prepareStatement("insert into product482 values(?,?,?)");
+		
+		System.out.println("ENTER ID OF THE PRODUCT : ");
+		int pid = sc.nextInt();
+		
+		sc.nextLine();
+		
+		pmt.setInt(1,pid );
+		
+		System.out.println("ENTER PRODUCT NAME : ");
+		String nm= sc.nextLine();
+		
+		pmt.setString(2,nm );
+		
+		System.out.println("ENTER PRODUCT PRICE : ");
+		int per = sc.nextInt();
+		
+		pmt.setDouble(3,per);
+		
+		pmt.execute();
+		
+		pmt.close();
+		
+		cn.close();
+		}
+		catch(Exception ea)
+		{
+			ea.printStackTrace();
+		}
+		
+		return "SUCCESSFULLY INSERTED";
+	}
+
+}
+
+test:
+package ASS_80;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class test {
+
+	public static void main(String[] args) {
+    ClassPathXmlApplicationContext con = new ClassPathXmlApplicationContext("appcontext_ASS8.xml");
+    
+    student s1 = con.getBean("s",student.class);
+    
+    System.out.println(s1.saverecs1());
+    
+    product p1 = con.getBean("p",product.class);
+    
+    System.out.println(p1.saverecs2());
+
+	}
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+9.Write a spring configuration file which injects the username, email and password to the Bean class User.
+ Ans:
+appcontext_ass9.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <bean id="d" class="ASS_9.details" />
+    
+    <bean id="u" class="ASS_9.user" >
+    <constructor-arg ref="d"></constructor-arg>
+    </bean>
+    
+</beans>
+
+user.java:
+package ASS_9;
+
+public class user {
+
+	inter i1;
+	
+	public String us,em,pa;
+	
+	public user(inter i)
+	{
+		this.i1 = i;
+		this.us = i.getus();
+		this.em = i.getem();
+		this.pa = i.getpa();
+	}
+
+	public inter getI1() {
+		return i1;
+	}
+
+	public void setI1(inter i1) {
+		this.i1 = i1;
+	}
+
+	public String getUs() {
+		return us;
+	}
+
+	public void setUs(String us) {
+		this.us = us;
+	}
+
+	public String getEm() {
+		return em;
+	}
+
+	public void setEm(String em) {
+		this.em = em;
+	}
+
+	public String getPa() {
+		return pa;
+	}
+
+	public void setPa(String pa) {
+		this.pa = pa;
+	}
+	
+	public String st()
+	{
+		return i1.status();
+	}
+}
+
+inter_interface.java:
+package ASS_9;
+
+public interface inter {
+
+	public String getus();
+	
+	public String getem();
+	
+	public String getpa();
+	
+	public String status();
+}
+
+details.java:
+package ASS_9;
+
+public class details implements inter{
+
+	@Override
+	public String getus() {
+		return "ABHISHEK123";
+	}
+
+	@Override
+	public String getem() {
+		return "abhi123@gmail.com";
+	}
+
+	@Override
+	public String getpa() {
+		return "abhishek234";
+	}
+
+	public String status()
+	{
+		return "SUCCESFULLY DISPLAYED";
+	}
+}
+
+test.java:
+package ASS_9;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class test {
+
+	public static void main(String[] args) {
+	ClassPathXmlApplicationContext cs = new ClassPathXmlApplicationContext("appcontext_ASS9.xml");
+	
+	user u1 = cs.getBean("u",user.class);
+	
+	System.out.println(u1.getUs());
+	
+	System.out.println(u1.getEm());
+	
+	System.out.println(u1.getPa());
+	
+	System.out.println(u1.st());
+	
+	cs.close();
+
+	}
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+10.Write the configuration for 2 bean objects in the Spring Configuration file & Retrieve all the bean objects in the testApp using XmlBeanFactory.
+ Ans:
+appcontext_ASS10.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <bean id="class" class="ASS_10.CLASS1"  />
+    
+    <bean id="bean1" class="ASS_10.BEAN1" >
+    <property name="in1" ref="class" />
+    </bean>
+    
+    <bean id="bean2" class ="ASS_10.BEAN2" >
+    <property name="in2" ref="class" />
+    </bean>
+    
+</beans>
+
+BEAN1:
+package ASS_10;
+
+public class BEAN1 {
+
+	INTER in1;
+
+	public INTER getIn1() {
+		return in1;
+	}
+
+	public void setIn1(INTER in1) {
+		this.in1 = in1;
+	}
+	
+	public void getm()
+	{
+		in1.getmsg();
+	}
+	
+}
+
+BEAN2:
+package ASS_10;
+
+public class BEAN2 {
+
+	INTER in2;
+
+	public INTER getIn2() {
+		return in2;
+	}
+
+	public void setIn2(INTER in2) {
+		this.in2 = in2;
+	}
+	
+	public void getm()
+	{
+		in2.getmsg();
+	}
+	
+}
+
+INTERFACE:
+package ASS_10;
+
+public interface INTER {
+
+	public void getmsg();
+}
+
+CLASS1:
+package ASS_10;
+
+public class CLASS1 implements INTER{
+
+	@Override
+	public void getmsg() {
+		System.out.println("MESSAGE CREATED");
+	}
+
+	
+}
+test:
+package ASS_10;
+
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.core.io.ClassPathResource;
+
+public class test {
+
+	public static void main(String[] args) {
+	XmlBeanFactory bf = new XmlBeanFactory(new ClassPathResource("appcontext_ASS10.xml"));
+	
+	BEAN1 b1 = bf.getBean("bean1",BEAN1.class);
+	
+	b1.getm();
+	
+	BEAN2 b2 = bf.getBean("bean2",BEAN2.class);
+	
+	b2.getm();
+	
+	System.out.println(b1);
+	
+	System.out.println(b2);
+
+	}
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+11. Make a Bean class which has a method which accepts firstname & lastname as parameters and returns the Fullname. Inject this bean class object into a Class Person
+    Print the Details of a person as Fullname & age.
+ Ans:
+appcontext_ASS11.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <bean id="i2" class="ASS_11.FULLNM" >
+    </bean>
+    
+    <bean id="i1" class="ASS_11.PERSON" >
+    <property name="fn"  ref="i2"></property>
+    </bean> 
+</beans>
+
+FULLNM.java:
+package ASS_11;
+
+import java.util.Scanner;
+
+public class FULLNM {
+
+	public String fnm,lnm;
+
+	Scanner sc;
+	
+	public String getFnm() {
+		return fnm;
+	}
+
+	public void setFnm() {
+		sc = new Scanner(System.in);
+		System.out.println("ENTER FIRST NAME : ");
+		String fm = sc.nextLine();
+		this.fnm = fm;
+	}
+
+	public String getLnm() {
+		return lnm;
+	}
+
+	public void setLnm() {
+		sc = new Scanner(System.in);
+		System.out.println("ENTER LAST NAME : ");
+		String lm = sc.nextLine();
+		this.lnm = lm;
+	}
+	
+}
+
+PERSON.java:
+package ASS_11;
+
+public class PERSON {
+
+	public int age;
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public int getAge() {
+		return age;
+	}
+	
+	FULLNM fn;
+	
+	public void setFn(FULLNM fn) {
+		this.fn = fn;
+	}
+
+	public FULLNM getFn() {
+		return fn;
+	}
+	
+	public void setnames()
+	{
+		fn.setFnm();
+		fn.setLnm();
+	}
+	
+	public String getfname()
+	{
+		return fn.getFnm();
+	}
+	
+	public String getlname()
+	{
+		return fn.getLnm();
+	}
+	
+}
+
+TEST.java:
+package ASS_11;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class test {
+
+	public static void main(String[] args) {
+
+	ApplicationContext ac = new ClassPathXmlApplicationContext("appcontext_ASS11.xml");
+	
+	PERSON p = ac.getBean("i1",PERSON.class);
+	
+	p.setAge(18);
+	
+	System.out.println(p.getAge());
+	
+	p.setnames();
+	
+	System.out.println("PERSON NAME : "+p.getfname()+" "+p.getlname());
+	}
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+12. Create a spring Project in Maven. Make two bean classes (Annotated) ,In First Bean define a method which is displaying some message .Apply the Injection on this method.
+     In second bean Apply the Constructor injection and a method in the bean is displaying fibbonacci series in it.
+ Ans:
+appcontext_ASS12.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <context:component-scan base-package="ASS_12"></context:component-scan>
+</beans>
+
+INTERFACE 01:
+package ASS_12;
+
+public interface IN {
+
+	public String getmesg();
+}
+
+FIRST:
+package ASS_12;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component("first")
+public class FIRST implements IN{
+
+	INTER i1;
+	
+	@Autowired
+	public FIRST(INTER i)
+	{
+		this.i1 = i;
+	}
+	
+	public String getmesg()
+	{
+		return i1.getmsg();
+	}
+}
+
+INTERFACE:
+package ASS_12;
+
+public interface INTER {
+
+	public String getmsg();
+}
+
+msg:
+package ASS_12;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class msg implements INTER{
+
+	public String getmsg() {
+		return "MESSAGE GENERATED FROM THE METHOD";
+	}
+
+}
+
+TEST:
+package ASS_12;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class test {
+
+	public static void main(String[] args) {
+	ApplicationContext ac = new ClassPathXmlApplicationContext("appcontext_ASS12.xml");
+	
+	IN fr = ac.getBean("first",IN.class);
+	
+	System.out.println(fr.getmesg());
+
+	IN2 sc = ac.getBean("second",IN2.class);
+	
+	sc.displayfibonacci();
+	}
+}
+
+SECOND:
+package ASS_12;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component("second")
+public class SECOND implements IN2{
+
+   INTER2 i2;
+   
+   @Autowired
+   public SECOND(INTER2 i)
+   {
+	  this.i2 = i;
+   }
+
+public INTER2 getI2() {
+	return i2;
+}
+
+public void setI2(INTER2 i2) {
+	this.i2 = i2;
+}
+   
+public void displayfibonacci()
+{
+	i2.getfibo();
+}
+}
+
+INTER2:
+package ASS_12;
+
+public interface INTER2 {
+
+	public void getfibo();
+}
+
+fibo:
+package ASS_12;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class fibo implements INTER2{
+
+	public void getfibo() {
+		
+		int max = 10, prev= 0, next = 1;
+        System.out.print("Fibonacci Series of "+max+" numbers:");
+
+        int i=1;
+        while(i <= max)
+        {
+            System.out.print(prev+" ");
+            int sum = prev + next;
+            prev = next;
+            next = sum;
+            i++;
+        }
+    }
+
+	}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13. Create an interface as Person. Make two classes Student and Manager which are implementing the Person interface.In person interface there are two methods as
+    getDetails() and showDetails(). Create a Bean class where Dependency injection should be applied on the field. Make a TestMain class where retrieve the details of 
+    Student and manager.
+ Ans:
+appcontext_ASS13.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <context:component-scan base-package="ASS_13"></context:component-scan>
+</beans>
+
+testmain.java:
+package ASS_13;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class testmain {
+
+	public static void main(String[] args) {
+	
+	ApplicationContext ac = new ClassPathXmlApplicationContext("appcontext_ASS13.xml");
+	
+	BEAN b1 = ac.getBean("bean",BEAN.class);
+	
+	BEAN b2 = ac.getBean("bean",BEAN.class);
+	
+	b1.getpnm();
+	
+	b2.getmnm();
+	}
+
+}
+
+BEAN:
+package ASS_13;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component("bean")
+public class BEAN {
+
+	@Autowired
+	@Qualifier("student")
+	PERSON p1;
+	
+	public void getpnm()
+	{
+		p1.getdetails();
+		p1.showdetails();
+	}
+	
+	@Autowired
+	@Qualifier("manager")
+	PERSON p2;
+	
+	public void getmnm()
+	{
+		p2.getdetails();
+		p2.showdetails();
+	}
+	
+}
+
+PERSON:
+package ASS_13;
+
+public interface PERSON {
+
+	public void getdetails();
+	
+	public void showdetails();
+}
+
+student.java:
+package ASS_13;
+
+import java.util.Scanner;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class student implements PERSON{
+	public String nm;
+	public int percent;
+	
+	public String getNm() {
+		return nm;
+	}
+
+	public void setNm(String nm) {
+		this.nm = nm;
+	}
+
+	public int getPercent() {
+		return percent;
+	}
+
+	public void setPercent(int percent) {
+		this.percent = percent;
+	}
+
+	@Override
+	public void getdetails() {
+	Scanner sc = new  Scanner(System.in);
+	
+	System.out.println("ENTER STUDENT NAME : ");
+	String nam = sc.nextLine();
+	
+	System.out.println("ENTER  PERCENTAGE : ");
+	int per = sc.nextInt();
+	
+	setNm(nam);
+	setPercent(per);
+	
+	}
+
+	@Override
+	public void showdetails() {
+	System.out.println(getNm()+" ");
+    System.out.println(getPercent());
+	}
+}
+
+manager.java:
+package ASS_13;
+
+import java.util.Scanner;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class manager implements PERSON{
+
+	public String nm;
+	public int id;
+	
+	public String getNm() {
+		return nm;
+	}
+
+	public void setNm(String nm) {
+		this.nm = nm;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@Override
+	public void getdetails() {
+	Scanner sc = new  Scanner(System.in);
+	
+	System.out.println("ENTER MANAGER NAME : ");
+	String nam = sc.nextLine();
+	
+	System.out.println("ENTER MANAGER ID : ");
+	int i = sc.nextInt();
+	
+	setNm(nam);
+	setId(i);
+	
+	}
+
+	@Override
+	public void showdetails() {
+	System.out.println(getNm());
+    System.out.println(getId());
+	}
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+14. Make a Spring MVC Project in Maven, Create a registration page where customer Id, firstname, lastname and age is to be taken in the registration form and save data 
+    in the database .After submitting data , display the message "Registration Successful".
+15  Make a program to apply constructor injection using XML and Annotation.
+16  Make a program to apply Setter injection using XML and Annotation.
+17  Create a Spring MVC form where two fields have to be taken as Username & Passord. Username & password can not be null & Password must be 8 characters long. If 
+    Username is "admin" and password is "abcd" then a success.jsp should display the Message as "Welcome admin". If any errors are there in the fields then show the errors
+    on the same page for the text fields.
+18  Create bean class Student and access the functionality in the Student class without using any XML configuration file. Use Java code to define configuration.
