@@ -2172,9 +2172,423 @@ public class manager implements PERSON{
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 14. Make a Spring MVC Project in Maven, Create a registration page where customer Id, firstname, lastname and age is to be taken in the registration form and save data 
     in the database .After submitting data , display the message "Registration Successful".
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 15  Make a program to apply constructor injection using XML and Annotation.
+ Ans:
+  Stationery:
+   package ass15;
+
+public interface Stationery {
+	
+	public String getDetails();
+	public String getyourFortune();
+}
+
+pen:
+package ass15;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+
+public class Pen implements Stationery {
+
+	public FortuneService fs;
+	
+	@Autowired
+	public Pen(FortuneService fs) {
+		this.fs = fs;
+	}
+	
+	@Override
+	public String getDetails() {
+		// TODO Auto-generated method stub
+		return "Message from Pen";
+	}
+	
+	@Override
+	public String getyourFortune() {
+		// TODO Auto-generated method stub
+		return fs.getFortune();
+	}
+}
+
+scale:
+package ass15;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Scale implements Stationery{
+
+	@Override
+	public String getDetails() {
+		// TODO Auto-generated method stub
+		return "Message from Scale";
+	}
+
+	@Override
+	public String getyourFortune() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
+
+test:
+package ass15;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class TestApp {
+
+	public static void main(String[] args) {
+
+		ClassPathXmlApplicationContext context=new ClassPathXmlApplicationContext("applicationContext.xml");
+
+	
+		Stationery s=context.getBean("pen",Stationery.class);
+	
+
+		System.out.println(s.getDetails());
+		
+		System.out.println(s.getyourFortune());
+		
+		context.close();	
+	}
+}
+
+fortuneservice:
+package ass15;
+
+public interface FortuneService {
+	
+	public String getFortune();
+}
+
+happyfortuneservice:
+package ass15;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class HappyFortuneservice implements FortuneService{
+
+	@Override
+	public String getFortune() {
+		// TODO Auto-generated method stub
+		return "ts Your lucky day";
+	}
+}
+
+appliction:
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+     <context:component-scan base-package="ass15"></context:component-scan>
+</beans>
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 16  Make a program to apply Setter injection using XML and Annotation.
+ Ans:
+   Stationery:
+   package ass15;
+
+public interface Stationery {
+	
+	public String getDetails();
+	public String getyourFortune();
+}
+
+pen:
+package ass15;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+
+public class Pen implements Stationery {
+
+	public FortuneService fs;
+	
+	@Autowired
+	public void setFs(FortuneService fs) {
+		this.fs = fs;
+	}
+	
+	@Override
+	public String getDetails() {
+		// TODO Auto-generated method stub
+		return "Message from Pen";
+	}
+	
+	@Override
+	public String getyourFortune() {
+		// TODO Auto-generated method stub
+		return fs.getFortune();
+	}
+}
+
+test:
+package ass15;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class TestApp {
+
+	public static void main(String[] args) {
+
+		ClassPathXmlApplicationContext context=new ClassPathXmlApplicationContext("applicationContext.xml");
+
+	
+		Stationery s=context.getBean("pen",Stationery.class);
+	
+
+		System.out.println(s.getDetails());
+		
+		System.out.println(s.getyourFortune());
+		
+		context.close();	
+	}
+}
+
+fortuneservice:
+package ass15;
+
+public interface FortuneService {
+	
+	public String getFortune();
+}
+
+happyfortuneservice:
+package ass15;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class HappyFortuneservice implements FortuneService{
+
+	@Override
+	public String getFortune() {
+		// TODO Auto-generated method stub
+		return "ts Your lucky day";
+	}
+}
+
+appliction:
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+     <context:component-scan base-package="ass15"></context:component-scan>
+</beans>
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 17  Create a Spring MVC form where two fields have to be taken as Username & Passord. Username & password can not be null & Password must be 8 characters long. If 
     Username is "admin" and password is "abcd" then a success.jsp should display the Message as "Welcome admin". If any errors are there in the fields then show the errors
     on the same page for the text fields.
+ Ans:
+ index.jsp:
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<a href="user/showuser">User Login</a> ||
+
+</body>
+</html>
+
+showuser.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="processform">
+Enter number1<input type="text" name="n1"><br>
+Enter number2<input type="text" name="n2"><br>
+<input type="submit" value="Calculate">
+</form>
+</body>
+</html>
+
+user.java:
+package org.pro;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+public class User {
+
+	@NotNull(message = "Required")
+	@Size(min = 1,message = "Required")
+	private String username;
+	
+	@NotNull(message = "Required")
+	@Pattern(regexp = "^[a-zA-Z0-9]{8}",message = "Password must be of 8 characters")
+	private String password;
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}	
+}
+
+UserController.java:
+package org.pro;
+
+import javax.validation.Valid;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@RequestMapping("/user")
+@Controller
+public class UserController {
+
+	@RequestMapping("/showuser")
+	public String showUser(Model m)
+	{
+		User u=new User();
+		
+		m.addAttribute("user",u);
+		return "userform";
+	}
+	
+	@RequestMapping("/processform")
+	public String processform(@Valid @ModelAttribute("user") User u,BindingResult b)
+	{
+		if(b.hasErrors())
+		{
+			return "userform";
+		}
+		else
+		{
+			if(u.getUsername().equals("admin") && u.getPassword().equals("abcdefgh"))
+			{
+				return "displayuser";
+			}
+			else
+			{
+				return "invaliduser";
+			}
+		}
+	}
+}
+
+displayuser.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>Success</h2>
+</body>
+</html>
+
+invaliduser.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>Invalid user</h2>
+</body>
+</html>
+
+SpringSample-servlet.xml:
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:mvc="http://www.springframework.org/schema/mvc"
+   xsi:schemaLocation="
+   http://www.springframework.org/schema/beans     
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context 
+   http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/mvc  
+   http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+   
+   <!-- Adding Support for Component Scan -->
+   <context:component-scan base-package="org.pro" />
+   
+   <!-- For validation support in the Spring Form -->
+   <mvc:annotation-driven/>
+     
+   <!-- Configure View Resolver -->
+   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix" value="/WEB-INF/views/" />
+      <property name="suffix" value=".jsp" />
+   </bean>
+
+   <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+   <property name="basenames" value="messages"></property>
+   </bean>
+   </beans>
+   
+Web.xml:
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  <servlet-name>SpringSample</servlet-name>
+  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  <init-param>
+  <param-name>contextConfigLocatiion</param-name>
+  <param-value>/WEB-INF/SpringSample-servlet.xml</param-value>
+  </init-param>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>SpringSample</servlet-name>
+  <url-pattern>/</url-pattern>
+  </servlet-mapping>
+</web-app>
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 18  Create bean class Student and access the functionality in the Student class without using any XML configuration file. Use Java code to define configuration.
