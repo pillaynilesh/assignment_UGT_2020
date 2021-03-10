@@ -2453,7 +2453,61 @@ public class Ass_01 {
 	}
 }
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
- Q.54 Create a Singleton class which has a method as fibbonaci() which prints fibbonacci series
+Q.54 Create a Singleton class which has a method as fibbonaci() which prints fibbonacci series
     0 1 1 2 3 5  of 8 terms
-    
+ Ans:
+  package org.prog.Ass;
+
+class SingleTon
+{
+    private static SingleTon s;
+	
+	private SingleTon()
+	{
+		
+	}
+	
+	public static SingleTon getInstance()
+	{
+		s=new SingleTon();
+		return s;
+	}
+	
+	public void fibonaci(int a)
+	{
+		int n1=0,n2=1,n3=0;
+		while ( n3 < a) 
+		{ 	   
+            System.out.println(n1 + " "); 
+  
+            int num3 = n2 + n1; 
+            n1 = n2; 
+            n2 = num3; 
+            n3++; 
+        } 
+	
+}
+}
+
+public class Ass_02 {
+	
+	public void display(SingleTon s,int a)
+	{
+		s.fibonaci(a);
+	}
+	
+
+
+	public static void main(String[] args) {
+		 
+		SingleTon ob=SingleTon.getInstance();
+		
+		Ass_02 obj=new Ass_02();
+		
+		obj.display(ob, 8);
+
+	}
+
+}
+
  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
