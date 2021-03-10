@@ -2404,6 +2404,7 @@ public class Ass_52 {
 	}
 }
  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+								 //Revision//
 Q.53 Write a program to define a functional interface which has a method printAlphabet()
     Create a lambda expression which is invoked on the method.This method accepts the ASCII value 
     of the character 65 to 70 (parameter) . Print all alphabets from 65 to 70.
