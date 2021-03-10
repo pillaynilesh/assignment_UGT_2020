@@ -2404,3 +2404,56 @@ public class Ass_52 {
 	}
 }
  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.53 Write a program to define a functional interface which has a method printAlphabet()
+    Create a lambda expression which is invoked on the method.This method accepts the ASCII value 
+    of the character 65 to 70 (parameter) . Print all alphabets from 65 to 70.
+    65 -- A, 66 -- B,.........
+ Ans:
+ package org.prog.Ass;
+
+interface intf
+{
+	public void printAlphabet(int a, int b);
+}
+
+public class Ass_01 {
+	
+	public void display(int x,int y)
+	{
+		intf ob= new intf() {
+			
+			@Override
+			public void printAlphabet(int a, int b) {
+				int i;
+				if(a==65)
+				{
+					for(i=a;i<(b+1);i++)
+					{
+						System.out.println(i+"--"+((char)i));
+					}
+				}
+				else if (a==90) 
+				{
+					for(i=b;i<(a+1);i--)
+					{
+						System.out.println((char)i);
+					}
+				}
+				
+			}
+		};
+		ob.printAlphabet(x, y);
+	}
+
+	public static void main(String[] args) {
+		
+		Ass_01 obj=new Ass_01();
+		
+		obj.display(65, 90);
+	}
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Q.54 Create a Singleton class which has a method as fibbonaci() which prints fibbonacci series
+    0 1 1 2 3 5  of 8 terms
+    
+ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
