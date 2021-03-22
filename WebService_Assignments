@@ -1,0 +1,698 @@
+1. Create a Web service where a method is returning the sum of digits of a number. Print Sum on the web Page .
+ Ans:
+  classAssignment ca=new classAssignment();
+	
+	//Assignment01
+	@GET
+	@Path("/Assignment01")
+	@Produces("text/plain")
+	public String display()
+	{ 
+		int a,b;
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter n1 :");
+		a=sc.nextInt();
+		System.out.println("Enter n2 :");
+		b=sc.nextInt();
+		
+		int sum=ca.sumOfItem(a, b);
+		
+		sc.close();
+		
+		return "Sum of "+a+" and "+b+" is "+sum;
+	}
+	
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Create a Web Service where inside a method accept fisrtname and lastname from user and display the fullname on the web page.
+ Ans:
+ //Assignment02
+	@GET
+	@Path("/Assignment02")
+	@Produces("text/plain")
+	public String ass02()
+	{ 
+		String a,b;
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter FirstName :");
+		a=sc.nextLine();
+		System.out.println("Enter LastName :");
+		b=sc.nextLine();
+		
+		String FN=ca.fullName(a, b);
+		
+		sc.close();
+		
+		return FN;
+	}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3. Create a Class as Customers. Cid, cname and qty are the members of this class. Create a resource which saves records of 5 products. Make a method which displays
+   all records in the tabular form. Make a method which displays all records in XML form. Make a method which displays the record on the basis of quantity.
+ Ans:
+  Customers.java:
+  package org.prog.assignment03;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class Customers {
+	private int cid;
+	private String cname;
+	private int qty;
+	
+	public Customers() {
+		super();
+	}
+	public Customers(int cid, String cname, int qty) {
+		super();
+		this.cid = cid;
+		this.cname = cname;
+		this.qty = qty;
+	}
+
+	public int getCid() {
+		return cid;
+	}
+
+	public void setCid(int cid) {
+		this.cid = cid;
+	}
+
+	public String getCname() {
+		return cname;
+	}
+
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+
+	public int getQty() {
+		return qty;
+	}
+
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+}
+ package org.prog.assignment03;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+@Path("/Assignment03")
+public class resource_file {
+	
+	List<Customers> l;
+	
+	public resource_file() {
+		
+		l=new  ArrayList<Customers>();
+		l.add(new Customers(101,"Ajay",13));
+		l.add(new Customers(102,"Soham",21));
+		l.add(new Customers(103,"Jay",2));
+		l.add(new Customers(104,"Vijay",0));
+		l.add(new Customers(105,"Digvijay",13));
+	}
+	
+	@GET
+	@Produces("text/html")
+	public String assignment03()
+	{
+		return "<h2>Edit URl </h2>";
+	}
+	
+	
+	 @GET
+	 @Path("/getCustomersXml")
+	 @Produces(MediaType.APPLICATION_XML)
+	 public List<Customers> getCustomersXml()
+	   {
+	     return l;
+	   }
+		 @GET
+	 @Path("/getCustomersHtml")
+	 @Produces(MediaType.TEXT_HTML)
+	 public String getCustomersHtml()
+		{
+		 String t="<table border=2> "  
+					+"<tr><th>Cid</th><th>Cname</th><th>qty</th></tr> ";
+		 String tc="</table>";
+		 String li=null,sum=null;
+			
+		 Iterator<Customers> list=l.iterator();
+			
+			for (Customers cust : l) {
+							li="<tr><td>"+cust.getCid()+"</td><td>"+cust.getCname()+"</td><td>"+cust.getQty()+"</td></tr>";
+							sum=sum+li;
+			}
+			return t+sum+tc;
+		}
+	 
+	 @GET
+	 @Path("getCustomers/{qty}")
+	 @Produces(MediaType.APPLICATION_XML)
+	 public Customers getCustomers(@PathParam("qty") int qty )
+	   {
+	    	int t=0;
+	    	for (Customers  cust : l)
+	    	{
+	    		if(cust.getQty()==qty)
+	    		{
+	    			t=1;
+	    			return cust;
+	    		}
+	    	}
+	    	
+	    	if(t==0)
+	    		return new  Customers(0,"NA",0);
+	    	
+	    	return new Customers();
+	   }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4. Create a form which takes user name and age in the textbox. If age is less than 10 and greater than 20 then display a message as "Not eligible to participate" else
+    print a message "Welcome username ,you are Eligible".
+ Ans:
+  package org.prog.Assignment;
+
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+
+@Path("/Assignment04")
+public class Assignment04 {
+	
+	
+	@GET
+	@Path("/showForm")
+	@Produces(MediaType.TEXT_HTML)
+	public String showForm()
+	{
+		String str="<form action=\"http://localhost:8081/WebService_18_03_2021/webresources/Assignment04/isEligible\" method=\"post\">\r\n" + 
+				"UserName : <input type=\"text\" name=\"UN\"><br>\r\n" + 
+				"Age : <input type=\"number\" name=\"AG\"><br>\r\n" + 
+				"<input type=\"submit\" value=\"Login\">\r\n" + 
+				"</form>";
+		return str;
+	}
+	@POST
+    @Path("/isEligible")
+    @Produces(MediaType.TEXT_HTML)
+    public String isEligible(@FormParam("AG") int age, @FormParam("UN") String un )
+    {
+		if(age<10)
+		{
+			return "<h2>Not eligible to participate</h2>";
+		}
+		else if (age>20)
+		{
+			return "<h2>Not eligible to participate</h2>";
+		}
+		else 
+		{
+			return "<h1>Welcome "+un+" ,you are Eligible</h1>";
+		}
+    }   
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5. Create a web serrvice which takes name and salary of an employee and print name and salary on the console, Use MatrixParam annotation.
+ Ans:
+ //Assignment05
+	@GET
+	@Path("Assignment05/EmployeeInfo")
+	@Consumes(MediaType.TEXT_HTML)
+	public void display2(@MatrixParam("EmpName") String Name,@MatrixParam("EmpSalary") int Salary)
+	{
+		System.out.println("Employee Name"+Name+" Salary "+Salary);
+	}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+6. Make a table Login which has username and Password. Make a Login Page which accepts username & Password. If Username & password matches with the table data then
+   Print Login Successful otherwise print Invalid login.
+ Ans:
+Jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="http://localhost:8081/WebService_18_03_2021/webresources/Assignment06/loginCheck" method="post">
+UserName : <input type="text" name="UN"><br>
+Password : <input type="password" name="PW"><br>
+<input type="submit" value="Login">  
+</form>
+</body>
+</html>
+
+package org.prog.Assignment;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+
+@Path("/Assignment06")
+public class Assignment06 {
+	
+	Connection cn;
+	Statement smt;
+	ResultSet rs;
+	StringBuffer str=new StringBuffer("");
+	
+	@POST
+	@Path("/loginCheck")
+	@Produces(MediaType.TEXT_HTML)
+	public String loginCheck(@FormParam("UN") String un, @FormParam("PW") String pw)
+	{
+		int t=0;
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+	
+			cn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root");
+
+            smt=cn.createStatement();
+			
+			rs=smt.executeQuery("select * from WebserAss6");
+			
+			
+			while(rs.next())
+			{
+				if(un.equals(rs.getString(1)) && pw.equals(rs.getString(2)))
+				{
+					t=1;
+				}
+			}
+			cn.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if (t==1)
+		{
+			return "Wlecome <b>"+un+"</b>, <br> Login Successful";
+		}
+		else 
+		{
+			return "<h2>Invalid login</h2>";
+		}	
+	}
+	
+	@GET
+	@Path("/displayData")
+	@Produces(MediaType.TEXT_HTML)
+	public String displayData()
+	{
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+	
+			cn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root");
+
+			smt=cn.createStatement();
+			
+			rs=smt.executeQuery("select * from WebserAss6");
+			
+		
+			while(rs.next())
+			{
+				str=str.append("<h4>"+rs.getString(1)+" "+rs.getString(2)+"</h4>");
+				
+			}
+		
+			cn.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return str.toString();
+	}
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+7. Write a program to perform CRUD operations in Database using Hibernate. 
+ Ans:
+ Student.java(POJO Class):
+ package org.prog.assignment07;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "WebSerAss07")
+public class Student {
+	
+	@Id
+	@Column(name = "RollNo")
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	int RollNo;
+	
+	@Column(name = "Name")
+	String Name;
+
+	public Student() {
+		super();
+	}
+
+	public Student(int RollNo, String Name) {
+		super();
+		this.RollNo = RollNo;
+		this.Name = Name;
+	}
+
+	public int getRollNo() {
+		return RollNo;
+	}
+
+	public void setRollNo(int RollNo) {
+		this.RollNo = RollNo;
+	}
+
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String Name) {
+		this.Name = Name;
+	}
+}
+hibernate.cfg.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hbm2ddl.auto">update</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.username">system</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+        <property name="show_sql">true</property>
+    </session-factory>
+</hibernate-configuration>
+
+package org.prog.assignment07;
+
+import java.util.List;
+
+import javax.persistence.Query;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+@Path("/Assignment07")
+public class Assignment07 {
+	
+	
+	@GET
+	@Produces("text/html")
+	public String assignment07()
+	{
+		return "<h2>Edit URl !!</h2>";
+	}
+	
+	@POST
+	@Path("/saveData/{roll}/{name}")
+	@Produces(MediaType.TEXT_HTML)
+	public String saveData(@PathParam("roll") int roll,@PathParam("name") String name)
+	{
+		SessionFactory sf=new Configuration().configure().addAnnotatedClass(Student.class).buildSessionFactory();
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		Student p=new Student();
+		p.setRollNo(roll);
+		p.setName(name);
+		
+		s.save(p);
+		
+		s.getTransaction().commit();
+
+		s.close();
+		sf.close();
+		
+		return "<h3>Record Save ...</h3>";
+	}
+	
+	@GET
+	@Path("/showdata")
+	@Produces(MediaType.TEXT_HTML)
+	public String showdata()
+	{
+		SessionFactory sf=new Configuration().configure().addAnnotatedClass(Student.class).buildSessionFactory();
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		Query q=s.createQuery("from Student");
+		List<Student> l=q.getResultList();
+			
+		StringBuffer sb=new StringBuffer("");
+	
+		for (Student Student : l) {
+			sb=sb.append("<h4>"+Student.getRollNo()+" : "+Student.getName()+"</h4>");
+			System.out.println(sb);
+		}
+	
+		s.close();
+		sf.close();
+		return sb.toString();
+	}
+
+	@Path("/updateDate/{roll}/{name}")
+	@PUT
+	@Produces(MediaType.TEXT_HTML)
+	public String updateData(@PathParam("roll") int RollNo,@PathParam("name") String Name)
+	{	
+		SessionFactory sf=new Configuration().configure().addAnnotatedClass(Student.class).buildSessionFactory();
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		Query q=s.createQuery("update Student set Name='"+Name+"' where RollNo="+RollNo+"");
+	
+		q.executeUpdate();
+	
+		s.close();
+		sf.close();
+		return "<h3>Record updated..</h3>";
+	}
+
+	@Path("/deleteData/{roll}")
+	@DELETE
+	@Produces(MediaType.TEXT_HTML)
+	public String deleteData(@PathParam("roll") int RollNo)
+	{	
+		SessionFactory sf=new Configuration().configure().addAnnotatedClass(Student.class).buildSessionFactory();
+		
+		Session s=sf.openSession();
+		
+		s.beginTransaction();
+		
+		Query q=s.createQuery("delete from Student where RollNo="+RollNo+"");
+	
+		q.executeUpdate();
+	
+		s.close();
+		sf.close();
+		return"<h3>Record deleted ..</h3>";
+	}
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+8. Take name, gender and city of a person in the URL as a Query String. If gender is Male then a message should be displayed as " Welcome Mr. name , you are from INDIA".
+   If gender is Female then a message should be displayed as "Welcome Ms. name, you are from USA". Country name should be displayed based on the city. For example if the
+   city is Mumbai the Country is INDIA.
+   Make the same program using @FormParam
+ Ans:
+ jsp:
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="http://localhost:8081/WebService_18_03_2021/webresources/Assignment08/airPortInfoByForm" method="post">
+Name : <input type="text" name="name"><br>
+Gender : <input type="radio" value="Male" name="gender">Male<input type="radio" value="Female" name="gender">Female<input type="radio" value="other" name="gender">Other<br>
+Country :  
+<select name="country">
+    <option selected>Select Country....</option>
+    <option value="India">India</option>
+    <option value="USA">USA</option>
+    <option value="other">Other</option>
+    </select><br>
+<input type="submit" value="Login">  
+</form>
+</body>
+</html>
+ 
+ 
+ package org.prog.Assignment;
+
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+
+@Path("/Assignment08")
+public class Assignment08 {
+	
+	
+	@GET
+	@Produces("text/html")
+	@Path("/airPortInfo")
+	public String airportInfo(@QueryParam("name") String name,@QueryParam("gender") String gender,@QueryParam("city") String city)
+	{
+		String a,b;
+		if(gender.equalsIgnoreCase("Male"))
+		{
+			a="Welcome Mr. "+name;
+		}
+		else if (gender.equalsIgnoreCase("Female")) 
+		{
+			a="Welcome Miss/Ms. "+name;
+		}
+		else 
+		{
+			a="Welcome "+name+"!!";
+		}
+		
+		if(city.equalsIgnoreCase("Mumbai"))
+		{
+			b="you are from INDIA";
+		}
+		else if (city.equalsIgnoreCase("New York City"))
+		{
+			b=", you are from USA";
+		}
+		else
+		{
+			b="World is our Stage";
+		}
+		return "<h2> "+a+b+"</h2>";
+	}
+	
+	@POST
+	@Produces("text/html")
+	@Path("/airPortInfoByForm")
+	public String airportInfoByForm(@FormParam("name") String name,@FormParam("gender") String gender,@FormParam("country") String country)
+	{
+		String a,b;
+		if(gender.equalsIgnoreCase("Male"))
+		{
+			a="Welcome Mr. "+name;
+		}
+		else if (gender.equalsIgnoreCase("Female")) 
+		{
+			a="Welcome Miss/Ms. "+name;
+		}
+		else 
+		{
+			a="Welcome "+name+"!!";
+		}
+		
+		if(country.equalsIgnoreCase("India"))
+		{
+			b="You are from INDIA";
+		}
+		else if (country.equalsIgnoreCase("USA"))
+		{
+			b=", You are from USA";
+		}
+		else
+		{
+			b="You are NRI , So World is our Stage";
+		}
+		return "<h2> "+a+b+"</h2>";
+	}
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Comman Files:
+classAssignment.java:
+package org.prog.Assignment;
+
+public class classAssignment {
+	
+	public int sumOfItem(int a, int b)
+	{
+		return a+b;	
+	}
+	
+	public String fullName(String fn,String ln)
+	{
+		return fn+" "+ln;
+	}
+}
+Web.Xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This web.xml file is not required when using Servlet 3.0 container, 
+     see implementation details http://jersey.java.net/nonav/documentation/latest/jax-rs.html#d4e194 -->
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <servlet>
+        <servlet-name>Jersey Web Application</servlet-name>
+        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-value>org.prog</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Jersey Web Application</servlet-name>
+        <url-pattern>/webresources/*</url-pattern>
+    </servlet-mapping>
+</web-app>
+
