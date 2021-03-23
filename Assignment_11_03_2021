@@ -1,0 +1,146 @@
+  
+Q.1 Create a Spring core Project using Maven where Calculate the Factorial of any Entered number by the user.
+       Create SpringContainer, SetterInjection, AppConfiguration and FactorialService Classes where FactorialService class 
+       is returning the factorial of the entered number. Use Setter Dependency Injection concept. Use Annotation Based 
+      configuration.
+  Ans:
+   fac.java:
+   package org.prog.assignment01;
+
+import org.springframework.stereotype.Component;
+
+@Component("fac")
+public class fac {
+
+	public  int fac_value(int n)
+	{
+		int res = 1;
+		int num = n;
+		
+		for(int i=1;i<=num;i++)
+		{
+			res *= i;
+		}
+		
+		return res;
+	}
+}
+
+Setter_inj.java:
+package org.prog.assignment01;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component("setter")
+public class Setter_inj {
+
+	fac fs;
+
+	@Autowired
+	public void setFs(fac fs) {
+		this.fs = fs;
+	}
+	
+	public int getfac(int num)
+	{
+		return fs.fac_value(num);
+	}
+	
+}
+testServlet.java:
+doGet:
+PrintWriter out = response.getWriter();
+		int numb = Integer.parseInt(request.getParameter("num"));
+		
+		ApplicationContext ap = new ClassPathXmlApplicationContext("Appconfig.xml");
+		
+		Setter_inj si = ap.getBean("setter",Setter_inj.class);
+		
+		out.print("FACTORIAL OF THE NUMBER : "+si.getfac(numb));
+    
+    Appcon.xml:
+    <?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+   xsi:schemaLocation="
+   http://www.springframework.org/schema/beans    
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd
+   http://www.springframework.org/schema/mvc
+   http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+   
+   <context:component-scan base-package="P1"></context:component-scan>
+   </beans>
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q.2 Create a Spring core Project using Maven where create 5 classes and 1 interface. Make an interface named as operation
+       Create AppConfiguaration Class, Create Addition and StringLength classes. Addition Class returns the addition as a 
+       result and StringLength class returns the length of the defined string. Create a ConstructorInjection class which injects
+       the dependency in the constructor. Create a SpringContainer class which is executed first to get the desired result. 
+       Calculate Addition of two numbers and String length of the defined string based on the dependency.
+   
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.3 Create a Spring core Project using Maven where create a Bean class named as Employee which has two member 
+        variables firstName and lastName and getter, setter methods. Create applicationContext.xml file which sets the
+        values for firstName and lastName. Create a SpringContainer class which concatenates the firstName and lastName 
+        and displays the full name. 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.4  Create a Dynamic web Project using Maven and Create the following forms:
+        a) Make a User.jsp which takes the details of students like rollno, name and city(Dropdown List).
+        b) Make a UserCtl servlet class which gets the details from User.jsp and creates a session and sets the values of 
+            rollno ,name and city in session object.
+        c) Make Details.jsp which gets the values for rollno, name and city from session object and prints All details.
+     Note : If roll number is 101, 102 or 103 then Details.jsp Prints all Details otherwise prints a message "Not a valid User"
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.5 Create a Dynamic Web Project using JSTL in which make two JSP Pages .Form1.jsp and Display.jsp
+       Form1.jsp has one text box and a submit button. When clicked on submit button, Display.jsp page is called .Display.jsp Page 
+       displays the result according to entered number. For example ,If number entered is 5 then result will be 5 6 7 8 9.....
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.6 Write a Program to create an ArrayList of 3 numbers and find the minimum of the these numbers and display it.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.7 Create a class Result which has a synchronised getPercentage() method. There are two classes for a student1 and student2 which are calling the getPercentage()
+    method in the run() method. Create 2 Thread objects in the Main class and a start the threads . Print Percentage Student wise.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.8 Create a custom Exception class named as EmailException. Throw an exception of EmailException if email length is zero.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.9 Make an interface Area. Make two classes Radius and Circle.In Area , Take a method show(), In Class Radius ,define a method getRadius() which takes radius and 
+    returns the area of circle as a value. Class Circle inherits Radius and implements the Area. Display the area of circle returned by getRadius().
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.10 Create a TreeSet object in which add 3 color names. Display all color names in Descending order and Remove any one color from the set.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.11 Write a program to create an interface Sports in which methods are getGameName(), getNoOfPlayers(),showPlayerDetails() . One interface member variable is
+     country1="India", country2="SA". Make classes Cricket, football which implements this interface. In showPlayerDetails() , display details of player like 
+     CountryName,GameName PlayerName,TotalPlayers.
+ 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.12 Make a Class Student ,In this Class create one Inner Class as Percentage.In Percentage class a method which returns the percentage of a student.Marks of 5 
+     subjects should be taken in the method of student.Make a method showDetails in the Student Class which shows the Percentage of the student.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.13 Create a class EmpDetails . Member variables of this class are EmpID, EmpName, EmpAge,EmpSalary. Create a method getDetails() which takes the details for an 
+     employee. Throw an exception if the EmpName is null ,If age is less then 18 using multi catch block.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.14 Create a class which takes a string as a parameter in Parameterised constructor and perform the following operations using stringBuffer class: 
+       a) Print the reverse of the string
+       b) concatenate a string Hello to the string taken in the constructor
+       c) Compare the taken string with any string.
+       d) Find substring "llo" from "Hello"
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q.15  Create a Class Addition where a parameterised constructor takes a double and an integer value. Create a child class of Addition which has a constructor which 
+      passes two numbers to the constructor of the Addition class . Define a method showSum() in the child class which displays the addition of two numbers
