@@ -83,13 +83,182 @@ Q.2 Create a Spring core Project using Maven where create 5 classes and 1 interf
        result and StringLength class returns the length of the defined string. Create a ConstructorInjection class which injects
        the dependency in the constructor. Create a SpringContainer class which is executed first to get the desired result. 
        Calculate Addition of two numbers and String length of the defined string based on the dependency.
-   
+  Ans:
+  addition.java:
+  package org.prog.assignment02;
+
+public class addition {
+    public int num1,num2;
+    
+	public int getNum1() {
+		return num1;
+	}
+
+	public void setNum1(int num1) {
+		this.num1 = num1;
+	}
+
+	public int getNum2() {
+		return num2;
+	}
+
+	public void setNum2(int num2) {
+		this.num2 = num2;
+	}
+
+	public int sum()
+	{
+		return num1+num2;
+	}
+}
+
+strlength.java:
+package org.prog.assignment02;
+
+import java.util.Scanner;
+
+public class strlength {
+
+	public int getstringlen()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("ENTER THE STRING VALUE : ");
+		String st = sc.nextLine();
+		sc.close();
+		return st.length();
+	}
+}
+con_inj.java:
+package org.prog.assignment02;
+
+public class con_inj {
+    addition add;
+    strlength str;
+	public con_inj(addition ad,strlength st)
+	{
+		this.add = ad;
+		this.str = st;
+	}
+	
+	public int getadd(int n1,int n2)
+	{
+		add.setNum1(n1);
+		add.setNum2(n2);
+		return add.sum();
+	}
+	
+	public int getstr()
+	{
+		return str.getstringlen();
+	}
+}
+appconfig.java:
+package org.prog.assignment02;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class app_config {
+
+	@Bean
+	public addition getA()
+	{
+		return new addition();
+	}
+
+	@Bean
+	public strlength getS()
+	{
+		return new strlength();
+	}
+	
+	@Bean
+	public con_inj getcon()
+	{
+		return new con_inj(getA(),getS());
+	}
+}
+
+test_servlet.java:
+doGet:
+PrintWriter out = response.getWriter();	
+		
+		int n1 = Integer.parseInt(request.getParameter("n1"));
+		
+		int n2 = Integer.parseInt(request.getParameter("n2"));
+		
+	    AnnotationConfigApplicationContext af = new AnnotationConfigApplicationContext(app_config.class);
+	    
+	    con_inj con = af.getBean("getcon",con_inj.class);
+	    out.print("ADDITION OF THE NUMBERS : "+con.getadd(n1, n2));
+	    
+	    out.print("LENGTH OF THE STRING : "+con.getstr());
+	    
+	    af.close();
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.3 Create a Spring core Project using Maven where create a Bean class named as Employee which has two member 
         variables firstName and lastName and getter, setter methods. Create applicationContext.xml file which sets the
         values for firstName and lastName. Create a SpringContainer class which concatenates the firstName and lastName 
         and displays the full name. 
+Ans:
+employee.java:
+public class employee {
 
+	public String firstname;
+	
+	public String lastname;
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}	
+}
+
+appconfig.xml:
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+   xsi:schemaLocation="
+   http://www.springframework.org/schema/beans    
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd
+   http://www.springframework.org/schema/mvc
+   http://www.springframework.org/schema/mvc/spring-mvc">
+   <bean id="emp" class="P3.employee">
+   <property name="firstname" value="ABHISHEK"></property>
+   <property name="lastname" value="PILLAI"></property>
+   </bean>
+   </beans>
+
+test_main.java:
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class test_main {
+
+	public static void main(String[] args) {
+   ClassPathXmlApplicationContext ca = new ClassPathXmlApplicationContext("appconfig3.xml");
+   
+   employee em = ca.getBean("emp",employee.class);
+   System.out.println("MY NAME IS : "+em.getFirstname()+" "+em.getLastname());
+   
+   ca.close();
+	}
+}
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.4  Create a Dynamic web Project using Maven and Create the following forms:
         a) Make a User.jsp which takes the details of students like rollno, name and city(Dropdown List).
@@ -97,50 +266,665 @@ Q.4  Create a Dynamic web Project using Maven and Create the following forms:
             rollno ,name and city in session object.
         c) Make Details.jsp which gets the values for rollno, name and city from session object and prints All details.
      Note : If roll number is 101, 102 or 103 then Details.jsp Prints all Details otherwise prints a message "Not a valid User"
+ Ans:
+ User.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="UserCtl">
+ENTER ROLLNO <input type="number" name="rollno"><br>
+ENTER NAME <input type="text" name="nm"><br>
+ENTER CITY <select name="cy"><br>
 
+<optgroup label="MAHARASHTRA">
+<option  value="Pune">PUNE</option>
+<option  value="Mumbai">MUMBAI</option></optgroup>
+<optgroup label="KERALA">
+<option  value="Kollam">KOLLAM</option>
+<option  value="Kannur">KANNUR</option></optgroup>
+
+</select>
+
+<input type="submit" value="SUBMIT">
+</form>
+</body>
+</html>
+
+UserCtl.java:
+
+doGet:
+PrintWriter out = response.getWriter();
+		
+	int rollno = Integer.parseInt(request.getParameter("rollno"));
+	
+	String name = request.getParameter("nm");
+		
+	String city = request.getParameter("cy");
+	
+	HttpSession session = request.getSession();
+	
+	if(rollno !=0)
+	{
+	session.setAttribute("roll", rollno);
+	session.setAttribute("nm",name);
+	session.setAttribute("cy",city);
+	
+	response.sendRedirect("details.jsp");
+	}
+	
+	else
+	{
+		out.print("Not a valid user");
+	}
+}
+	
+details.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+
+Integer rn=(Integer) session.getAttribute("roll");
+int rollno = rn.intValue();
+
+String nm =(String) session.getAttribute("nm");
+String city= (String)session.getAttribute("cy");
+
+out.print("ROLLNO : "+rollno+"<br>");
+out.print("NAME : "+nm+"<br>");
+out.print("CITY : "+city+"<br>");
+
+%>
+</body>
+</html>
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.5 Create a Dynamic Web Project using JSTL in which make two JSP Pages .Form1.jsp and Display.jsp
        Form1.jsp has one text box and a submit button. When clicked on submit button, Display.jsp page is called .Display.jsp Page 
        displays the result according to entered number. For example ,If number entered is 5 then result will be 5 6 7 8 9.....
+ Ans:
+ form.jsp:
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="display.jsp">
+NUMBER <input type="number" name="nm">
+<input type="submit" value="SUBMIT">
+</form>
+</body>
+</html>
+
+display.jsp:
+<%@page import="java.io.PrintWriter"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+int num= Integer.parseInt(request.getParameter("nm"));
+
+for(int n=num;n<=num+4;n++)
+{
+	out.print(n+" ");
+}
+out.print(". . . . .");
+
+%>
+</body>
+</html>
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.6 Write a Program to create an ArrayList of 3 numbers and find the minimum of the these numbers and display it.
+  Ans:
+  package org.prog;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class assignmentQ6 {
+
+	public static void main(String[] args) {
+		ArrayList<Integer> arr = new ArrayList<Integer>();
+		
+		arr.add(40);
+		arr.add(80);
+		arr.add(10);
+		
+		System.out.println(arr);
+		
+		int min = arr.get(0); 
+		int n = arr.size();
+		 for (int i = 1; i < n; i++) 
+		 { 
+	            if (arr.get(i) < min) 
+	            { 
+	                min = arr.get(i); 
+	            } 
+	     } 
+		 System.out.println("Minimum is : " + min);
+	}
+}
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.7 Create a class Result which has a synchronised getPercentage() method. There are two classes for a student1 and student2 which are calling the getPercentage()
     method in the run() method. Create 2 Thread objects in the Main class and a start the threads . Print Percentage Student wise.
+ Ans:
+ package org.prog;
 
+import java.util.Scanner;
+
+class result implements Runnable{
+
+	public  void run() {
+		
+	System.out.println("The percentage of "+Thread.currentThread().getName()+" :-> "+getmarks());
+	System.out.println("---------------------------------------");
+	
+	}
+	synchronized int getmarks()
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		int i, m1=0,sum=0;
+		
+		for(i=0;i<5;i++)
+		{
+		   System.out.println("Enter Marks for Subject "+(i+1)+" : ");
+		   m1 = sc.nextInt();
+		   sum=sum+m1;
+		}
+		
+		int per = sum / 5;
+		return per;
+	}
+}
+
+public class assignmentQ7 {
+
+	public static void main(String[] args) {
+	    
+		result st1 = new result();
+	    Thread t1 = new Thread(st1);
+	    t1.setName("student 1");
+	    t1.start();
+		   
+	    Thread t2 = new Thread(st1);
+	    t2.setName("student 2");
+	    t2.start();
+	}
+}
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.8 Create a custom Exception class named as EmailException. Throw an exception of EmailException if email length is zero.
+ Ans:
+ package org.prog;
 
+import java.util.Scanner;
+
+class EmailException extends Exception{
+	public EmailException()
+	{
+		System.err.println("Email ID length is zero , Should not be keep empty !!");
+	}
+}
+
+public class assignmentQ8 {
+
+	public String ema;
+	public void method(String email){
+		this.ema = email;
+		 
+	try {
+    	  if(ema.length()==0 || ema.equals(" "))
+    	  {
+    		  throw new EmailException();
+    	  }
+    	  else
+    	  {
+        	  System.out.println(" Welcome "+ema+", To the World of fun With Eclipse IDE");
+    	  }
+      }
+	catch(EmailException em)
+	{
+		em.printStackTrace();
+	}
+  }
+	public static void main(String[] args) {
+		assignmentQ8 as =new assignmentQ8();
+		String em;
+		Scanner sc = new Scanner(System.in);
+	    
+	    System.out.println("Enter Your Email ID : ");
+	    em = sc.nextLine();
+	    
+	    as.method(em);
+		sc.close();
+	}
+}
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.9 Make an interface Area. Make two classes Radius and Circle.In Area , Take a method show(), In Class Radius ,define a method getRadius() which takes radius and 
     returns the area of circle as a value. Class Circle inherits Radius and implements the Area. Display the area of circle returned by getRadius().
+ Ans:
+
+ package org.prog.assignment09;
+
+public interface Area {
+	public float show(float f);
+}
+package org.prog.assignment09;
+
+import java.util.Scanner;
+
+class radius {
+	public float getradius(float rad)
+	{
+		float pi = (float) 3.14;
+		float area =  pi * rad * rad;
+		return area;
+	}
+}
+
+class circle extends radius implements Area{
+	radius r = new radius();
+	
+	public float show(float rad) {
+		return r.getradius(rad);
+	}
+}
+
+public class Areaclass {
+
+	public static void main(String[] args) {
+		 circle c = new circle();
+		    Scanner sc = new Scanner(System.in);
+		    
+		    System.out.println("ENTER THE RADIUS : ");
+		    float radius = sc.nextFloat();
+		    
+		    System.out.println("AREA OF THE CIRCLE IS : "+c.show(radius));
+		    sc.close();
+
+	}
+
+}
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.10 Create a TreeSet object in which add 3 color names. Display all color names in Descending order and Remove any one color from the set.
+ Ans:
+ package org.prog;
 
+import java.util.Iterator;
+import java.util.TreeSet;
+
+public class assignmentQ10 {
+
+	public static void main(String[] args) {
+		TreeSet<String> ts=new TreeSet<String>();
+        
+        ts.add("Red");
+        ts.add("Blue");
+        ts.add("Black");
+        
+        System.out.println(ts);
+        
+        
+        
+        Iterator<String> it=ts.descendingIterator();
+        
+        while(it.hasNext())
+        {
+            System.out.print(it.next()+" ,");
+        }
+        
+        System.out.println();
+
+
+        ts.pollFirst();  
+        System.out.println(ts);
+
+	}
+}
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.11 Write a program to create an interface Sports in which methods are getGameName(), getNoOfPlayers(),showPlayerDetails() . One interface member variable is
      country1="India", country2="SA". Make classes Cricket, football which implements this interface. In showPlayerDetails() , display details of player like 
      CountryName,GameName PlayerName,TotalPlayers.
+ Ans: 
+ Sports.java:
+ package org.prog.assignmentQ11;
+
+public interface Sports {
+	
+	public String country1="INDIA";
+	public String country2="USA";
+	
+	public String getGameName();
+	public int getNoOfPlayers();
+	public void showPlayerDetails();
+}
+Cricket.java:
+package org.prog.assignmentQ11;
+
+public class Cricket  implements Sports {
+	@Override
+	public String getGameName() {
+		return "Cricket";
+	}
+
+	@Override
+	public int getNoOfPlayers() {
+		return 9;
+	}
+	
+	
+	public String getPlayerName()
+	{
+		return "MS.DHONI";
+	}
+
+	@Override
+	public void showPlayerDetails() {
+		
+		System.out.println("Country Nmae : "+country1);
+		System.out.println("Game Name : "+getGameName());
+		System.out.println("Players Name: "+getPlayerName());
+		System.out.println("No Of Players : "+getNoOfPlayers());	
+	}
+}
+Football.java:
+package org.prog.assignmentQ11;
+
+public class Football implements Sports{
+	@Override
+	public String getGameName() {
+		return null;
+	}
+
+	@Override
+	public int getNoOfPlayers() {
+		return 0;
+	}
+	
+	public String getPlayerName()
+	{
+		return "LIONE Messi";
+	}
+
+	@Override
+	public void showPlayerDetails() {
+		System.out.println("Country Nmae : "+country1);
+		System.out.println("Game Name : "+getGameName());
+		System.out.println("Players Name: "+getPlayerName());
+		System.out.println("No Of Players : "+getNoOfPlayers());
+	
+	}
+}
+test.java:
+package org.prog.assignmentQ11;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class test {
+
+	public static void main(String[] args) {
+
+		ClassPathXmlApplicationContext context=new ClassPathXmlApplicationContext("applicationContext.xml");
+		
+		Sports s=context.getBean("sport",Sports.class);
+		
+		s.showPlayerDetails();
+	
+		context.close();
+	}
+
+}
+applicationContext.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="sport" class="org.prog.assignmentQ11.Cricket">
  
+    </bean>
+
+</beans>
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.12 Make a Class Student ,In this Class create one Inner Class as Percentage.In Percentage class a method which returns the percentage of a student.Marks of 5 
      subjects should be taken in the method of student.Make a method showDetails in the Student Class which shows the Percentage of the student.
+ Ans:
+  package org.prog;
 
+import java.util.Scanner;
 
+class student
+{
+	public int sum=0;
+	public float addition()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter Marks 1  :  ");
+		int m1 = sc.nextInt();
+
+		sum=sum+m1;
+		//System.out.println(sum);
+		
+		System.out.println("Enter Marks 2  :  ");
+		m1 = sc.nextInt();
+		
+		sum=sum+m1;
+		//System.out.println(sum);
+		
+		System.out.println("Enter Marks 3  :  ");
+		m1 = sc.nextInt();
+		
+		sum=sum+m1;
+		//System.out.println(sum);
+		
+		System.out.println("Enter Marks 4  :  ");
+		m1 = sc.nextInt();
+		
+		sum=sum+m1;
+		//System.out.println(sum);
+		
+		System.out.println("Enter Marks 5  :  ");
+		m1 = sc.nextInt();
+		
+		sum=sum+m1;
+		//System.out.println(sum);
+		
+		sc.close();
+		
+		float per =sum/5;
+		
+		return per;
+		
+	   }
+	class percentage{
+		public float percent()
+		{
+			return addition();
+		}
+	}
+}
+
+public class assignmentQ12 {
+
+	public static void main(String[] args) {
+		student st = new student();
+		
+		student.percentage p1 = st.new  percentage();
+		    
+		System.out.println("Percentage of the student : "+p1.percent());
+
+	}
+
+}
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.13 Create a class EmpDetails . Member variables of this class are EmpID, EmpName, EmpAge,EmpSalary. Create a method getDetails() which takes the details for an 
      employee. Throw an exception if the EmpName is null ,If age is less then 18 using multi catch block.
+ Ans:
+ package org.prog;
 
+import java.util.Scanner;
+
+class EmptyEmpInfo extends Exception{
+	public EmptyEmpInfo() 
+	{
+		System.err.println("Employee Name OR Employee Age can not be NULL !!");
+	}
+}
+
+public class assignmentQ13 {
+public int EmpID;
+	
+	public String EmpName;
+	
+	public int EmpAge;
+	
+	public int EmpSalary;
+	
+	public void getdetails(int id,String nm,int age,int sal)
+	{	
+		try {
+		   if(age <= 18 || nm.length()==0 || nm.equals(" "))
+		    {
+			throw new EmptyEmpInfo();
+		    }
+			else 
+			{
+			this.EmpID = id;
+			this.EmpAge = age;
+			this.EmpName = nm;
+			this.EmpID = id;
+			this.EmpSalary = sal;
+			
+			System.out.println("Employee ID   :  "+EmpID);
+			System.out.println("Employee Name   :  "+EmpName);
+			System.out.println("Employee Age   :  "+EmpAge);
+			System.out.println("Employee Salary   :  "+EmpSalary);
+		    }
+         }
+		catch(EmptyEmpInfo in)
+		{
+			in.getMessage();
+		}  
+}
+	
+
+	public static void main(String[] args) {
+		assignmentQ13 as =new assignmentQ13();
+		
+		String nm;
+		int id,age,sal;
+		
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println(" Enter Employee ID : ");
+		id=sc.nextInt();
+		
+		sc.nextLine();
+		
+		System.out.println("Enter Employee Name : ");
+		nm=sc.nextLine();
+		
+		sc.nextLine();
+
+		System.out.println("Enter Employee Age : ");
+		age=sc.nextInt();
+		
+		System.out.println("Enter Employee Salary : ");
+		sal=sc.nextInt();
+		
+		as.getdetails(id, nm, age, sal);
+		
+	}
+}
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.14 Create a class which takes a string as a parameter in Parameterised constructor and perform the following operations using stringBuffer class: 
        a) Print the reverse of the string
        b) concatenate a string Hello to the string taken in the constructor
        c) Compare the taken string with any string.
        d) Find substring "llo" from "Hello"
+ Ans:
+ package org.prog;
 
+public class assignmentQ14 {
+
+	public static void main(String[] args) {
+		StringBuffer obj1=new StringBuffer("ANNA");
+		StringBuffer obj2=new StringBuffer("Hello");
+		
+		
+		System.out.println(obj1);
+		
+		System.out.println(obj1.reverse());
+	
+	
+		System.out.println(obj1.append("Hello"));
+		System.out.println(obj1==obj2);
+		
+		System.out.println(obj2.substring(2));
+
+	}
+}
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Q.15  Create a Class Addition where a parameterised constructor takes a double and an integer value. Create a child class of Addition which has a constructor which 
       passes two numbers to the constructor of the Addition class . Define a method showSum() in the child class which displays the addition of two numbers
+ Ans:
+ package org.prog;
+
+class Addition {
+	public double a;
+	public int b;
+	
+	public Addition(double a, int b) {
+		super();
+		this.a = a;
+		this.b = b;
+	}
+}
+	
+
+public class assignmentQ15 extends Addition {
+
+	public assignmentQ15(double a, int b) {
+		super(a, b);
+	}
+	
+	public void showSum()
+	{
+		System.out.println("The Sum of "+a+" and "+b+" is "+(a+b));
+	}
+
+	public static void main(String[] args) {
+		assignmentQ15 obj =new assignmentQ15(10.567,10);
+		
+		obj.showSum();
+
+	}
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
