@@ -1,22 +1,49 @@
 1) Create a folder in home directory and create 5 files out of which two files are docs and 3 files are text files. 
-  a) find the current path of home.
-  b) change path from home to that folder.
+ Ans:
+ mkdir ~/folder
+ touch ab.doc bc.doc cd.txt de.txt ef.txt
+ a) find the current path of home.
+ => pwd
+ b) change path from home to that folder.
+ =>  cd folder
  c) list only doc files.
+ => ls *.doc
  d) list all files
+ => ls *.*
  e) Go to home directory
-
+ => ~
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 2) Make a folder MyFolder on Desktop and Do following operations :
+ Ans:
+ mkdir Desktop/MyFolder
   a) Create two Folders folder1 and folder2 inside MyFolder.
+  => mkdir folder1 folder2
   b) Create 2 files as A.txt and B.txt in folder1 using touch command 
+  => touch foler1/A.txt
+     touch foler1/B.txt
   c) Write some contents in A.txt and B.txt using cat command.
+  => cat > folder1/A.txt
+     cat > folder1/B.txt
   d) Again Write contents in A.txt without overwriting previous contents.
+  => cat >> folder1/A.txt
   e) Write some contents in B.txt on overwriting its previous contents.
+  => cat > folder1/B.txt
   f) Create two files as C.txt and D.txt in folder2 inside MyFolder.
+  => mkdir MyFolder
+     mkdir MyFolder/folder2
+     touch MyFolder/folder2/C.txt
+     touch MyFolder/folder2/D.txt
   g) copy A.txt  from folder1 to folder2 with same name as A.txt.
+  => cp folder1/A.txt folder2/
   h) copy the file A.txt from folder2 into home folder.
+  => cp folder2/A.txt ~
   i) List all files in folder2 and folder1.
+  => ls folder2 folder1
   j) copy file D.txt from folder2 into folder1 with different name as E.txt.
- 
+  => touch folder2/D.txt
+   cp folder2/D.txt folder1/E.txt
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 3) Create a file where Product details in following manner :
         Use cat to create a file named as product.txt
         Laptop 30000
@@ -25,37 +52,72 @@
         PAN-Drive 300
        
       Search Products by name and by price.
+  Ans:
+     cat > product.txt
+     Laptop 30000
+     Mouse 250
+     Keyboard 300
+     PAN-Drive 300
+     grep Laptop product.txt 
+     grep 30000 product.txt
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-4) a)  create two users user1 and user2 .
-       b) Add user user1 to user2 group.
-       c) Create a file file.txt in user2 Desktop.
-       d) Remove write permission from the group of user2.
-       e) Access file.txt from user1 Account. 
-
+4) 
+Ans:
+  a)  create two users user1 and user2 .
+  =>  sudo su
+      sudo adduser user1
+      sudo adduser user2 
+  b) Add user user1 to user2 group.
+  =>  sudo usermod -a -G user1 user2 
+  c) Create a file file.txt in user2 Desktop.
+  =>  touch file.txt
+  d) Remove write permission from the group of user2.
+  =>  chmod     
+ e) Access file.txt from user1 Account. 
+ =>  sudo su ==> login ==> user1 ==> cat file.txt
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 5) Create a folder in home directory and change its permission to 444.
-
+ Ans: mkdir ~/folder
+      chmod 444 ~/folder
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 6)  Do the following :
-       a)  Search a word "Hello" in a file.
-       b)  Find all files and its sub directories in the home folder.
-            Find only files.
-       c)  Replace Hi with Hello in a file.
-       d)  Create a file in user1 and remove read permission for a file and access
-             this file from other user.
-       e)  Create a file with permission 554.
-        f)  Copy a file contents into the file opened in nano editor.
-
+ Ans:
+  a)  Search a word "Hello" in a file.
+  =>  grep Hello file.txt
+  b)  Find all files and its sub directories in the home folder.
+     Find only files.
+  =>  ls ~/*.*
+  c)  Replace Hi with Hello in a file.
+  =>  sed 's/Hi/Hello/' file.txt
+  d)  Create a file in user1 and remove read permission for a file and access
+      this file from other user.
+  =>  touch file1.txt
+      chmod -r file1.txt
+      sudo su ==> login ==> User2 ==> cat file1.txt
+  e)  Create a file with permission 554.
+  => touch file2.txt | chmod 554 file2.txt
+  f)  Copy a file contents into the file opened in nano editor.
+  => cp file.txt nano 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 7) Display the day of the week as "Mon" using cut command with date.
-
+ Ans:
+     date | cat > date.txt
+     cut -c 5-7 date.txt
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 8) Create an array of 5 names and display all names.
-
+ Ans:
+  
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 9) Write a shell script where user enters a number .
        if the number is even then print "Even number"
        if the number is odd then print "Odd number"
-
+  Ans:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 10) Write a shell script to enter marks of 5 subjects of a student and calculate 
         Percentage of marks where Total marks = 500
-
+  Ans:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 11) Write a cronjob which saves the current date in a file at home folder at 6 pm .
-
-
-https://github.com/pillaynilesh/assignment_UGT_2020/blob/main/Assignment2.txt
+ Ans:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
